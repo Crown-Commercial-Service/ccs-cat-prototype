@@ -1,0 +1,665 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+1 stage further competition review | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+  text: "Write and publish your requirements",
+  href: "/requirements/rfp/task-list"
+  },
+{
+text: "Review and publish"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">
+      [ Review and publish your 1-stage further competition ] 
+    </h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+    {% include "includes/project_header.html" %}<br>
+
+    <p class="govuk-body">[Instructions for this page]</p><br>
+
+    {{ govukButton({
+    text: "Download your 1-stage further competition (.ODT format)",
+    classes: "govuk-button--secondary",
+    href: "#"
+    }) }}
+    <br><br>
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h2 class="govuk-heading-m">1. Project and colleagues</h2>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Name your project
+        </dt>
+        {% if data['projLongName'] | length > 0 %}
+        <dd class="govuk-summary-list__value">
+          {{ data['projLongName'] }}
+        </dd>
+        {% else %}
+        <dd class="govuk-summary-list__value">
+          You have not given a custom name to your project
+        </dd>
+        {% endif %}
+
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/name">
+            Change<span class="govuk-visually-hidden">project name</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Change who is going to lead the procurement
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--none">
+            <li><span>{{lead_user.fullname}}</span></li>
+            <li><span>{{lead_user.email}}</span></li>
+            <li><span>{{lead_user.telephone}}</span></li>
+          </ul>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/procurement-lead">
+            Change<span class="govuk-visually-hidden"> procurement lead</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Add colleagues to your project
+        </dt>
+        {% if data['collaborators_list'] | length > 0 %}
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--none">
+            {% for collaborator in data['collaborators_list'] %}
+            <li>
+              <ul class="govuk-list govuk-list--none">
+                <li><span>{{collaborator.fullname}}</span></li>
+                <li><span>{{collaborator.email}}</span></li>
+                <li><span>{{collaborator.telephone}}</span></li>
+              </ul>
+            </li>
+            {%- endfor %}
+          </ul>
+        </dd>
+        {% else %}
+        <dd class="govuk-summary-list__value">
+          You have not added anyone so far in your team
+        </dd>
+        {% endif %}
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/add-collaborators">
+            Change<span class="govuk-visually-hidden"> procurement team members</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+
+    
+    <div class="govuk-!-width-two-third govuk-!-padding-bottom-9"
+    style="border: 4px solid #fdf90a; text-align: center;">
+    <br><br><br><label class="govuk-heading-m  govuk-!-padding-bottom-9 govuk-!-margin-top-9">Coming Soon</label>
+</div>
+    <!-- <h2 class="govuk-heading-m">2. Build your Expression of Interest (EoI) </h2>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Choose how to build your EoI
+        </dt>
+        {% if data['ccs_eoi_type'] == 'all_online' %}
+        <dd class="govuk-summary-list__value">
+          Enter all the information online
+        </dd>
+        {% else %}
+        <dd class="govuk-summary-list__value">
+          Complete and upload a document offline
+        </dd>
+        {% endif %}
+
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/type">
+            Change<span class="govuk-visually-hidden">EOI type</span>
+          </a>
+        </dd>
+      </div>
+      {% if data['ccs_eoi_type'] == 'all_online' %}
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Project objectives
+        </dt>
+        {% if data['eoi_purpose_1'] | length > 0 %}
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--none">
+            <li>
+              {{ data['eoi_purpose_1'] }}
+            </li>
+            {% for ques in range(2, 11) %}
+            {% set key = 'eoi_purpose_'+ques %}
+            {% if data[ key] | length > 0 %}
+            <li>
+              {{ data[key] }}
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </dd>
+        {% else %}
+        <dd class="govuk-summary-list__value">
+          You have not defined any project objectives
+        </dd>
+        {% endif %}
+
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/purpose">
+            Change<span class="govuk-visually-hidden"> eoi purpose</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Project scope (Optional)
+        </dt>
+        {% if data['eoi_scope_1'] | length > 0 %}
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--none">
+            <li>
+              {{ data['eoi_scope_1'] }}
+            </li>
+            {% for ques in range(2, 11) %}
+            {% set key = 'eoi_scope_'+ques %}
+            {% if data[ key] | length > 0 %}
+            <li>
+              {{ data[key] }}
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </dd>
+        {% else %}
+        <dd class="govuk-summary-list__value">
+          You have not defined any project scope
+        </dd>
+        {% endif %}
+
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/scope">
+            Change<span class="govuk-visually-hidden"> eoi scope</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Terms and acronyms (Optional)
+        </dt>
+        {% if data['eoi_key_1'] | length > 0 %}
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--none">
+            <li> {{ data['eoi_key_1']}}: &nbsp; {{ data['eoi_key_definition_1']}}</li>
+            {% for term in range(2, 5) %}
+            {% set key = 'eoi_key_'+ term %}
+            {% set value = 'eoi_key_definition_' + term %}
+            {% if data[ key] | length > 0 %}
+            <li>
+              {{ data[key] }}:&nbsp; {{ data[value] }}
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </dd>
+        {% else %}
+        <dd class="govuk-summary-list__value">
+          You have not added any terms or acronyms
+        </dd>
+        {% endif %}
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/acronyms">
+            Change<span class="govuk-visually-hidden"> eoi acronyms</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Background for your procurement
+        </dt>
+        {% if data['eoi_prob_statement'] | length > 0 %}
+        <dd class="govuk-summary-list__value">
+          {{ data['eoi_prob_statement'] }}
+        </dd>
+        {% else %}
+        <dd class="govuk-summary-list__value">
+          You have not added any problem statement
+        </dd>
+        {% endif %}
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/context">
+            Change<span class="govuk-visually-hidden"> eoi problem statement</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="ccs-summary-list-heading"> <strong> The buying organisation (Optional)</strong> </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key ccs-summary-list-heading" style="border-bottom: 0px;">
+          Name of the organisation doing the procurement
+        </dt>
+        <dd class="govuk-summary-list__value ccs-summary-list-heading" style="border-bottom: 0px;">
+          {{ data['contracting_auth'] }}
+        </dd>
+
+        <dd class="govuk-summary-list__actions ccs-summary-list-action" style="border-bottom: 0px;">
+          <a class="govuk-link govuk-link--no-visited-state" href="/eoi/who">
+            Change<span class="govuk-visually-hidden"> eoi buyer</span>
+          </a>
+        </dd>
+
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Name of the organisation using the products or services that are being procured
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['eoi_on_behalf_of'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/who">
+            <span class="govuk-visually-hidden"> eoi buyer</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Is this a new, replacement or expanded product or services?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['eoi_service_type'] }}
+        </dd>
+     
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/new">
+            Change<span class="govuk-visually-hidden"> eoi service type</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Is another supplier already providing this product or service?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['ccs_incumbent'] }},&nbsp;{{ data['incumbent_supplier'] }}
+        </dd>
+        
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/incumbent">
+            Change<span class="govuk-visually-hidden"> eoi incumbent supplier</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Special terms and conditions (Optional)
+        </dt>
+        {% if data['eoi_term_1'] | length > 0 %}
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--none">
+            <li> {{ data['eoi_term_1']}}:&nbsp;{{ data['eoi_condition_1']}}</li>
+            {% for term in range(2, 5) %}
+            {% set key = 'eoi_term_'+ term %}
+            {% set value = 'eoi_condition_' + term %}
+            {% if data[ key] | length > 0 %}
+            <li>
+              {{ data[key] }}:&nbsp;{{ data[value] }}
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </dd>
+        {% else %}
+        <dd class="govuk-summary-list__value">
+          You have not added any special terms and conditions
+        </dd>
+        {% endif %}
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/terms">
+            Change<span class="govuk-visually-hidden"> eoi terms and condition</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Security and vetting requirements (Optional) 
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['ccs_vetting_type'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/vetting">
+            Change<span class="govuk-visually-hidden"> eoi security requirements</span>
+          </a>
+        </dd>
+      </div>
+
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Where the supplied staff will work (Optional)
+        </dt>
+        {% if data['required_locations'] === undefined or data['required_locations'] | length == 0 %}
+        <dd class="govuk-summary-list__value">
+          You have not added any location
+        </dd>
+        {% else %}
+        {% if data['required_locations'] | length > 0 %}
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--none">
+            {% for loc in data['required_locations'] %}
+            {% if loc == '13'%}
+            <li>
+              No specific location, for example they can work remotely
+              </li>
+             {% else %} 
+            <li>
+            {{ loc }}
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </dd>
+        {% endif %}
+        {% endif %}
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/location">
+            Change<span class="govuk-visually-hidden"> eoi address</span>
+          </a>
+        </dd>
+      </div>
+
+      
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          How long is your project?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--none">
+            <li> Date you want the project to start:&nbsp;{{ resourseStartDate }}</li>
+           
+            <li>
+              How long you think the project will run for (Optional):&nbsp;
+             
+              {% if data['eoi_duration-years'] | length > 0 %}
+              {{data['eoi_duration-years']}} years &nbsp;
+              {% endif %}
+              {% if data['eoi_duration-months'] | length > 0 %}
+              {{data['eoi_duration-months']}} months &nbsp;
+              {% endif %}
+              {% if data['eoi_duration-days'] | length > 0 %}
+              {{data['eoi_duration-days']}} days &nbsp;
+              {% endif %}
+            </li>
+          </ul>
+        </dd>
+    
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/duration">
+            Change<span class="govuk-visually-hidden"> eoi duration</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          What is your budget?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--none">
+            <li> Maximum budget:&nbsp;{{ data['eoi_max_budget']}}</li>
+            <li>
+              Minimum budget (optional):&nbsp;{{ data['eoi_min_budget'] }}
+            </li>    
+          </ul>
+        </dd>
+
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/budget">
+            Change<span class="govuk-visually-hidden"> eoi budget</span>
+          </a>
+        </dd>
+      </div>
+
+
+     
+      {% else %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Uploaded document
+        </dt>
+        {% if data['eoi_offline_document'] | length > 0 %}
+        <dd class="govuk-summary-list__value">
+          data['eoi_offline_document']
+        </dd>
+        {% else %}
+        <dd class="govuk-summary-list__value">
+          You have not uploaded any document
+        </dd>
+        {% endif %}
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/offline-doc">
+            Change<span class="govuk-visually-hidden"> eoi offline document</span>
+          </a>
+        </dd>
+      </div>
+      {% endif %}
+    </dl>
+
+    <h2 class="govuk-heading-m"> 3. Review and publish your EoI </h2>
+    <dl class="govuk-summary-list">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Upload documents or add links
+        </dt>
+        {% if data['eoi_file_upload_1'] | length > 0 or data['eoi_additional_link'] | length > 0 %}
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-list--none">
+            {% if data['eoi_file_upload_1'] | length > 0 %}
+            <li>
+              <span>Uploaded file:&nbsp;</span> {{ data['eoi_file_upload_1'] }}
+            </li>
+            {% endif %}
+            {% if data['eoi_additional_link'] | length > 0 %}
+            <li>
+              <span>Link:&nbsp;</span> {{ data['eoi_additional_link'] }}
+            </li>
+            {% endif %}
+          </ul>
+        </dd>
+        {% else %}
+        <dd class="govuk-summary-list__value">
+          You have not provided any link or uploaded any document
+        </dd>
+        {% endif %}
+
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/upload">
+            Change<span class="govuk-visually-hidden">eoi additional link and documents</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Number of suppliers being contacted
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['eoi_selected_supplier_count']}} suppliers 
+        </dd>
+
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/eoi/suppliers">
+            Change<span class="govuk-visually-hidden">eoi suppliers</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="ccs-summary-list-heading"><strong> Your EoI timeline</strong> </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key ccs-summary-list-heading" style="border-bottom: 0px;">
+          Clarification period ends
+        </dt>
+        <dd class="govuk-summary-list__value ccs-summary-list-heading" style="border-bottom: 0px;">
+          {{ data['eoi_clarification_date_string'] }}
+        </dd>
+
+        <dd class="govuk-summary-list__actions ccs-summary-list-action" style="border-bottom: 0px;">
+          <a class="govuk-link" href="/eoi/response-date">
+            Change<span class="govuk-visually-hidden"> eoi response dates</span>
+          </a>
+        </dd>
+
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key" style="border-bottom: 0px;">
+          Deadline for publishing repsonses to EoI clarification questions
+        </dt>
+        <dd class="govuk-summary-list__value" style="border-bottom: 0px;">
+          {{ data['eoi_clarification_response_date_string'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions" style="border-bottom: 0px;">
+          <a class="govuk-link">
+            <span class="govuk-visually-hidden"> eoi response dates</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key" style="border-bottom: 0px;">
+          Deadline for suppliers to submit their EoI response
+        </dt>
+        <dd class="govuk-summary-list__value" style="border-bottom: 0px;">
+          {{ data['eoi_response_date_string'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions" style="border-bottom: 0px;">
+          <a class="govuk-link">
+            <span class="govuk-visually-hidden"> eoi response dates</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Confirm your next steps to suppliers
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['eoi_next_steps_date_string'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link">
+            <span class="govuk-visually-hidden"> eoi response dates</span>
+          </a>
+        </dd>
+      </div>
+    </dl> -->
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+    <p class="govuk-body">
+    <h2 class="govuk-heading-m"> [ Publish your 1-stage further competition ]</h2>
+    </p>
+    <p class="govuk-body">
+      [ After publishing this event, you'll be able to cancel all or part of this 1-stage further competition at any stage / any time or amend, clarify, add to or withdraw all or any part of the 1-stage further competition at any time. ]
+    </p>
+
+
+<br><br>
+
+    {{ govukWarningText({
+    text: "[ By publishing this 1-stage further competition to all suppliers in your list, you are stating that, to the best of your knowledge, the information you have provided is correct. ]
+    ",
+    iconFallbackText: "Warning"
+    }) }}
+
+    <div class="ccs-link-group">
+      <span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M0 1.77778C0 1.34823 0.335786 1 0.75 1H5.00286C6.23012 1 7.31979 1.61142 8.00393 2.55666C8.68803 1.61146 9.77766 1 11.005 1H15.25C15.6642 1 16 1.34823 16 1.77778V12.6667C16 13.0962 15.6642 13.4445 15.25 13.4445H10.7426C10.1459 13.4445 9.57361 13.6903 9.15165 14.1279L8.53033 14.7722C8.23744 15.0759 7.76256 15.0759 7.46967 14.7722L6.84835 14.1279C6.42639 13.6903 5.8541 13.4445 5.25736 13.4445H0.75C0.335786 13.4445 0 13.0962 0 12.6667V1.77778ZM8.755 4.8889C8.755 3.60023 9.76236 2.55556 11.005 2.55556H14.5V11.8889H10.7426C10.0326 11.8889 9.34339 12.0978 8.75124 12.4825L8.755 4.8889ZM7.25124 12.4842L7.255 7.22297L7.25285 4.88668C7.25167 3.59887 6.24466 2.55556 5.00286 2.55556H1.5V11.8889H5.25736C5.96836 11.8889 6.65854 12.0983 7.25124 12.4842Z"
+            fill="#505A5F" />
+        </svg>&nbsp;&nbsp;<a href="#" onclick="return false;"  class="govuk-link govuk-link--no-visited-state"> link 1</a>
+      </span>
+      <br>
+    
+
+    </div>
+    <br><br>
+    <form id="ccs_rfp_publish_form" name="ccs_rfp_publish_form" class="form ccs_rfp_publish_form"
+      action="/requirements/rfp/event-sent" method="post">
+
+      {{ govukCheckboxes({
+      idPrefix: "rfp_publish_confirmation",
+      name: "rfp_publish_confirmation",
+      items: [
+      {
+      "value": 1,
+      html: "<label><strong>By checking this box, I confirm that I have read and confirm the statements above</strong></label>",
+      checked: checked("rfp_publish_confirmation", "1")
+      }
+      ]
+      }) }}
+      <div class="govuk-button-group">
+        {{ govukButton({
+        attributes: {
+        id: "rfp_btn_publish_now"
+        },
+        text: "Publish and continue"
+        }) }}
+        <a href="/requirements/rfp/task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Write and publish your requirements ] </a>
+      </div>
+      {{ govukInput({
+      id: "requirements_published",
+      name: "requirements_published",
+      type: "hidden",
+      value: "true"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

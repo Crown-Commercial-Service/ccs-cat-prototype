@@ -1,0 +1,241 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Do pre market engagement
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text:"Do pre-market engagement"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            Do pre-market engagement
+        </h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        <div class="project-overview">
+            <p class="govuk-body">Selected agreement: <strong>{{ data['this_agreement_name'] }}, {{ data['this_lot'] }}</strong></p>
+             <p class="govuk-body">Agreement ID: <strong>{{ data['this_agreement_id'] }}</strong></p> 
+            <!-- <p class="govuk-body">Agreement ID: <strong>xxxx</strong></p> -->
+          
+            <p class="govuk-body">Project ID / Name:
+              {% if data['projLongName'] | length == 0 and data['projPersistID'] | length == 0 %}
+              <strong>{{ projectID }}</strong>
+              {% elif data['projLongName'] | length == 0 and data['projPersistID'] | length > 0 %}
+              <strong> {{ data['projPersistID'] }}</strong>
+              {% else %}
+              <strong>{{ data['projLongName'] }} ({{ data['projPersistID'] }})</strong>
+              {% endif %}
+            </p>
+          </div>
+        <br>
+        <p class="govuk-body">Pre-market engagement can help you to:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li> better understand what you need </li>
+            <li>write clearer needs to publish for suppliers</li>
+            <li>understand how much this work could cost</li>
+            <li>better understand how long this work could take</li>
+            </ul>
+            <br>
+        <ol class="app-task-list">
+            <li>
+                <h2 class="app-task-list__section">
+                    <span class="app-task-list__section-number">1. </span> Project and colleagues
+                </h2>
+                <p class="govuk-body"> You can name your project in this section. You can also change who leads the procurement or add more colleagues to your project to help you evaluate suppliers.</p>
+                <ul class="app-task-list__items">
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong> <a href="name" aria-describedby="name-your-project">
+                                    Name your project
+                                </a></strong>
+                        </span>
+                        {% if data['projPersistID'] | length > 0 and data['projLongName'] | length > 0 %}
+                        <strong class="govuk-tag govuk-tag--green app-task-list__tag">DONE</strong>
+                        {% else %}
+                        <strong class="govuk-tag app-task-list__tag">OPTIONAL</strong>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong> <a href="procurement-lead" aria-describedby="add-team-members">
+                                Change who is going to lead the procurement
+                                </a></strong>
+                        </span>
+                        {% if data['procurement_lead_added'] == 'true' %}
+                        <strong class="govuk-tag govuk-tag--green app-task-list__tag">DONE</strong>
+                        {% else %}
+                        <strong class="govuk-tag app-task-list__tag">OPTIONAL</strong>
+                        {% endif%}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong> <a href="add-collaborators" aria-describedby="add-team-members">
+                                Add colleagues to your project
+                                </a></strong>
+                        </span>
+                        {% if data['collaborators_added'] == 'true' %}
+                        <strong class="govuk-tag govuk-tag--green app-task-list__tag">DONE</strong>
+                        {% else %}
+                        <strong class="govuk-tag app-task-list__tag">OPTIONAL</strong>
+                        {% endif%}
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <h2 class="app-task-list__section">
+                    <span class="app-task-list__section-number">2. </span>
+                    Build your Request for Information (RfI)
+                </h2>
+                <p class="govuk-body">You can choose to enter information online to build your RfI, or upload a document. If you choose to build your RfI online you can write your own questions, include context about your organisation and your procurement, and get more detailed information about what suppliers can offer.</p>
+                <ul class="app-task-list__items">
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            {% if data['projPersistID'] | length > 0  %}
+                            <strong><a href="type" aria-describedby="RFI-type">
+                                Choose how to build your RfI
+                                </a></strong>
+                            {% else %}
+                            <strong> Choose how to build your RfI </strong>
+                            {% endif %}
+                        </span>
+                        {% if data['projPersistID'] | length == 0  %}
+                        <strong class="govuk-tag govuk-tag--grey app-task-list__tag">CANNOT START YET</strong>
+                        {% elif data['choose_rfi_type'] == "true" %}
+                        <strong class="govuk-tag govuk-tag--green app-task-list__tag">DONE</strong>
+                        {% else %}
+                        <strong class="govuk-tag  app-task-list__tag">TO DO</strong>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            {% if data['choose_rfi_type'] == "true" %}
+                            <strong> <a href="select-document-type" aria-describedby="build-RFI">
+                                Build your RfI
+                                </a> </strong>
+                            {% else %}
+                            <strong> Build your RfI </strong>
+                            {% endif %}
+                        </span>
+                        {% if data['choose_rfi_type'] != "true" %}
+                        <strong class="govuk-tag govuk-tag--grey app-task-list__tag">CANNOT
+                            START YET</strong>
+                        {% elif data['rfi_build_completed'] == "true" %}
+                        <strong class="govuk-tag govuk-tag--green app-task-list__tag">DONE</strong>
+                        {% elif data['choose_rfi_type'] == "true" and data['rfi_build_started'] != "true" %}
+                        <strong class="govuk-tag  app-task-list__tag">TO DO</strong>
+                        {% elif data['rfi_build_started'] == "true" and data['rfi_build_completed'] != "true" %}
+                        <strong class="govuk-tag govuk-tag--blue  app-task-list__tag">IN PROGRESS</strong>
+
+                        {% endif %}
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <h2 class="app-task-list__section">
+                    <span class="app-task-list__section-number">3. </span> Review and publish your RfI
+                </h2>
+                <p class="govuk-body">Review the information you have entered, confirm which suppliers you want to send it to, set out your timeline (including how long suppliers have to ask questions and when you will respond by), and then publish your RfI.</p>
+                <ul class="app-task-list__items">
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            {% if data['rfi_build_completed'] == "true" %}
+                            <strong> <a href="upload" aria-describedby="upload-additional-documents">
+                                Upload documents or add links
+                                </a> </strong>
+                            {% else %}
+                            <strong>Upload documents or add links </strong>
+                            {% endif %}
+                        </span>
+                        {% if data['rfi_build_completed'] == "true" %}
+                        <strong class="govuk-tag app-task-list__tag">OPTIONAL</strong>
+                        {% else %}
+                        <strong class="govuk-tag govuk-tag--grey app-task-list__tag">CANNOT START YET</strong>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item" >
+                        <span class="app-task-list__task-name">
+                            {% if data['rfi_build_completed'] == "true" %}
+                            <strong> <a href="suppliers" aria-describedby="identify-suppliers">
+                                Confirm which suppliers you want to approach
+                                </a>  </strong>
+                            {% else %}
+                            <strong> Confirm which suppliers you want to approach </strong>
+                            {% endif %}
+                        </span>
+                        {% if data['rfi_supplier_selected'] == "true" %}
+                        <strong class="govuk-tag govuk-tag--green app-task-list__tag"> DONE </strong>
+                        {% elif data['rfi_build_completed'] == "true" %}
+                        <strong class="govuk-tag app-task-list__tag">TO DO</strong>
+                        {% else %}
+                        <strong class="govuk-tag govuk-tag--grey app-task-list__tag">CANNOT START YET</strong>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            {% if data['rfi_build_completed'] == "true" %}
+                            <strong> <a href="response-date" aria-describedby="set-response-date" >
+                                Your RfI timeline </a></strong>
+                            {% else %}
+                            <strong > Your RfI timeline </strong>
+                    
+                            {% endif %}
+                        </span>
+                        {% if data['rfi_response_date_set'] == "true" %}
+                        <strong class="govuk-tag govuk-tag--green app-task-list__tag"> DONE </strong>
+                        {% elif data['rfi_build_completed'] == "true" %}
+                        <strong class="govuk-tag app-task-list__tag"> TO DO </strong>
+                        {% else %}
+                        <strong class="govuk-tag govuk-tag--grey app-task-list__tag">CANNOT START YET</strong>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            {% if data['rfi_response_date_set'] == "true" %}
+                            <strong> <a href="review" aria-describedby="read-declaration-status" >
+                                Review and publish your RfI </a></strong>
+                            {% else %}
+                            <strong> Review and publish your RfI </strong>
+                           
+                            {% endif %}
+                        </span>
+                        {% if data['rfi_response_date_set'] != "true" %}
+                        <strong class="govuk-tag govuk-tag--grey app-task-list__tag">CANNOT START YET</strong>
+                        {% else %}
+                        <strong class="govuk-tag app-task-list__tag">TO DO</strong>
+                        {% endif %}
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+
+{% endblock %}

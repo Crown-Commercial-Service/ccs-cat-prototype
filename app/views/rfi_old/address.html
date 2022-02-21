@@ -1,0 +1,122 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  RfI - Where the work will be completed | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Where the work will be completed"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Where the work will be completed
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form id="ccs_rfi_address_form" name="ccs_rfi_address_form" class="form ccs_rfi_address_form" action="/rfi/budget" method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: "Where will the work be completed (optional)",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          }
+        }) %}
+
+          {{ govukInput({
+            label: {
+              html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
+            },
+            id: "rfi_proj_address-line-1",
+            name: "rfi_proj_address-line-1",
+            autocomplete: "address-line1",
+            value: data['rfi_proj_address-line-1']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
+            },
+            id: "rfi_proj_address-line-2",
+            name: "rfi_proj_address-line-2",
+            autocomplete: "address-line2",
+            value: data['rfi_proj_address-line-2']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Town or city"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "rfi_proj_address-town",
+            name: "rfi_proj_address-town",
+            autocomplete: "address-level2",
+            value: data['rfi_proj_address-town']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "County (optional)"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "rfi_proj_address-county",
+            name: "rfi_proj_address-county",
+            value: data['rfi_proj_address-county']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Postcode"
+            },
+            classes: "govuk-input--width-10",
+            id: "rfi_proj_address-postcode",
+            name: "rfi_proj_address-postcode",
+            autocomplete: "postal-code",
+            value: data['rfi_proj_address-postcode']
+          }) }}
+
+        {% endcall %}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+      </form>
+
+    </div>
+
+
+
+  </div>
+
+{% endblock %}

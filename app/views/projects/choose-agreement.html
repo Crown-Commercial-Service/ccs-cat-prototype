@@ -1,0 +1,119 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Choose a commercial agreement | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: "Choose a commercial agreement"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Choose a commercial agreement
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      <p class="govuk-body-l">These are the commercial agreements currently available on {{ data['portal_name'] }}.</p>
+
+
+      <div class="ccs-choose-agreement">
+        <div class="ccs-page-section">
+          <h2 class="govuk-heading-m">{{ mainAgreement.name }} <span>Agreement number: {{ mainAgreement.number }}</span> </h2>
+          <p class="govuk-body">{{ mainAgreement.description }} </p>
+          <p class="govuk-body">
+            <a href="/agreement?id={{ mainAgreement.number }}" class="govuk-link govuk-link--no-visited-state">See <span class="visuallyhidden">the {{ mainAgreement.name }} </span>agreement details</a>
+          </p>
+        </div>
+
+        <dl class="ccs-desc-list">
+          {% for lot in mainAgreement.lots %}
+          {% if mainAgreement.number === 'RM6187' and lot.number > 1 %}
+           <dt><a href="#" onclick="return false;" class="ccs-workinprogress govuk-link govuk-link--no-visited-state">Lot {{ lot.number }}: {{ lot.name }}</a>
+            <div class="ccs-hide">Not available in this prototype, please select lot 1</div>
+             <span>Expires: <time>{{ lot.endDate }}</time> </span>
+            </dt> 
+          {% else %}
+          <dt><a href="/projects/create-or-choose?agg={{ mainAgreement.name | ccsURLEncode }}&lot=Lot+{{ lot.number }}:+{{ lot.name | ccsURLEncode }}&agID={{ mainAgreement.number }}&ltID={{ lot.number}}" class="govuk-link govuk-link--no-visited-state">Lot {{ lot.number }}: {{ lot.name }}</a> 
+            <!-- <div >Not available in this prototype, please select lot 2</div> -->
+            <span>Expires: <time>{{ lot.endDate }}</time> </span>
+          </dt>
+          {% endif %}
+
+          <dd>
+            <p class="govuk-body">{{ lot.description }}</p>
+            <p class="govuk-body"><a  href="#" onclick="return false;"  class="govuk-link govuk-link--no-visited-state">xx suppliers <span class="visuallyhidden">for Lot {{ lot.number }}: Digital Outcomes</span></a> </p>
+          </dd>
+          {% endfor %}
+        </dl>
+
+      </div>
+
+      <h2 class="govuk-heading-m">Other agreements available in {{ data['portal_name'] }}</h2>
+
+      <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+      {% for agreement in otherAgreements %}
+        <div class="govuk-accordion__section ">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-{{ loop.index }}">
+                {{ agreement.name }} ({{ agreement.number }})
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-{{ loop.index }}" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-{{ loop.index }}">
+            <div class="ccs-choose-agreement">
+              <div class="ccs-page-section">
+                <p class='govuk-body'>{{ agreement.description }}</p>
+                <p class="govuk-body">
+                  <a href="/agreement?id={{ agreement.number }}" class="govuk-link govuk-link--no-visited-state">See <span class="visuallyhidden">the {{ agreement.name }} </span>agreement details</a>
+                </p>
+              </div>
+
+              <dl class="ccs-desc-list">
+                {% for lot in agreement.lots %}
+                <dt><a href="/projects/create-or-choose?agg={{ agreement.name | ccsURLEncode }}&lot=Lot+{{ lot.number }}:+{{ lot.name | ccsURLEncode }}&agID={{ agreement.number }}&ltID={{ lot.number}}" class="govuk-link govuk-link--no-visited-state">Lot {{ lot.number }}: {{ lot.name }}</a> <span>Expires: <time>{{ lot.endDate }}</time> </span></dt>
+                <dd>
+                  <p class="govuk-body">{{ lot.description }}</p>
+                  <p class="govuk-body"><a href="#" class="govuk-link govuk-link--no-visited-state">xx suppliers <span class="visuallyhidden">for Lot {{ lot.number }}: Digital Outcomes</span></a> </p>
+                </dd>
+                {% endfor %}
+              </dl>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+
+        <!-- {{ govukButton({
+          text: "Start a new search",
+          href: "/dashboard"
+        }) }} -->
+
+      </div>
+
+    </div>
+
+  </div>
+
+{% endblock %}

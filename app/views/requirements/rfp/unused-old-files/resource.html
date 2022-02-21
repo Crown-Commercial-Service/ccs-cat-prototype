@@ -1,0 +1,109 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  What is required of resource | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements/rfp/task-list"
+},
+{
+  text: "[Add context]",
+  href: "/requirements/rfp/context/sub-task-list"
+  },
+{
+text: "[ What is required of the resource(s) ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        [ What is required of the resource(s) ]
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        {% include "includes/project_header.html" %}
+        <br>
+        <p class="govuk-body">[ Instructions for this page ]</p><br><br>
+      <form id="ccs_rfp_resource_requirement" name="ccs_rfp_resource_requirement" class="form ccs_rfp_resource_requirement" action="/requirements/rfp/acronyms" method="post">
+
+        {{ govukTextarea({
+          name: "resource-required-deliverable",
+          id: "resource-required-deliverable",
+          label: {
+            text: "[ Include a detailed description of the requirement and contract deliverables ]"
+          },
+          hint: {
+            text: "[ Please ensure the requirement is not written to favour a particular approach, brand, and/or supplier. ]"
+          }
+        }) }}
+
+        {{ govukTextarea({
+            name: "resource-required-training",
+            id: "resource-required-training",
+            label: {
+              text: "[ Include any training or skills transfer requirements to be delivered by the supplier ]"
+            },
+            hint: {
+              text: "[ Please ensure the requirement is not written to favour a particular approach, brand, and/or supplier. ]"
+            }
+          }) }}
+
+          {{ govukTextarea({
+            name: "resource-required-testing",
+            id: "resource-required-testing",
+            label: {
+              text: "[Include any functionality, compatibility or acceptance testing requirements ]"
+            },
+            hint: {
+              text: "[Please ensure the requirement is not written to favour a particular approach, brand, and/or supplier. ]"
+            }
+          }) }}
+
+          {{ govukInput({
+            id: "rfp_build_started",
+            name: "rfp_build_started",
+            type: "hidden",
+            value: true
+          }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Add context ]</a>
+        </div>
+
+      </form>
+
+    </div>
+
+    {% include "includes/promos/related_only.html" %}
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Provide information online
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+    items: [
+    {
+    text: "Dashboard",
+    href: "/dashboard"
+    },
+    {
+    text: "Choose a commercial agreement",
+    href: "/projects/choose-agreement"
+    },
+    {
+    text: "Procurement overview",
+    href: "/projects/"
+    },
+    {
+    text: "Do pre-market engagement",
+    href: "/rfi/rfi-task-list"
+    },
+    {
+      text: "Build your RfI"
+    }
+    ]
+    }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            Build your RfI
+        </h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        {% include "includes/project_header.html" %}
+        <br>
+        
+        <p class="govuk-body">Ask suppliers questions and tell them about the information you need. You can add more detail in the optional sections if you think it will help the suppliers to answer your questions.</p><br><br>
+
+        <ul class="app-task-list ccs-rfi-buildtask-list">
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Ask suppliers questions</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="questions" aria-describedby="rfi-questions">Add up to 10 questions for suppliers to answer</a>
+            </li>
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Terms and acronyms (Optional)</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="acronyms" aria-describedby="terms-and-acronyms-definition">Add terms and acronyms</a>
+            </li>
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Background for your procurement</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="project" aria-describedby="project-information">Add information about the project</a>
+            </li>
+            <!-- <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Status of the project (optional)</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="project-status" aria-describedby="project-status">Add status of the project</a>
+            </li> -->
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>The buying organisation(Optional)</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="who" aria-describedby="buyer-information">Add buyer details</a>
+            </li>
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Security and vetting requirements</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="vetting" aria-describedby="vetting-requirements">Add security and vetting requirements</a>
+            </li>
+            
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Where the supplied staff will work (Optional)</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="location" aria-describedby="address-information">Add location</a>
+            </li>
+            <!-- <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Specify your budget</strong>
+                </span>
+                <a class="app-task-list__tag" href="budget" aria-describedby="budget-information">Add budget</a>
+            </li>
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Specify your daily rate</strong>
+                </span>
+                <a class="app-task-list__tag" href="budget-step-two" aria-describedby="daily-rate-information">Add daily rate</a>
+            </li> -->
+           
+          
+        </ul>
+            <br>
+            <br>
+        <p class="govuk-body">
+            <a href="/rfi/rfi-task-list" class="govuk-link govuk-link--no-visited-state">Return to pre-market engagement</a>
+        </p>
+       
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+
+{% endblock %}

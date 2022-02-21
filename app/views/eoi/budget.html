@@ -1,0 +1,120 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+What is your budget? | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+  items: [
+  {
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Do pre-market engagement",
+  href: "/eoi/eoi-task-list"
+  },
+  {
+    text: "Build your EoI",
+    href: "/eoi/online-task-list"
+  },
+  {
+    text: "What is your budget?"
+  }
+  ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        What is your budget?
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+
+      {% include "includes/project_header.html" %} <br>
+
+      <p class="govuk-body">Indicate how much you expect to spend on this project. This can be an estimate.</p>
+
+      <br><br>
+
+      <form id="eoi_budget_form" name="eoi_budget_form" class="form eoi_budget_form" action="/eoi/eoi-task-list" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Maximum budget",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            html: '<p class="govuk-hint">For example £ 10,000</p>'
+          },
+          prefix: {
+            text: "£"
+          },
+          id: "eoi_max_budget",
+          name: "eoi_max_budget",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          classes: "govuk-input--width-5",
+          value: data['eoi_max_budget']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Minimum budget (optional)",
+            classes: "govuk-label--m govuk-!-margin-top-7"
+          },
+          hint: {
+            html: '<p class="govuk-hint">For example £ 30,000</p>'
+          },
+          prefix: {
+            text: "£"
+          },
+          id: "eoi_min_budget",
+          name: "eoi_min_budget",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          classes: "govuk-input--width-5 ",
+          value: data['eoi_min_budget']
+        }) }}
+
+        {{ govukInput({
+            id: "pre_build_completed",
+            name: "pre_build_completed",
+            type: "hidden",
+            value: true
+          }) }}
+          <br>
+          <br>
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/eoi/online-task-list" class="govuk-link govuk-link--no-visited-state">Return to Build your Expression of Interest</a>
+        </div>
+
+      </form>
+
+    </div>
+
+    {% include "includes/promos/related_only.html" %}
+
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Invoicing address | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements"
+},
+{
+text: "[ Legal / invoicing address ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        [ Legal / invoicing address ]      </h1>
+    
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %} 
+      <br>
+      <p class="govuk-body">[ Instructions for this page ]</p>
+      <br><br>
+      <form id="ccs_rfp_address_form" name="ccs_rfp_address_form" class="form ccs_rfp_address_form" action="/requirements/rfp/vetting" method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: "[ Search by postcode or enter the address manually ]",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          }
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "Postcode",
+              classes: "govuk-label--m"
+            },
+            classes: "govuk-input--width-10",
+            id: "rfp_invoice_address-postcode",
+            name: "rfp_invoice_address-postcode",
+            autocomplete: "postal-code",
+            value: data['rfp_invoice_address-postcode']
+          }) }}
+
+          <div id="ccs_postcode_holder" class="ccs-dynaform-hidden">
+            <p class="govuk-body-l"><span id="display_postcode" class="govuk-!-font-weight-bold"></span>&nbsp;&nbsp; <a id="change_postcode" href="change" class="govuk-link govuk-link--no-visited-state">Change</a></p>
+          </div>
+
+          {{ govukSelect({
+            id: "rfp_invoice_address-address",
+            name: "rfp_invoice_address-address",
+            label: {
+              text: "Select an address",
+              classes: "govuk-label--m"
+            },
+            items: []
+          }) }}
+
+          {{ govukButton({
+            text: "Find address",
+            attributes: {
+              id: "rfi_find_address_btn"
+            },
+            classes: "govuk-button--secondary"
+          }) }}
+
+        {% endcall %}
+        <span>
+          <a href="/requirements/rfp/address-manual" class="govuk-link govuk-link--no-visited-state">Enter address manually</a>
+        </span>
+
+        <br> 
+        <br>
+        <br>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue",
+            attributes: {
+              id: "rfi_save_address_btn"
+            }
+          }) }}
+                <a href="/requirements/rfp/task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Write your requirements ]</a>
+        </div>
+
+      </form>
+
+    </div>
+
+    {% include "includes/promos/related_only.html" %}
+
+  </div>
+
+{% endblock %}

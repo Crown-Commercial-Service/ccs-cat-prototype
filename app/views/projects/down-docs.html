@@ -1,0 +1,67 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Download EOI documents | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Download EOI documents"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Download EOI documents
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">Download any document templates you require for your EoI.</p>
+
+      <ul class="govuk-list">
+        <li><a href="https://www.gov.uk/guidance/how-to-write-your-requirements-for-digital-outcomes-and-specialists-services">Request for information</a></li>
+        <li><a href="https://www.gov.uk/guidance/digital-outcomes-and-specialists-templates-and-legal-documents#evaluation-templates">Evaluation form</a></li>
+        <li><a href="https://www.gov.uk/guidance/how-to-score-digital-outcomes-and-specialists-suppliers">Scoring advice</a></li>
+        <li><a href="https://www.gov.uk/guidance/how-to-award-a-contract-when-you-buy-services#whats-an-order-form-and-when-to-use-it">Order form</a></li>
+        <li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/947688/DOS5-framework-award-form.odt">Digital Outcomes and Specialists 5 Framework Award Form</a></li>
+        <li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/947689/DOS5-core-terms-framework-schedules.odt">Digital Outcomes and Specialists 5 Core Terms and Framework Schedules</a></li>
+        <li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/947690/DOS5-joint-schedules.odt">Digital Outcomes and Specialists 5 Joint Schedules</a></li>
+        <li><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/947691/DOS5-call-off-schedules.odt">Digital Outcomes and Specialists 5 Call-Off Schedules</a></li>
+      </ul>
+
+
+      <div class="govuk-button-group">
+        <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+      </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

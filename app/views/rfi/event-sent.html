@@ -1,0 +1,64 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+ Request for information issued | Crown Commercial Service
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Your Request for Information is published
+      </h1>
+    
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% include "includes/project_header.html" %} <br>
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h2 class="govuk-panel__title">
+          Your Request for Information was sent to the suppliers you selected
+        </h2>
+        <br><br><br>
+        <div class="govuk-panel__body">
+          Your unique reference number is: <strong>{{ rfi_ref_no }} </strong><p class="govuk-body">Please quote this number, along with your project ID ({{ data['projPersistID'] }}),  if you need to contact CCS for support. You can contact CCS by phone on 0345 410 2222 or <a class="govuk-link govuk-link--no-visited-state css-link-white" href="mailto:info@crowncommercial.gov.uk">info@crowncommercial.gov.uk</a></p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <ol class="govuk-list govuk-list--number">
+        <li>the suppliers you selected can read your RfI and ask questions if they need more information</span></li>
+        <li>when the clarification period ends you will need to answer the supplier questions by the deadline you set</li>
+      </ol>
+<br><br><br>
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: " Go to your project dashboard",
+          href: "/dashboard"
+        }) }}
+        <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to procurement overview </a>
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+
+{% endblock %}

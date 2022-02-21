@@ -1,0 +1,119 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+ Define assessment bases | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements/rfp/task-list"
+},
+{
+text: "[ Define your assessment bases ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            [ Define your assessment bases ]
+        </h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        {% include "includes/project_header.html" %} <br>
+        <p class="govuk-body">[ Instructions for this page ]</p><br><br>
+
+        <ul class="app-task-list">
+            <li>
+                <div class=" govuk-!-margin-left-5 govuk-!-margin-bottom-0">
+                <h2 class="app-task-list__section govuk-!-font-weight-regular govuk-!-margin-bottom-3">
+                    [ Guidance ]
+                </h2>
+                </div>
+                <ul class="app-task-list__items">
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Learn how to define your assessment bases (Optional) ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="assessment/assessment-guide" aria-describedby="">[ Review link ]</a>
+                    </li>
+                </ul>
+            </li>
+        
+            <li>
+                <div class=" govuk-!-margin-left-5 govuk-!-margin-bottom-0">
+                    <h2 class="app-task-list__section govuk-!-font-weight-regular govuk-!-margin-bottom-3 ">
+                        [ Your quality assessment base ]
+                    </h2>
+                </div>
+                <ul class="app-task-list__items">
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Your technical questions ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="assessment/technical-base" aria-describedby="">[Add Link]</a>
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Your cultural fit questions ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="assessment/cultural-base" aria-describedby="">[Add Link]</a>
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Your social value questions ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="assessment/social-base" aria-describedby="">[Add Link]</a>
+                    </li>
+                </ul>
+            </li>
+
+          
+            <li id="detailed-requirements-section">
+                <div class=" govuk-!-margin-left-5 govuk-!-margin-bottom-0">
+                    <h2 class="app-task-list__section govuk-!-font-weight-regular govuk-!-margin-bottom-3 ">
+                        [ Your price assessment base ]
+                    </h2>
+                </div>
+                <ul class="app-task-list__items">
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Your price questions ]</strong>
+                        </span> 
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="assessment/price-base" aria-describedby="">[Add Link]</a>
+                    </li>                 
+                </ul>
+            </li>
+        </ul>
+
+        <div class="govuk-button-group">
+            <a href="/requirements/rfp/task-list" class="govuk-link govuk-link--no-visited-state">Return to write and publish your
+                requirements </a>
+        </div>
+
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+{% endblock %}

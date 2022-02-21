@@ -1,0 +1,147 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  RfI - Where the work will be completed | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+  items: [
+  {
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "[Procurement overview]",
+  href: "/projects/"
+  },
+  {
+  text: "[ 2. Run pre-market engagement ]",
+  href: "/rfi/rfi-task-list"
+  },
+  {
+    text: "[Build your Request for Information (RfI)]",
+    href: "/rfi/online-task-list"
+  },
+  {
+    text: "[ Where the work be completed (optional) ]"
+  }
+  ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Where the work will be completed
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "includes/project_header.html" %}<br>
+      <p class="govuk-body">[ Instructions for this page ]</p><br><br>
+      
+      <p class="govuk-body"><strong>[ Timeline for the RFI ]</strong></p><br>
+      
+      <form id="ccs_rfi_address_manual_form" name="ccs_rfi_address_manual_form" class="form ccs_rfi_address_form" action="/rfi/project" method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: "Where will the work be completed (optional)",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          }
+        }) %}
+
+          {{ govukInput({
+            label: {
+              html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
+            },
+            id: "rfi_proj_address-line-1",
+            name: "rfi_proj_address-line-1",
+            autocomplete: "address-line1",
+            value: data['rfi_proj_address-line-1']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
+            },
+            id: "rfi_proj_address-line-2",
+            name: "rfi_proj_address-line-2",
+            autocomplete: "address-line2",
+            value: data['rfi_proj_address-line-2']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Town or city"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "rfi_proj_address-town",
+            name: "rfi_proj_address-town",
+            autocomplete: "address-level2",
+            value: data['rfi_proj_address-town']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "County (optional)"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "rfi_proj_address-county",
+            name: "rfi_proj_address-county",
+            value: data['rfi_proj_address-county']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Postcode"
+            },
+            classes: "govuk-input--width-10",
+            id: "rfi_proj_address-postcode",
+            name: "rfi_proj_address-postcode",
+            autocomplete: "postal-code",
+            value: data['rfi_proj_address-postcode']
+          }) }}
+
+        {% endcall %}
+
+        <span>
+          <a href="/rfi/address" class="govuk-link govuk-link--no-visited-state">Search by postcode</a>
+        </span>
+        
+        <br>
+        <br>
+        <br>
+
+        {{ govukInput({
+          id: "rfi_build_started",
+          name: "rfi_build_started",
+          type: "hidden",
+          value: true
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/rfi/online-task-list" class="govuk-link govuk-link--no-visited-state">Return to Build your Request for Information</a>
+        </div>
+
+      </form>
+
+    </div>
+    {% include "includes/promos/related_only.html" %}
+
+  </div>
+
+{% endblock %}

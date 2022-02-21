@@ -1,0 +1,144 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+ Phase resource will be engaged for | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Write and publish your requirements",
+  href: "/requirements/rfp/task-list"
+  },
+  {
+    text: "[Add context]",
+    href: "/requirements/rfp/context/sub-task-list"
+    },
+{
+text: "[ Phase resource is required for ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full ">
+      <h1 class="govuk-heading-xl">
+        [ Phase resource is required for ]
+      </h1>
+      
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %}<br>
+        <p class="govuk-body">[instructions]</p><br>
+        <p class="govuk-body">[Read more about <a href="#" onclick="return false;">service design phases.</a>]</p><br><br>
+      
+
+        <form id="ccs_rfp_resource_phase_form" name="ccs_rfp_resource_phase_form" class="form ccs_rfp_resource_phase_form" action="/requirements/rfp/context/duration" method="post">
+
+            {{ govukCheckboxes({
+                idPrefix: "ccs_rfp_resource_phase",
+                name: "ccs_rfp_resource_phase",
+                hint: {
+                    text: "Select all that apply."
+                  },
+                items: [
+                  {
+                    "value": "Discovery",
+                    html: "<h3 class='govuk-heading-m govuk-!-margin-bottom-0'>Discovery</h3>",
+                    hint: {
+                        html: "<label>[description ]</label>"
+                        },
+                    checked: checked("ccs_rfp_resource_phase", "Discovery")
+                  },
+                  {
+                    "value": "Alpha",
+                    html: "<h3 class='govuk-heading-m govuk-!-margin-bottom-0'>Alpha</h3>",
+                    hint: {
+                        html: "<label>[ description ]</label>"
+                        },
+                    checked: checked("ccs_rfp_resource_phase", "Alpha")
+                  },
+                  {
+                    "value": "Beta",
+                    html: "<h3 class='govuk-heading-m govuk-!-margin-bottom-0'>Beta</h3>",
+                    hint: {
+                        html: "<label>[description ]</label>"
+                        },
+                    checked: checked("ccs_rfp_resource_phase", "Beta")
+                  },
+                  {
+                    "value": "Live",
+                    html: "<h3 class='govuk-heading-m govuk-!-margin-bottom-0'>Live</h3>",
+                    hint: {
+                        html: "<label>[description ]</label>"
+                        },
+                    checked: checked("ccs_rfp_resource_phase", "Live")
+                  },
+                  {
+                    divider:"OR"
+                    
+                  },
+                  {
+                    "value": 5,
+                    
+                    html: "<h3 class='govuk-heading-m govuk-!-margin-bottom-0 '>[ Not applicable, example for not applicable scenarios ]</h3>",
+                    hint: {
+                        html: "<label>[description ]</label>"
+                        },
+                    checked: checked("ccs_rfp_resource_phase", "5")
+                  }          
+                ]
+              }) }}
+
+              <br>
+
+              {{ govukInput({
+                id: "rfp_resource-phase_added",
+                name: "rfp_resource-phase_added",
+                type: "hidden",
+                value: true
+              }) }}
+
+              {{ govukInput({
+                id: "rfp_add_context_started",
+                name: "rfp_add_context_started",
+                type: "hidden",
+                value: true
+              }) }}
+
+        <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Save and continue"
+            }) }}
+            <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Add context ]</a>
+          </div>
+  
+        </form>
+  
+      </div>
+  
+      {% include "includes/promos/related_only.html" %}
+  
+  
+    </div>
+  
+  {% endblock %}

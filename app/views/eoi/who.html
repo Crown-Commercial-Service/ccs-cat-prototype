@@ -1,0 +1,106 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+The buying organisation | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+  items: [
+  {
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Do pre-market engagement",
+  href: "/eoi/eoi-task-list"
+  },
+  {
+    text: "Build your EoI",
+    href: "/eoi/online-task-list"
+  },
+  {
+    text: "The buying organisation"
+  }
+  ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        The buying organisation (Optional) 
+      </h1>
+    
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %} <br>
+      <p class="govuk-body">Name the organisation who will use the products or services you are buying through this procurement.</p>
+
+      <p class="govuk-body">Some organisations might procure products and services on behalf of another organisation who then use and pay for what was procured.</p><br><br>
+
+      <form id="ccs_eoi_who_form" name="ccs_eoi_who_form" class="form ccs_rfi_who_form" action="/eoi/new" method="post">
+        <div>
+        <label class="govuk-label--m">Name of the organisation doing the procurement</label>
+       <p class="govuk-body govuk-!-font-size-19 govuk-!-margin-top-3"> <strong>{{data['contracting_auth']}}</strong></p>
+      </div>
+        <!-- {{ govukInput({
+          label: {
+            text: "Name of the organisation doing the procurement",
+            classes: "govuk-label--m"
+          },
+          id: "contracting_auth",
+          name: "contracting_auth",
+          value: data['contracting_auth']
+        }) }} -->
+
+        <br><br>
+
+        {{ govukInput({
+          label: {
+            text: "Name of the organisation using the products or services that are being procured",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Complete this field if this a different orgnisation to the one above"
+          },
+          id: "rfi_on_behalf_of",
+          name: "rfi_on_behalf_of",
+          value: data['rfi_on_behalf_of']
+        }) }}
+
+        {{ govukInput({
+          id: "pre_build_started",
+          name: "pre_build_started",
+          type: "hidden",
+          value: true
+        }) }}
+<br><br>
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/eoi/online-task-list" class="govuk-link govuk-link--no-visited-state">Return to Build your Expression of Interest</a>
+        </div>
+
+      </form>
+
+    </div>
+    {% include "includes/promos/related_only.html" %}
+
+  </div>
+
+{% endblock %}

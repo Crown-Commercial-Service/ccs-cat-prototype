@@ -1,0 +1,49 @@
+.attachment {
+position: relative;
+margin: 30px 0;
+padding: 15px 0 0 129px;
+}
+
+.attachment:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.attachment-thumb {
+    position: relative;
+    float: left;
+    margin-top: 5px;
+    margin-left: -124px;
+    padding-bottom: 15px;
+}
+
+.attachment-thumb img {
+    display: block;
+    width: 144px;
+    height: 203px;
+    background: #fff;
+}
+
+.attachment-details {
+    margin-left: 50px;
+    margin-top: -20px;
+}
+.accessibility-warning {
+    word-break: break-word;
+    word-wrap: break-word;
+    margin-top: -12px;
+
+    .p{
+        margin-bottom:30px;
+    }
+}
+
+.metadata p{
+    margin-bottom: 5px;
+}
+
+.details-margin {
+    margin-left:25px;
+    margin-top: 20px;
+}

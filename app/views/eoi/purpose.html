@@ -1,0 +1,199 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Project objectives  | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+  items: [
+  {
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Do pre-market engagement",
+  href: "/eoi/eoi-task-list"
+  },
+  {
+    text: "Build your EoI",
+    href: "/eoi/online-task-list"
+  },
+  {
+    text: "Project objectives"
+  }
+  ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Project objectives
+      </h1>
+     
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %} <br>
+
+      <p class="govuk-body">List the objectives you want to achieve through this project. </p>
+      <p class="govuk-body">You can add a maximum of ten objectives. </p>
+      
+      <br><br>
+
+      <form id="ccs_eoi_purpose_form" name="ccs_eoi_purpose_form" class="form ccs_rfi_questions_form" action="/eoi/scope" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Enter your first objective",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_purpose_1",
+          name: "eoi_purpose_1",
+          value: data['eoi_purpose_1']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your second objective<a href='2' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_purpose_2",
+          name: "eoi_purpose_2",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_purpose_2']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your third objective <a href='3' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_purpose_3",
+          name: "eoi_purpose_3",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_purpose_3']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your fourth objective <a href='4' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_purpose_4",
+          name: "eoi_purpose_4",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_purpose_4']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your fifth objective <a href='5' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_purpose_5",
+          name: "eoi_purpose_5",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_purpose_5']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your sixth objective <a href='6' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_purpose_6",
+          name: "eoi_purpose_6",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_purpose_6']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your seventh objective <a href='7' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_purpose_7",
+          name: "eoi_purpose_7",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_purpose_7']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your eigth objective <a href='8' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_purpose_8",
+          name: "eoi_purpose_8",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_purpose_8']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your ninth objective <a href='9' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_purpose_9",
+          name: "eoi_purpose_9",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_purpose_9']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your tenth objective <a href='10' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_purpose_10",
+          name: "eoi_purpose_10",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_purpose_10']
+        }) }}
+
+        <p class="govuk-body">
+          {{ govukButton({
+            text: "Add another",
+            attributes: {
+              id: "ccs_criteria_add"
+            },
+            classes: "govuk-button--secondary"
+          }) }}
+        </p>
+
+        {{ govukInput({
+          id: "pre_build_started",
+          name: "pre_build_started",
+          type: "hidden",
+          value: true
+        }) }}
+<br><br>
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/eoi/online-task-list" class="govuk-link govuk-link--no-visited-state">Return to Build your Expression of Interest </a>
+        </div>
+
+      </form>
+
+    </div>
+    {% include "includes/promos/related_only.html" %}
+  </div>
+
+{% endblock %}

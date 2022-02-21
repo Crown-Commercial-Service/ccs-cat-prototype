@@ -1,0 +1,247 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Suppliers you want to approach | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Do pre-market engagement",
+href: "/rfi/rfi-task-list"
+},
+{
+text: "Confirm which suppliers you want to approach"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            Confirm which suppliers you want to approach
+        </h1>
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop govuk-grid-column-full">
+
+        {% include "includes/project_header.html" %} <br>
+
+        <p class="govuk-body">{{suppliers_list | length }} suppliers can be contracted to supply products and services
+            for this lot.
+            Some suppliers are <a href="https://ec.europa.eu/growth/smes/sme-definition_en"
+                class="govuk-link govuk-link--no-visited-state">small and medium-sized enterprises (SMEs). </a></p>
+
+        <p class="govuk-body">You can choose to send your RfI to all suppliers on this list. We recommend sending it to
+            at least three. Not all suppliers will respond to your RfI.</p>
+
+        {{ govukInsetText({
+        html: '<p class="govuk-body">You will need to add the suppliers you want to send your RfI to.
+            Any suppliers you don’t add at this stage will not remove them from future steps in your procurement.</p>'
+        }) }}
+        <br><br>
+
+        <form id="ccs-rfi-suppliers-form" class="ccs-rfi-suppliers-form" action="/rfi/response-date" method="POST">
+
+            <br>
+            <h2 class="govuk-heading-m"><span id="added_suppliers_count">
+                    {{data['rfi_selected_supplier_count']}}
+                </span> suppliers selected for this lot </h2>
+            <br>
+            <div class="govuk-button-group govuk-!-margin-bottom-9">
+                {{ govukButton({
+                text: "Save and continue"
+                }) }}
+                <a href="#" onclick="return false;" class="govuk-link govuk-link--no-visited-state">Download this list
+                </a>
+                <a href="/rfi/rfi-task-list" class="govuk-link govuk-link--no-visited-state">Return to pre-market engagement
+                </a>
+            </div>
+            <!-- <div class="govuk-button-group ccs-page-section govuk-!-margin-top-7">
+                <a href="#" onclick="return false;" class="govuk-link govuk-link--no-visited-state">Download this list
+                </a>
+            </div> -->
+              <div class=" ccs-page-section govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+          <label class="govuk-label--m ccs-supplier-heading-left">Supplier</label>
+          <label class="govuk-label--m ccs-supplier-heading-right">Company size</label>
+            </div> 
+            <div id="page1" >
+                <div id="supplier-list ccs-page-section">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                            {% for supplier in suppliers_list %}
+                            <!-- <div class="ccs-page-section css-margin-bottom-10"> -->
+                            <div class="govuk-checkboxes__item css-margin-bottom-10 ccs-page-section" >
+                                
+                                <input class="govuk-checkboxes__input" id="rfi_required_suppliers" name="rfi_required_suppliers" type="checkbox"
+                                    value="{{supplier.id}}"  aria-describedby="rfi_required_suppliers-item-hint">
+                                <label class="govuk-label govuk-checkboxes__label" for="rfi_required_suppliers">
+                                    <h3 class="govuk-heading-m">{{supplier.legal_name}}</h3>
+                                </label>
+                                <span class="ccs-company-size">{{supplier.size}}</span>
+                                <div id="rfi_required_suppliers-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                                   {% if supplier.trading_name | length > 0 %}
+                                    <label>{{supplier.trading_name}} </label> <br>
+                                    {% endif %}
+                                    <a class="govuk-link govuk-link--no-visited-state" href="{{supplier.link}}" target="_blank">View {{supplier.legal_name}} details</a>
+                                </div>
+                            <!-- </div> -->
+                        </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- <ul class="govuk-list govuk-list--none govuk-list--suppliers">
+                        {% for supplier in suppliers_list.slice(0,10) %}
+                        <li>
+                            <span class="ccs-add-supplier-link">
+                                <a class="add govuk-link govuk-link--no-visited-state " href="{{supplier.id}}"
+                                    id="add_{{supplier.id}}">{{supplier.btntext}}</a>
+                            </span>
+                            <h3 class="govuk-heading-m"><a href="{{supplier.link}}" target="_blank"
+                                    class="govuk-link govuk-link--no-visited-state">{{supplier.legal_name}}</a>
+                            </h3>
+                            <span class="ccs-trading-name">{{supplier.trading_name}}</span>
+                            <span class="ccs-company-size">{{supplier.size }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul> -->
+                </div>
+                <!-- </div> -->
+                <!--end of partial view  -->
+                <!-- <div class="ccs-pagelink-group ccs-page-section">
+                    <p class="govuk-body"><a id="prev-link"
+                            class="govuk-link govuk-link--no-visited-state pag-link ccs-pagination"
+                            style="pointer-events: none; color: lightblue;" href="#">
+                            <svg style="margin-right:10px;vertical-align: middle;" xmlns="http://www.w3.org/2000/svg"
+                                width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                            </svg>Prev Page</a>
+                        <br><span class="pagination_pad"><span id="current-page-no"> 1 </span> of 3<span>
+                    </p>
+                    <p class="govuk-body"><a id="next-link-page2"
+                            class="govuk-link govuk-link--no-visited-state pag-link ccs-pagination" href="#">
+                            Next Page <svg style="margin-right:10px;vertical-align: middle;"
+                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                            </svg></a>
+                        <br><span class="pagination_pad"><span id="next-page-no"> 2 </span> of 3 <span></span>
+                    </p>
+                </div> -->
+            </div>
+            <!-- page 1 ends -->
+            <!-- <div id="page2" >
+                <div id="supplier-list ccs-page-section">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                            {% for supplier in suppliers_list.slice(10,21) %}
+                                <div class="govuk-checkboxes__item css-margin-bottom-10 ccs-page-section" >
+                                    
+                                    <input class="govuk-checkboxes__input" id="rfi_required_suppliers" name="rfi_required_suppliers" type="checkbox"
+                                        value="{{supplier.id}}"  aria-describedby="rfi_required_suppliers-item-hint">
+                                    <label class="govuk-label govuk-checkboxes__label" for="rfi_required_suppliers">
+                                        <h3 class="govuk-heading-m">{{supplier.legal_name}}</h3>
+                                    </label>
+                                    <span class="ccs-company-size">{{supplier.size}}</span>
+                                    <div id="rfi_required_suppliers-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                                       {% if supplier.trading_name | length > 0 %}
+                                        <label>{{supplier.trading_name}} </label> <br>
+                                        {% endif %}
+                                        
+                                        <a class="govuk-link govuk-link--no-visited-state" href="{{supplier.link}}" target="_blank">View {{supplier.legal_name}} details</a>
+                                    
+                                    </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                
+                </div>
+                
+            </div> -->
+            <!-- page 2 ends -->
+            <!-- <div id="page3" >
+                <div id="supplier-list ccs-page-section">
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                            {% for supplier in suppliers_list.slice(21,31) %}
+                                <div class="govuk-checkboxes__item css-margin-bottom-10 ccs-page-section " >
+                                    
+                                    <input class="govuk-checkboxes__input" id="rfi_required_suppliers" name="rfi_required_suppliers" type="checkbox"
+                                        value="{{supplier.id}}"  aria-describedby="rfi_required_suppliers-item-hint">
+                                    <label class="govuk-label govuk-checkboxes__label" for="rfi_required_suppliers">
+                                        <h3 class="govuk-heading-m">{{supplier.legal_name}}</h3>
+                                    </label>
+                                    <span class="ccs-company-size">{{supplier.size}}</span>
+                                    <div id="rfi_required_suppliers-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                                       {% if supplier.trading_name | length > 0 %}
+                                        <label>{{supplier.trading_name}} </label> <br>
+                                        {% endif %}
+                                        
+                                        <a class="govuk-link govuk-link--no-visited-state" href="{{supplier.link}}" target="_blank">View {{supplier.legal_name}} details</a>
+                                    
+                                    </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                
+                </div>
+               
+            </div> -->
+            <!-- page 3 ends -->
+
+            {{ govukInput({
+            id: "rfi_selected_supplier_count",
+            name: "rfi_selected_supplier_count",
+            type: "hidden",
+            value: data['rfi_selected_supplier_count']
+            }) }}
+
+            {{
+            govukInput({
+            id: "rfi_selected_suppliers",
+            name: "rfi_selected_suppliers",
+            type: "hidden",
+            value: data['rfi_selected_suppliers']
+            })
+            }}
+
+            {{ govukInput({
+            id: "rfi_supplier_selected",
+            name: "rfi_supplier_selected",
+            type: "hidden",
+            value: true
+            }) }}
+<br>
+            <div class="govuk-button-group">
+                {{ govukButton({
+                text: "Save and continue"
+                }) }}
+                <a href="/rfi/rfi-task-list" class="govuk-link govuk-link--no-visited-state">Return to pre-market engagement</a>
+            </div>
+
+        </form>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+{% endblock %}

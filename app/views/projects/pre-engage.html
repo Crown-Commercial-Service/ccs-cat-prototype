@@ -1,0 +1,84 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Choose a pre-market engagement event | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Choose a pre-market engagement event"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Choose a pre-market engagement event
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body-l">You can issue an Expression of Interest (EoI) or a Request for Information (RfI). Both these options can be run in any order and multiple times if needed. </p>
+      <p class="govuk-body">Usually it takes between X and X weeks to complete this activity. </p>
+
+      <form id="ccs_choose_pre_engage" name="ccs_choose_pre_engage" class="form ccs_choose_pre_engage" action="/projects/event-needs" method="post">
+
+        {{ govukRadios({
+          idPrefix: "choose_pre_engage",
+          name: "choose_pre_engage",
+          items: [
+            {
+              value: "Expression of Interest",
+              html: "<h3 class='govuk-heading-m'>Expression of Interest (EoI)</h3>",
+              hint: {
+                text: "An EoI is used to see if there are suppliers' interested and available for the services you need. The Procurement Portal will guide you in this process step-by-step. "
+              },
+              checked: checked("choose_pre_engage", "Expression of Interest")
+            },
+            {
+              value: "Request for Information",
+              html: "<h3 class='govuk-heading-m'>Request for Information (RfI)</h3>",
+              hint: {
+                text: "A RfI is used to understand what suppliers' capabilities and what they can provide you in the first place. Choose this option if you're unsure if there is a market for the services you need. " + data['portal_name'] + " will guide you in this process step-by-step. "
+              },
+              checked: checked("choose_pre_engage", "Request for Information")
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Project overview</a>
+          <a href="/dashboard" class="govuk-link govuk-link--no-visited-state">Dashboard</a>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

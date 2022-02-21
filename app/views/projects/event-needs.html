@@ -1,0 +1,103 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  {{ data['choose_pre_engage'] }} needs | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: data['choose_pre_engage'] + " needs"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Write an overview of your needs
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body-l">This can include relevant information about your organisation, why the requirement is needed, the aim and objectives and other high level information regarding the requirement. </p>
+
+      <form id="ccs_eoi_needs" name="ccs_eoi_needs" class="form ccs_eoi_needs" action="/projects/event-type" method="post">
+
+        {{ govukTextarea({
+          name: "eoi_about_cust_org",
+          id: "eoi_about_cust_org",
+          label: {
+            text: "About your organisation",
+            classes: "govuk-label--m",
+            isPageHeading: false
+          },
+          value: data['eoi_about_cust_org']
+        }) }}
+
+        {{ govukSelect({
+          id: "eoi_offer",
+          name: "eoi_offer",
+          label: {
+            text: "Type of specialist",
+            classes: "govuk-label--m",
+            isPageHeading: false
+          },
+          items: offerCollection
+        }) }}
+
+        {{ govukTextarea({
+          name: "eoi_work_objectives",
+          id: "eoi_work_objectives",
+          label: {
+            text: "Aim and objectives of the work",
+            classes: "govuk-label--m",
+            isPageHeading: false
+          },
+          value: data['eoi_work_objectives']
+        }) }}
+
+        {{ govukTextarea({
+          name: "eoi_other_info",
+          id: "eoi_other_info",
+          label: {
+            text: "Other relevant information (optional)",
+            classes: "govuk-label--m",
+            isPageHeading: false
+          },
+          value: data['eoi_other_info']
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

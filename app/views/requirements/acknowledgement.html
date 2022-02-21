@@ -1,0 +1,92 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Add team members | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements"
+},
+{
+text: "[ IR35 acknowledgement ] "
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            [ IR35 acknowledgement ]
+        </h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        {% include "includes/project_header.html" %} <br>
+
+        <p class="govuk-body">[instructions for this page]</p> <br>
+
+        <form id="ccs_ir35_acknowledgement_form" name="ccs_ir35_acknowledgement_form" class="form ccs_ir35_acknowledgement_form" action="/requirements/select-rfp-context-route" method="post">
+
+            {{ govukRadios({
+              idPrefix: "IR35_acknowledgement",
+              name: "IR35_acknowledgement",
+              items: [
+                {
+                  value: "Contracted out service",
+                  html: "<h3 class='govuk-heading-m'>[ Contracted out service: the off-payroll rules do not apply ]</h3>",
+                  hint: {
+                    text: "[description text]"
+                  },
+                  checked:checked("IR35_acknowledgement","Contracted out service")
+                },
+                {
+                  value: "Supply of resource",
+                  html: "<h3 class='govuk-heading-m'>[ Supply of resource ]</h3>",
+                  hint: {
+                    text: "[description text]"
+                  },
+                  checked:checked("IR35_acknowledgement","Supply of resource")
+                }
+              ]
+            }) }}
+    
+        {{ govukInput({
+            id: "IR35_acknowledged",
+            name: "IR35_acknowledged",
+            type: "hidden",
+            value: true
+            }) }}
+        <br><br>
+            <div class="govuk-button-group">
+              {{ govukButton({
+              text: "Save and continue"
+              }) }}
+              <a href="/requirements" class="govuk-link govuk-link--no-visited-state">Return to write and publish your requirements </a>
+            </div>
+        </form>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+
+{% endblock %}

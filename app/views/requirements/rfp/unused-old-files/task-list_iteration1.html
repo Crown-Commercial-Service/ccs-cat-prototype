@@ -1,0 +1,237 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Write and publish requirements
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text:"[ Write and publish your requirements ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            [ 3. Write and publish your requirements ]
+        </h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+
+          {% include "includes/project_header.html" %}
+          <br>
+        <p class="govuk-body">[instructions for this page]</p>
+       
+            <br>
+        <ol class="app-task-list">
+            <li>
+                <h2 class="app-task-list__section">
+                    <span class="app-task-list__section-number">1. </span> Project and colleagues
+                </h2>
+                <p class="govuk-body"> You can name your project in this section. You can also change who leads the procurement or add more colleagues to your project to help you evaluate suppliers.</p>
+                <ul class="app-task-list__items">
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong> <a href="/requirements/rfp/name" aria-describedby="name-your-project">
+                                    Name your project
+                                </a></strong>
+                        </span>
+                        {% if data['projPersistID'] | length > 0 and data['projLongName'] | length > 0 %}
+                        <strong class="govuk-tag govuk-tag--green app-task-list__tag">DONE</strong>
+                        {% else %}
+                        <strong class="govuk-tag app-task-list__tag">OPTIONAL</strong>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong> <a href="/requirements/rfp/procurement-lead" aria-describedby="add-procurement-lead">
+                                Change who is going to lead the procurement
+                                </a></strong>
+                        </span>
+                        {% if data['procurement_lead_added'] == 'true' %}
+                        <strong class="govuk-tag govuk-tag--green app-task-list__tag">DONE</strong>
+                        {% else %}
+                        <strong class="govuk-tag app-task-list__tag">OPTIONAL</strong>
+                        {% endif%}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong> <a href="/requirements/rfp/add-collaborators" aria-describedby="add-team-members">
+                                Add colleagues to your project
+                                </a></strong>
+                        </span>
+                        {% if data['collaborators_added'] == 'true' %}
+                        <strong class="govuk-tag govuk-tag--green app-task-list__tag">DONE</strong>
+                        {% else %}
+                        <strong class="govuk-tag app-task-list__tag">OPTIONAL</strong>
+                        {% endif%}
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <h2 class="app-task-list__section">
+                    <span class="app-task-list__section-number">2. </span>
+                    [  Write your requirements ]
+                </h2>
+                <p class="govuk-body">[description of this section]</p>
+                <ul class="app-task-list__items">
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            {% if data['projPersistID'] | length > 0 %}
+                            <strong><a href="/requirements/acknowledgement" aria-describedby="IR35-acknowledgement">
+                                [ IR35 acknowledgement ]
+                                </a></strong>
+                            {% else %}
+                            <strong> [ IR35 acknowledgement ] </strong>
+                            {% endif %}
+                        </span>
+                        {% if data['IR35_acknowledged'] == "true" %}
+                        <strong class="govuk-tag govuk-tag--green app-task-list__tag">DONE</strong>
+                        {% else %}
+                        <strong class="govuk-tag  app-task-list__tag">TO DO</strong>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            {% if data['IR35_acknowledged'] == "true" %}
+                            <strong> <a href="/requirements/rfp/type" aria-describedby="market-event">
+                                [ How will you Add context? ]
+                                </a> </strong>
+                            {% else %}
+                            <strong> [ How will you Add context? ] </strong>
+                            {% endif %}
+                        </span>
+                        {% if data['IR35_acknowledged'] != "true" %}
+                        <strong class="govuk-tag govuk-tag--grey app-task-list__tag">CANNOT
+                            START YET</strong>
+                        {% elif data['ccs_fc_type_selected'] == "true" %}
+                        <strong class="govuk-tag govuk-tag--green app-task-list__tag">DONE</strong>
+                        {% else %}
+                        <strong class="govuk-tag  app-task-list__tag">TO DO</strong>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            {% if data['ccs_fc_type_selected'] == "true" %}
+                            <strong> <a href="/requirements/rfp/context/sub-task-list" aria-describedby="rfp-task-list">
+                                [ Add context ]
+                                </a> </strong>
+                            {% else %}
+                            <strong> [ Add context ] </strong>
+                            {% endif %}
+                        </span>
+                        {% if data['ccs_fc_type_selected'] != "true" %}
+                        <strong class="govuk-tag govuk-tag--grey app-task-list__tag">CANNOT
+                            START YET</strong>
+                        {% elif data[''] == "true" %}
+                        <strong class="govuk-tag govuk-tag--green app-task-list__tag">DONE</strong>
+                        {% else %}
+                        <strong class="govuk-tag  app-task-list__tag">TO DO</strong>
+                        {% endif %}
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <h2 class="app-task-list__section">
+                    <span class="app-task-list__section-number">3. </span> Review and publish 
+                </h2>
+                <p class="govuk-body">[description of this section]</p>
+                <ul class="app-task-list__items">
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            {% if data['rfp_build_completed'] == "true" %}
+                            <strong> <a href="upload" aria-describedby="upload-additional-documents">
+                                Upload documents or add links
+                                </a> </strong>
+                            {% else %}
+                            <strong>Upload documents or add links </strong>
+                            {% endif %}
+                        </span>
+                        {% if data['rfp_build_completed'] == "true" %}
+                        <strong class="govuk-tag app-task-list__tag">OPTIONAL</strong>
+                        {% else %}
+                        <strong class="govuk-tag govuk-tag--grey app-task-list__tag">CANNOT START YET</strong>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item" >
+                        <span class="app-task-list__task-name">
+                            {% if data['rfp_build_completed'] == "true" %}
+                            <strong> <a href="suppliers" aria-describedby="identify-suppliers">
+                                Confirm which suppliers you want to approach
+                                </a>  </strong>
+                               
+                            {% else %}
+                            <strong> Confirm which suppliers you want to approach </strong>
+                           
+                            {% endif %}
+                        </span>
+                        {% if data['rfp_build_completed'] == "true" %}
+                        <strong class="govuk-tag app-task-list__tag">TO DO</strong>
+                        {% else %}
+                        <strong class="govuk-tag govuk-tag--grey app-task-list__tag">CANNOT START YET</strong>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            {% if data['rfp_build_completed'] == "true" %}
+                            <strong> <a href="response-date" aria-describedby="set-response-date" >
+                                Your RfI timeline </a></strong>
+                            {% else %}
+                            <strong > [ Set response date and time ] </strong>
+                    
+                            {% endif %}
+                        </span>
+                        {% if data['rfp_response_date_set'] == "true" %}
+                        <strong class="govuk-tag govuk-tag--green app-task-list__tag"> DONE </strong>
+                        {% elif data['rfp_build_completed'] == "true" %}
+                        <strong class="govuk-tag app-task-list__tag"> TO DO </strong>
+                        {% else %}
+                        <strong class="govuk-tag govuk-tag--grey app-task-list__tag">CANNOT START YET</strong>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            {% if data['rfp_response_date_set'] == "true" %}
+                            <strong> <a href="review" aria-describedby="read-declaration-status" >
+                                Review and publish </a></strong>
+                            {% else %}
+                            <strong> Review and publish </strong>
+                           
+                            {% endif %}
+                        </span>
+                        {% if data['rfp_response_date_set'] != "true" %}
+                        <strong class="govuk-tag govuk-tag--grey app-task-list__tag">CANNOT START YET</strong>
+                        {% else %}
+                        <strong class="govuk-tag app-task-list__tag">TO DO</strong>
+                        {% endif %}
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  {{ data['choose_pre_engage'] }} confidentiality requirements | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Confidentiality requirements"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Please enter any confidentiality requirements
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">Guidance and examples of confidentiality requirements. </p>
+
+      <form id="ccs_eoi_confid_form" name="ccs_eoi_confid_form" class="form ccs_eoi_confid_form" action="/projects/event-review" method="post">
+
+        {{ govukInput({
+          id: "event_type_label",
+          name: "event_type_label",
+          type: "hidden",
+          value: data['choose_pre_engage']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Enter your first confidentiality requirement",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_confid_1",
+          name: "eoi_confid_1",
+          value: data['eoi_confid_1']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your second confidentiality requirement <a href='2' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_confid_2",
+          name: "eoi_confid_2",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_confid_2']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your third confidentiality requirement <a href='3' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_confid_3",
+          name: "eoi_confid_3",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_confid_3']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your fourth confidentiality requirement <a href='4' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_confid_4",
+          name: "eoi_confid_4",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_confid_4']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your fifth confidentiality requirement <a href='5' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_confid_5",
+          name: "eoi_confid_5",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_confid_5']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your sixth confidentiality requirement <a href='6' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_confid_6",
+          name: "eoi_confid_6",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_confid_6']
+        }) }}
+
+        <p class="govuk-body"><a href="#" id="ccs_eoi_confid_add" class="govuk-link govuk-link--no-visited-state">Add another item</a> </p>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+      </form>
+
+    </div>
+
+
+  </div>
+
+{% endblock %}

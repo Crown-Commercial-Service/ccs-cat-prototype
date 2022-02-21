@@ -1,0 +1,109 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Digital specialist and programme - Lot1 Programmes| Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Home",
+href: "/"
+},
+{
+text: theAgreement.name,
+href: "/agreement?id=" + theAgreement.number
+},
+{
+text:'Lot ' + theLot.number + ': ' + theLot.name
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl ccs-agrement-pagetitle">
+            Lot {{theLot.number}} {{ theLot.name }}
+        </h1>
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        <div class="project-overview">
+            <p class="govuk-body">Agreement name: <strong>{{ theAgreement.name }}</strong></p>
+            <p class="govuk-body">Agreement ID: <strong>{{ theAgreement.number }}</strong></p>
+            <p class="govuk-body">Expiry date: <strong>{{theLot.endDate}}</strong></p>
+        </div><br>
+
+        {{ govukInsetText({
+            html: '<p class="govuk-body"><strong>You can now procure online with CCS.</strong> <br>
+              <a href="#sign-in"
+                class="govuk-link govuk-link--no-visited-state">Sign in or create an account.</a></p>'
+            }) }}
+
+            <div class="ccs-page-section" id="description">
+            <h1 class="govuk-heading-l"> Description</h2>
+            {% include theLot.descriptionLink %}<br>
+        </div>
+        <div class="ccs-page-section">
+        <p>Take a look at and download the <a class="govuk-link govuk-link--no-visited-state" href="#" onclick="return false;" >lot supplier list (xx suppliers)</a></p><br></div>
+        
+
+        {% if data['user_email'] === undefined %}
+        <div id="sign-in" class="ccs-page-section">
+            <p class="govuk-body">To use this service you will need to sign in to, or create an account for, the Public Procurement Gateway.</p>
+                <p class="govuk-body">The Public Procurement Gateway helps you to access the different procurement services available to the public sector.</p>
+              
+              <br>
+            {{ govukButton({
+            text: "Sign in or create an account",
+            href: "/login"
+            }) }}
+            <br>
+        </div>
+        {% else %}
+        <div id="sign-in" class="ccs-page-section">
+          <p class="govuk-body">To use this service you will need to sign in to, or create an account for, the Public Procurement Gateway.</p>
+                <p class="govuk-body">The Public Procurement Gateway helps you to access the different procurement services available to the public sector.</p>
+            
+              <br>
+            {{ govukButton({
+            text: "Start Now",
+            href: "/dashboard"
+            }) }}
+            <br>
+        </div>
+        {% endif %}
+
+        <div class="ccs-page-section" id="buyonline">
+            <h1 class="govuk-heading-l">Before you start </h1>
+            {% include howToBuyInc %}
+            <br>
+        </div>
+        <a class="govuk-link govuk-link--no-visited-state" href="#description">Back to top</a> <br><br>
+    </div>
+
+    <div class="govuk-grid-column-one-third-from-desktop govuk-grid-column-one-half ">
+
+        <div class="ccs-callout-panel">
+            <h2 class="govuk-heading-m">Contact </h2>
+
+            <p class="govuk-body">You can contact us by email, phone or using the <a
+                    href="https://www.crowncommercial.gov.uk/contact">enquiry form</a>. </p>
+
+            <h3 class="govuk-heading-s govuk-!-margin-0">Email: </h3>
+            <p class="govuk-body"><a href="mailto:info@crowncommercial.gov.uk">info@crowncommercial.gov.uk</a> </p>
+
+            <h3 class="govuk-heading-s govuk-!-margin-0">Telephone: </h3>
+            <p class="govuk-body"><a href="tel:03454102222">0345 410 2222</a></p>
+
+            <p class="govuk-body">CCS customer services team is available Monday to Friday, 9am to 5pm.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock%}

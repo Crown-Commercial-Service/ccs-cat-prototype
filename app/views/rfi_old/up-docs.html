@@ -1,0 +1,58 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Upload RfI documents | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Upload RfI documents"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Upload RfI documents
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">Upload all completed documents for your RfI.</p>
+
+      <p class="govuk-body">[Placeholder page]</p>
+
+
+      <div class="govuk-button-group">
+        <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+      </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

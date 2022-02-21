@@ -1,0 +1,420 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+ Write your requirements| Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements/rfp/task-list"
+},
+{
+text: "[ Add context ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            [ Add context ]
+        </h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        {% include "includes/project_header.html" %} <br>
+        <p class="govuk-body">[ Instructions for this page ]</p><br><br>
+
+        <ul class="app-task-list">
+            <li>
+                <div class=" govuk-!-margin-left-5 govuk-!-margin-bottom-7">
+                <h2 class="app-task-list__section govuk-!-margin-bottom-0 ">
+                    [ Requirements and dimensions ]
+                </h2>
+                <p class="govuk-body govuk-!-padding-top-(-9)">[ Instructions for this section ]</p>
+            </div>
+                <ul class="app-task-list__items">
+                    <!-- <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ What is required of the resource(s) ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="resource" aria-describedby="resource-requirement">[Add Link]</a>
+                    </li> -->
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Terms and acronyms (Optional) ]</strong>
+                        </span>
+                        {% if data['rfp_acronyms_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="acronyms" aria-describedby="terms-and-acronyms">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="acronyms" aria-describedby="terms-and-acronyms">[Add Link]</a>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Background and context to your requirement ]</strong>
+                        </span>
+                        {% if data['rfp_background_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="background" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="background" aria-describedby="">[Add Link]</a>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Problem to solve / Impact of not completing deliverables and outcome ]</strong>
+                        </span>
+                        {% if data['rfp_impact_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="impact" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="impact" aria-describedby="">[Add Link]</a>
+                        {% endif %}
+                    </li>
+                    <!-- <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Deliverables and outcomes for the project / programme (Optional) ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="deliverables" aria-describedby="">[Add Link]</a>
+                    </li> -->
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Key users (Optional) ]</strong>
+                        </span>
+                        {% if data['rfp_key-user_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="key-user" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="key-user" aria-describedby="">[Add Link]</a>
+                        {% endif %}
+                    </li>
+                    <!-- <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Existing team (Optional) ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="team" aria-describedby="">[Add Link]</a>
+                    </li> -->
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Work completed to date (Optional) ]</strong>
+                        </span>
+                        {% if data['rfp_work-done_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="work-done" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="work-done" aria-describedby="">[Add Link]</a>
+                        {% endif %}
+                    </li>
+                    <!-- <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Internal project / programme name (Optional) ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="internal-project" aria-describedby="">[Add Link]</a>
+                    </li> -->
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Current phase of the project ]</strong>
+                        </span>
+                        {% if data['rfp_project-phase_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="project-phase" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="project-phase" aria-describedby="">[Add Link]</a>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Phase resource is required for ]</strong>
+                        </span>
+                        {% if data['rfp_resource-phase_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="resource-phase" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="resource-phase" aria-describedby="">[Add Link]</a>
+                        {% endif %}                  
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Duration of work / Resource required from / to ]</strong>
+                        </span>
+                        {% if data['rfp_duration_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="duration" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="duration" aria-describedby="">[Add Link]</a>
+                        {% endif %}  
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ The buying organisation (Optional) ]</strong>
+                        </span>
+                        {% if data['rfp_who_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="who" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="who" aria-describedby="">[Add Link]</a>
+                        {% endif %} 
+                    </li>
+                    <!-- <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Legal / invoicing address ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="address" aria-describedby="">[Add Link]</a>
+                    </li> -->
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Security and vetting requirements ]</strong>
+                        </span>
+                        {% if data['rfp_vetting_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="vetting" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="vetting" aria-describedby="">[Add Link]</a>
+                        {% endif %} 
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Where the work will be done / working arrangements / address (Optional) ]</strong>
+                        </span>
+                        {% if data['rfp_location_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="location" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="location" aria-describedby="">[Add Link]</a>
+                        {% endif %} 
+                    </li>
+                    <!-- <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Specify your budget ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="budget" aria-describedby="">[Add Link]</a>
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Specify your daily rate ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="budget-step-two" aria-describedby="">[Add Link]</a>
+                    </li> -->
+               
+                </ul>
+            </li>
+        
+            <li>
+                <div class=" govuk-!-margin-left-5 govuk-!-margin-bottom-7">
+                    <h2 class="app-task-list__section govuk-!-margin-bottom-0 ">
+                        [ Context of work ]
+                    </h2>
+                    <p class="govuk-body govuk-!-padding-top-(-9)">[ Instructions for this section ]</p>
+                </div>
+                <ul class="app-task-list__items">
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Market engagement to date (Optional) ]</strong>
+                        </span>
+                        {% if data['rfp_enagement-summary_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="enagement-summary" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="enagement-summary" aria-describedby="">[Add Link]</a>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ New, replacement or expanded services or products ]</strong>
+                        </span>
+                        {% if data['rfp_new_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="new" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="new" aria-describedby="">[Add Link]</a>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Is there an incumbent supplier? ]</strong>
+                        </span>
+                        {% if data['rfp_incumbent_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="incumbent" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="incumbent" aria-describedby="">[Add Link]</a>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Set essential and preferred skills ]</strong>
+                        </span>
+                        {% if data['rfp_skills_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="skills" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="skills" aria-describedby="">[Add Link]</a>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Management information and reporting ]</strong>
+                        </span>
+                        {% if data['rfp_management-information_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="management-information" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="management-information" aria-describedby="">[Add Link]</a>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Service levels and performance ]</strong>
+                        </span>
+                        {% if data['rfp_service-levels_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="service-levels" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="service-levels" aria-describedby="">[Add Link]</a>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Incentives and exit strategy ]</strong>
+                        </span>
+                        {% if data['rfp_incentives_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="incentives" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="incentives" aria-describedby="">[Add Link]</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </li>
+
+            <!-- {% if data['the_lot'].number == '1' %} -->
+            <li id="detailed-requirements-section">
+                <div class=" govuk-!-margin-left-5 govuk-!-margin-bottom-7">
+                    <h2 class="app-task-list__section govuk-!-margin-bottom-0 ">
+                        [ Detailed resource requirements ]
+                    </h2>
+                    <p class="govuk-body govuk-!-padding-top-(-9)">[ Instructions for this section ]</p>
+                </div>
+                <ul class="app-task-list__items">
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Define resource types and quantity (Optional) ]</strong>
+                        </span> 
+                         {% if data['rfp_total-resource_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="total-resource" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="total-resource" aria-describedby="">[Add Link]</a>
+                        {% endif %}
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Confirm security and vetting requirements (Optional) ]</strong>
+                        </span>
+                        {% if data['rfp_vetting-confirmation_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="vetting-confirmation" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="vetting-confirmation" aria-describedby="">[Add Link]</a>
+                        {% endif %}
+                    </li>                   
+                </ul>
+            </li>
+            <!-- {% else %}
+            <li id="detailed-requirements-section">
+                <div class=" govuk-!-margin-left-5 govuk-!-margin-bottom-7">
+                    <h2 class="app-task-list__section govuk-!-margin-bottom-0 ">
+                        [ Detailed resource requirements ]
+                    </h2>
+                    <p class="govuk-body govuk-!-padding-top-(-9)">[ Instructions for this section ]</p>
+                </div>
+                <ul class="app-task-list__items">
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Define resource types and quantity ]</strong>
+                        </span>
+                        {% if data['rfp_total-resource_added'] == 'true' %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="total-resource" aria-describedby="">[Edit Link]</a>
+                        {% else %}
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="total-resource" aria-describedby="">[Add Link]</a>
+                        {% endif %}                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Confirm security and vetting requirements ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="" aria-describedby="">[Add Link]</a>
+                    </li>                   
+                </ul>
+            </li>
+            {% endif %} -->
+
+            <!-- <li>
+                <h2 class="app-task-list__section">
+                    [ Set evaluation criteria ]
+                </h2>
+                <p class="govuk-body">[ Instructions for this section ]</p>
+                <ul class="app-task-list__items">
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Enter the total weight of your assessent bases ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="" aria-describedby="">[Add Link]</a>
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Define your Technology assessment base ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="" aria-describedby="">[Add Link]</a>
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Weight the questions in your Technology assessment base  ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="" aria-describedby="">[Add Link]</a>
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Define your Commercial assessment base ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="" aria-describedby="">[Add Link]</a>
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Weight the questions in your Commercial assessment base ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="" aria-describedby="">[Add Link]</a>
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Define your Ways of working assessment base ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="" aria-describedby="">[Add Link]</a>
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Weight the questions in Ways of working assessment base ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="" aria-describedby="">[Add Link]</a>
+                    </li>
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <strong>[ Review all evaluation criteria and weightings ]</strong>
+                        </span>
+                        <a class="app-task-list__tag govuk-link--no-visited-state" href="" aria-describedby="">[Add Link]</a>
+                    </li>
+                </ul>
+            </li> -->
+
+        </ul>
+
+        <div class="govuk-button-group">
+            <a href="/requirements/rfp/task-list" class="govuk-link govuk-link--no-visited-state">Return to write and publish your
+                requirements </a>
+        </div>
+
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+{% endblock %}

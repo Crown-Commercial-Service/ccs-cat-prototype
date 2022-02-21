@@ -1,0 +1,84 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  {{ data['choose_pre_engage'] }} issued | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: data['choose_pre_engage'] + " issued"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Your {{ data['choose_pre_engage'] }} has been published
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h2 class="govuk-panel__title">
+          Your {{ data['choose_pre_engage'] }} has been sent to suppliers
+        </h2>
+        <div class="govuk-panel__body">
+          Your unique reference number is <strong>{{ eoi_ref_no }} </strong><p class="govuk-body">Please quote this number, along with your project ID ({{ data['projPersistID'] }}), if you're contacting CCS for suppport.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <ol class="govuk-list govuk-list--number">
+        <li>Suppliers will have the opportunity to review and respond to your {{ data['choose_pre_engage'] }} by <span class="ccs-date-string">{{ data['eoi_response_date-day'] }} {{ data['eoi_response_date-month'] | getALongMonth }} {{ data['eoi_response_date-year'] }}.</span></li>
+        <li>We will send you a reminder after the response date has passed. </li>
+        <li>You'll be able to see supplier responses or any other clarification questions from your project dashboard. </li>
+        <li>You can extend the respond date from your project dashboard as well. </li>
+      </ol>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Back to your dashboard",
+          href: "/dashboard"
+        }) }}
+        <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Run an RfI pre-market event | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Choose a pre-market engagement event"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Run an RfI pre-market event
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body-l">Begin your Request for Information (RfI) event.</p>
+      <p class="govuk-body">Enter the details of your Request for Information (RfI) event - these details will not currently be added to your procurement project.</p>
+      <p class="govuk-body">Usually it takes between X and X weeks to complete this activity. </p>
+
+      <form id="ccs_choose_pre_engage" name="ccs_choose_pre_engage" class="form ccs_choose_pre_engage" action="/projects/" method="post">
+
+        {{ govukTextarea({
+          name: "rfi-more-detail",
+          id: "rfi-more-detail",
+          label: {
+            text: "Enter the details of your Request for Information (RfI) event"
+          },
+          hint: {
+            text: "These details will not currently be added to your procurement project."
+          }
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/dashboard" class="govuk-link govuk-link--no-visited-state">Dashboard</a>
+        </div>
+
+      </form>
+
+    </div>
+
+    {% include "includes/promos/help_only.html" %}
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+RFI request to suppliers | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Home",
+href: "/"
+},
+{
+text: data['portal_name'],
+href: "/dashboard"
+},
+{
+text: data['projPersistID'],
+href: "/projects/"
+},
+{
+text: "RFI request to supplier"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            Completing the RFI request to suppliers
+        </h1>
+        {% include "includes/project_header.html" %}
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+        <p class="govuk-body">Having set out the detail of the information you are requesting suppliers to  provide feedback on you will be taken through a series of questions to enable the Supplier to understand the context for your procurement.  This enables the supplier to tailor their response to your specific needs.</p>
+       
+        <p class="govuk-body"><strong>Following the completion of these questions you will be able to </strong></p>
+            
+        <ul class="govuk-list govuk-list--bullet">
+            <li>review the information provided and change it if required</li>
+            <li>review a copy of the document that will be sent to the supplier</li>
+            <li>review a list of all suppliers and de-select any suppliers you don't wish to include as part of this RFI stage</li>
+            <li>add additional team members who can manage the project</li>
+            <li>define a closing date for supplier response</li>
+            <li>publish the RFI details to the suppliers</li>
+        </ul>
+        <p class="govuk-body">
+            The information being captured as part of this RFI will be retained with in the project for re-use in subsequent stages of the procurement</p>
+       
+            <div class="govuk-button-group">
+                {{ govukButton({
+                text: "Save and continue",
+                href:"/rfi/info-request"
+                }) }}
+                <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+            </div>
+       
+        </div>
+</div>
+{% endblock %}

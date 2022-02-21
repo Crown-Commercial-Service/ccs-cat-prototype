@@ -1,0 +1,117 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Look at the available suppliers | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+    text: "Write and publish your requirements",
+   href: "/requirements/rfp/task-list"
+},
+{
+text: "Look at the available suppliers"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            Look at the available suppliers
+        </h1>
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop govuk-grid-column-full">
+
+        {% include "includes/project_header.html" %} <br>
+
+        <p class="govuk-body">[ Instructions for this page ]</p>
+   <br><br>
+        <form id="ccs-rfp-suppliers-form" class="ccs-rfi-suppliers-form" action="/requirements/rfp/response-date" method="POST">
+                  
+                    <br>
+                    <h2 class="govuk-heading-m"><span id="added_suppliers_count">
+                        {{suppliers_list | length}} 
+                       </span> suppliers on this lot </h2>
+                    <br>
+                    <div class="govuk-button-group">
+                        {{ govukButton({
+                        text: "Save and continue"
+                        }) }}
+                        <a href="/requirements/rfp/task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Run pre-market engagement ]</a>
+                    </div>
+                    <div class="govuk-button-group ccs-page-section govuk-!-margin-top-7">
+                        <a href="#" onclick="return false;" class="govuk-link govuk-link--no-visited-state">Download this list </a>
+                    </div>
+                    <div id="page1">
+                        <div id="supplier-list ccs-page-section">
+                            <ul class="govuk-list govuk-list--none govuk-list--suppliers">
+                                {% for supplier in suppliers_list %}
+                                <li>
+                                    <h3 class="govuk-heading-m"><a href="{{supplier.link}}" target="_blank"
+                                            class="govuk-link govuk-link--no-visited-state">{{supplier.legal_name}}</a>
+                                    </h3>
+                                    <span class="ccs-trading-name">{{supplier.trading_name}}</span>
+                                    <span class="ccs-eoi-company-size">{{supplier.size }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                     
+                       </div>
+                 
+               
+            <!-- {{ govukInput({
+            id: "rfp_selected_supplier_count",
+            name: "rfp_selected_supplier_count",
+            type: "hidden",
+            value: data['rfp_selected_supplier_count']
+            }) }} -->
+
+            <!-- {{
+            govukInput({
+            id: "eoi_selected_suppliers",
+            name: "eoi_selected_suppliers",
+            type: "hidden",
+            value: data['eoi_selected_suppliers']
+            })
+            }} -->
+
+            {{ govukInput({
+            id: "rfp_supplier_selected",
+            name: "rfp_supplier_selected",
+            type: "hidden",
+            value: true
+            }) }}
+
+            <div class="govuk-button-group">
+                {{ govukButton({
+                text: "Save and continue"
+                }) }}
+                <a href="/requirements/rfp/task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Run pre-market engagement ]</a>
+            </div>
+
+        </form>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+{% endblock %}

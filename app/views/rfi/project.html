@@ -1,0 +1,100 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+RfI - About the project | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Do pre-market engagement",
+href: "/rfi/rfi-task-list"
+},
+{
+text: "Build your RfI",
+href: "/rfi/online-task-list"
+},
+{
+text: "Background for your procurement"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">
+      Background for your procurement
+    </h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+    {% include "includes/project_header.html" %} <br>
+
+    <p class="govuk-body">To help suppliers understand what problem you want to solve, you will need to give them more
+      information about what you are looking for, for example:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>information about your company or the users</li>
+      <li>outcomes you want to achieve</li>
+      <li>the timeframes for completing the work</li>
+      <li> reasons for the change ( for example legal, regulatory or replacing an existing service)</li>
+      <li> any risks or challenges they should be aware of</li>
+      <li> any impacts on the organisation if you do not do the work needed or complete it in the timeframes given</li>
+    </ul> <br><br>
+
+    <form id="ccs_rfi_about_proj" name="ccs_rfi_about_proj" class="form ccs_rfi_about_proj" action="/rfi/who"
+      method="post">
+
+      {{ govukTextarea({
+      name: "rfi_prob_statement",
+      id: "rfi_prob_statement",
+      value: data['rfi_prob_statement'],
+      label: {
+      text: "Write your key background information here",
+      classes: "govuk-label--m"
+      }
+      }) }}
+
+
+      {{ govukInput({
+      id: "rfi_build_started",
+      name: "rfi_build_started",
+      type: "hidden",
+      value: true
+      }) }}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+        text: "Save and continue"
+        }) }}
+        <a href="/rfi/online-task-list" class="govuk-link govuk-link--no-visited-state">Return to Build your Request for Information (RfI)</a>
+      </div>
+
+    </form>
+
+  </div>
+
+  {% include "includes/promos/related_only.html" %}
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,263 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+ Duration of work | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Write and publish your requirements",
+  href: "/requirements/rfp/task-list"
+  },
+  {
+    text: "[Add context]",
+    href: "/requirements/rfp/context/sub-task-list"
+    },
+{
+text: "[ Duration of work / Resource required from / to ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full ">
+      <h1 class="govuk-heading-xl">
+        [ Duration of work / Resource required from / to ] 
+      </h1>     
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        {% include "includes/project_header.html" %}<br>
+
+      <p class="govuk-body">[ Instructions for this page ] </p><br><br>
+
+      <form id="ccs_rfp_duration_form" name="ccs_rfp_duration_form" class="form ccs_rfp_duration_form" action="/requirements/rfp/context/who" method="post">
+
+        <!-- <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="rfp_resource_start_date-hint">
+
+            <legend class="govuk-fieldset__legend govuk-label--m">
+                [ Enter the start date ]
+            </legend>
+
+            <div id="rfp_resource_start_date-hint" class="govuk-hint">
+              For example, 22 11 2021
+            </div>
+
+            <div class="govuk-date-input" id="rfp_resource_start_date">
+
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rfp_resource_start_date-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rfp_resource_start_date-day" name="rfp_resource_start_date-day" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['rfp_resource_start_date-day'] }}">
+                </div>
+              </div>
+
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rfp_resource_start_date-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rfp_resource_start_date-month" name="rfp_resource_start_date-month" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['rfp_resource_start_date-month'] }}">
+                </div>
+              </div>
+
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rfp_resource_start_date-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="rfp_resource_start_date-year" name="rfp_resource_start_date-year" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['rfp_resource_start_date-year'] }}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+ <br>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="rfp_resource_end_date-hint">
+
+            <legend class="govuk-fieldset__legend govuk-label--m">
+                [ Enter the end date ]
+            </legend>
+
+            <div id="rfp_resource_end_date-hint" class="govuk-hint">
+              For example, 22 3 2022
+            </div>
+
+            <div class="govuk-date-input" id="rfp_resource_end_date">
+
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rfp_resource_end_date-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rfp_resource_end_date-day" name="rfp_resource_end_date-day" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['rfp_resource_end_date-day'] }}">
+                </div>
+              </div>
+
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rfp_resource_end_date-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rfp_resource_end_date-month" name="rfp_resource_end_date-month" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['rfp_resource_end_date-month'] }}">
+                </div>
+              </div>
+
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rfp_resource_end_date-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="rfp_resource_end_date-year" name="rfp_resource_end_date-year" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['rfp_resource_end_date-year'] }}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <br>
+        <div id="resource_duration_summary">
+        {{ govukInsetText({
+            html: '<p class="govuk-body">[ The work will last ]</p><p class="govuk-body" id="duration_string">X years, X months, X days</p>'
+          }) }}
+        </div> -->
+
+        {{ govukDateInput({
+          id: "rfp_resource_start_date",
+          namePrefix: "rfp_resource_start_date",
+          fieldset: {
+            legend: {
+              text: " Enter the date you want the project to start",
+            classes: "govuk-label--m"
+            }
+          },
+          hint: {
+            html: "<label>Your project cannot start after: &nbsp; <span id='agreement-expiry-date'> " + data['the_agreement'].endDate + " </span>
+            <br>
+            For example, 22 11 2021</label>"
+          },
+          items: [
+    {
+      classes: "govuk-input--width-2",
+      name: "day",
+      value: data['rfp_resource_start_date-day']
+    },
+    {
+      classes: "govuk-input--width-2 ",
+      name: "month",
+      value: data['rfp_resource_start_date-month']
+    },
+    {
+      classes: "govuk-input--width-4 ",
+      name: "year",
+      value: data['rfp_resource_start_date-year']
+    }
+  ]
+        }) }}
+      
+        <br>
+       
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="rfp_duration-hint">
+
+          <legend class="govuk-fieldset__legend govuk-label--m">
+            Enter how long you think the project will run for (Optional)
+            </legend>
+
+          <div id="rfp_duration-hint" class="govuk-hint">
+            We recommend that your project should not be for longer than 4 years
+            <br>
+            For example 2 years, 4 months, 10 days
+          </div>
+
+          <div class="govuk-date-input" id="rfp_duration">
+
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="rfp_duration-years">
+                  Years
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rfp_duration-years" name="rfp_duration-years" type="text"  inputmode="numeric" value="{{ data['rfp_duration-years'] }}">
+              </div>
+            </div>
+
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="rfp_duration-months">
+                  Month
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rfp_duration-months" name="rfp_duration-months" type="number" inputmode="numeric" value="{{ data['rfp_duration-months'] }}">
+              </div>
+            </div>
+
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="rfp_duration-days">
+                  Days
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rfp_duration-days" name="rfp_duration-days"  type="number" inputmode="numeric" value="{{ data['rfp_duration-days'] }}">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+    </div>
+      
+<br><br>
+      <!-- {{ govukInput({
+        id: "agreement_end_date",
+        name: "agreement_end_date",
+        type: "hidden",
+        value: data[the_agreement].endDate
+      }) }} -->
+
+        {{ govukInput({
+          id: "rfp_duration_added",
+          name: "rfp_duration_added",
+          type: "hidden",
+          value: true
+        }) }}
+
+        {{ govukInput({
+          id: "rfp_add_context_started",
+          name: "rfp_add_context_started",
+          type: "hidden",
+          value: true
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Add context ]</a>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

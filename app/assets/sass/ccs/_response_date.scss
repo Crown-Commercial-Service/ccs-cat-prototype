@@ -1,0 +1,62 @@
+.rfi_publish_date,
+ .eoi_publish_date,
+ .rfp_publish_date {
+    p {
+margin-bottom: 5px;
+    }   
+
+}
+
+
+#rfi_clarification_date,
+#rfi_clarification_response_date,
+#rfi_response_date,
+#rfi_next_steps_date,
+#rfi_publish_date,
+#eoi_publish_date,
+#eoi_clarification_response_date,
+#eoi_response_date,
+#eoi_next_steps_date,
+#eoi_clarification_date,
+#rfp_publish_date,
+#rfp_clarification_response_date,
+#rfp_response_date,
+#rfp_next_steps_date,
+#rfp_clarification_date
+{
+    margin-left: 20px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+
+    .govuk-label {
+        margin-bottom: 20px;
+    }
+}
+
+#rfi_clarification_date_expanded,
+#rfi_clarification_response_date_expanded,
+#rfi_response_date_expanded,
+#rfi_next_steps_expanded,
+#eoi_clarification_date_expanded,
+#eoi_clarification_response_date_expanded,
+#eoi_response_date_expanded,
+#eoi_next_steps_expanded,
+#rfp_clarification_date_expanded,
+#rfp_clarification_response_date_expanded,
+#rfp_response_date_expanded,
+#rfp_next_steps_expanded  {
+    margin-left: 20px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    
+        .govuk-fieldset
+        {
+            margin-bottom:30px;
+            margin-left: -20px;
+        }
+.govuk-button {
+    margin-top:10px;
+    margin-left:-30px;
+}      
+
+}

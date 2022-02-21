@@ -1,0 +1,160 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Service levels and KPI | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+    text: "Write and publish your requirements",
+    href: "/requirements/rfp/task-list"
+    },
+    {
+      text: "[Add context]",
+      href: "/requirements/rfp/context/sub-task-list"
+      },
+  {
+  text: "[ Service levels and performance ]"
+  }
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-xl">
+            [ Service levels and performance ]
+        </h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        {% include "includes/project_header.html" %} <br>
+
+        <p class="govuk-body">
+            [ Instructions for this page ]<br>
+    [ Max number is X items ]</p>
+    <p class="govuk-body">
+        [ The Authority will measure the quality of the Supplier’s delivery by:<br>
+Please provide information of the required service levels and/or KPIs that the Potential Bidder will be expected to achieve and against which the Supplier’s performance will be assessed. Ensure that service levels are measurable, relevant, and drive contractual performance. ]</p>
+    <br><br>
+
+            <form id="rfp_service_levels_form" name="rfp_service_levels_form" class="form rfp_service_levels_form"
+      action="/requirements/rfp/context/incentives" method="post">
+        
+        <div class="ccs-page-section">
+            <h2 class="govuk-heading-m "><span>X</span> [ service levels and key performance indicators added so far ]</h2>
+        </div>
+
+        {% call govukFieldset({
+        legend: {
+        text: "[ Enter your first KPI / SLA ]",
+        classes: "govuk-fieldset__legend--m govuk-!-margin-bottom-7",
+        isPageHeading: false
+        },
+        classes: "acronym_1 "
+        }) %}
+
+        {{ govukInput({
+        label: {
+        text: "[ Enter the service area ]",
+        classes: "govuk-label--s"
+        },
+        hint: {
+        text: "[ Instructions / examples for this input field ]"
+        },
+        id: "rfp_service_area_1",
+        name: "rfp_service_area_1",
+        classes: "rfi_term_1 govuk-!-margin-bottom-5",
+        value: data['rfp_service_area_1']
+        }) }}
+
+        {{ govukTextarea({
+        name: "rfp_kpi_description_1",
+        id: "rfp_kpi_description_1",
+        classes: " govuk-!-margin-bottom-5",
+        label: {
+        text: "[ Enter the service area / KPI description ]",
+        classes: "govuk-label--s"
+        },
+        hint: {
+            text: "[ Instructions / examples for this input field ]"
+            },
+        value: data['rfp_kpi_description_1']
+        }) }}
+<br>
+        {{ govukInput({
+            classes: "govuk-input--width-3",
+            id: "rfp_kpi_target_1",
+            name: "rfp_kpi_target_1",
+            suffix: {
+              text: "%"
+            },
+            label: {
+                text: "[ Insert the required target ]",
+                classes: "govuk-label--s"
+                },
+                hint: {
+                    text: "[ Instructions / examples for this input field ]"
+                    },
+            value:data[rfp_kpi_target_1],
+            spellcheck: false
+          }) }}
+        <br>
+
+        {% endcall %}
+<br>
+        <p class="govuk-body">
+            {{ govukButton({
+            text: "[ Add another ]",
+            attributes: {
+            id: "ccs_rfpService_level_add"
+            },
+            classes: "govuk-button--secondary"
+            }) }}
+          </p>
+
+          {{ govukInput({
+            id: "rfp_service-levels_added",
+            name: "rfp_service-levels_added",
+            type: "hidden",
+            value: true
+          }) }}
+
+          {{ govukInput({
+            id: "rfp_add_context_started",
+            name: "rfp_add_context_started",
+            type: "hidden",
+            value: true
+          }) }}
+
+        <br><br>
+        <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Save and continue"
+            }) }}
+            <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Add context ]</a>
+          </div>
+        
+    </form>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+{% endblock %}

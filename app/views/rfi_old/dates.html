@@ -1,0 +1,191 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Dates and duration | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Dates and duration"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Dates and duration
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">When would you like this project to start – and for how long? </p>
+
+      <form id="ccs_rfi_dates_form" name="ccs_rfi_dates_form" class="form ccs_rfi_dates_form" action="/rfi/address" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="rfi_proj_start_date-hint">
+
+            <legend class="govuk-fieldset__legend govuk-label--m">
+              Service Start Date
+            </legend>
+
+            <div id="rfi_proj_start_date-hint" class="govuk-hint">
+              For example, 22 11 2021
+            </div>
+
+            <div class="govuk-date-input" id="rfi_proj_start_date">
+
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rfi_proj_start_date-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rfi_proj_start_date-day" name="rfi_proj_start_date-day" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['rfi_proj_start_date-day'] }}">
+                </div>
+              </div>
+
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rfi_proj_start_date-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rfi_proj_start_date-month" name="rfi_proj_start_date-month" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['rfi_proj_start_date-month'] }}">
+                </div>
+              </div>
+
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rfi_proj_start_date-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="rfi_proj_start_date-year" name="rfi_proj_start_date-year" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['rfi_proj_start_date-year'] }}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="rfi_proj_duration-hint">
+
+            <legend class="govuk-fieldset__legend govuk-label--m">
+              Service Duration
+            </legend>
+
+            <div id="rfi_proj_duration-hint" class="govuk-hint">
+              Specify the duration or the end date
+            </div>
+
+            <div class="govuk-date-input" id="rfi_proj_duration">
+
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rfi_proj_duration_number">
+                    Number
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="rfi_proj_duration_number" name="rfi_proj_duration_number" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['rfi_proj_duration_number'] }}">
+                </div>
+              </div>
+
+              <div class="govuk-date-input__item">
+                {{ govukSelect({
+                  id: "rfi_proj_duration_units",
+                  name: "rfi_proj_duration_units",
+                  label: {
+                    text: "Units"
+                  },
+                  items: timeUnitCollection
+                }) }}
+              </div>
+
+            </div>
+
+          </fieldset>
+        </div>
+
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="rfi_proj_end_date-hint">
+
+            <legend class="govuk-fieldset__legend govuk-label--m">
+              Service End Date
+            </legend>
+
+            <div id="rfi_proj_end_date-hint" class="govuk-hint">
+              For example, 22 3 2022
+            </div>
+
+            <div class="govuk-date-input" id="rfi_proj_end_date">
+
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rfi_proj_end_date-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rfi_proj_end_date-day" name="rfi_proj_end_date-day" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['rfi_proj_end_date-day'] }}">
+                </div>
+              </div>
+
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rfi_proj_end_date-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rfi_proj_end_date-month" name="rfi_proj_end_date-month" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['rfi_proj_end_date-month'] }}">
+                </div>
+              </div>
+
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rfi_proj_end_date-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="rfi_proj_end_date-year" name="rfi_proj_end_date-year" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['rfi_proj_end_date-year'] }}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+
+
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

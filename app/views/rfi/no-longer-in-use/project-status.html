@@ -1,0 +1,105 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  RfI - Status of your project | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+  items: [
+  {
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "[Procurement overview]",
+  href: "/projects/"
+  },
+  {
+  text: "[ 2. Run pre-market engagement ]",
+  href: "/rfi/rfi-task-list"
+  },
+  {
+    text: "[Build your Request for Information (RfI)]",
+    href: "/rfi/online-task-list"
+  },
+  {
+    text: "[ Status of the project ]"
+  }
+  ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        [ Status of the project (Optional)]
+      </h1>
+     
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "includes/project_header.html" %} <br>
+
+      <p class="govuk-body-l">[ Instructions for this page ]</p> <br> <br>
+
+      <form id="ccs_rfi_proj_status" name="ccs_rfi_proj_status" class="form ccs_rfi_proj_status" action="/rfi/who" method="post">
+
+        {{ govukSelect({
+          id: "rfi_prog_phase",
+          name: "rfi_prog_phase",
+          label: {
+            text: "Indicate the current phase of the project/programme"
+          },
+          items: prog_phase_items
+        }) }}
+
+        {{ govukSelect({
+          id: "rfi_prog_resourse_phase_req",
+          name: "rfi_prog_resourse_phase_req",
+          label: {
+            text: "Indicate the phase the resource will be engaged for"
+          },
+          items: resourse_phase_items
+        }) }}
+
+        <br><br>
+
+        {{ govukTextarea({
+          name: "rfi_work_to_date",
+          id: "rfi_work_to_date",
+          value: data['rfi_work_to_date'],
+          label: {
+            text: "[ Outline the detail of any work that has been already carried out  ]",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "[ Question additional description ]"
+          }
+        }) }}
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/rfi/online-task-list" class="govuk-link govuk-link--no-visited-state">Return to Build your Request for Information</a>
+        </div>
+
+      </form>
+
+    </div>
+
+    {% include "includes/promos/related_only.html" %}
+  </div>
+
+{% endblock %}

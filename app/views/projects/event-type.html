@@ -1,0 +1,89 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  {{ data['choose_pre_engage'] }} type | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: data['choose_pre_engage'] + " type"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        How would you like to create your {{ data['choose_pre_engage'] }}?
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form id="ccs_eoi_type_form" name="ccs_eoi_type_form" class="form ccs_eoi_type_form" action="/projects/vetting" method="post">
+
+        {{ govukRadios({
+          idPrefix: "ccs_eoi_type",
+          name: "ccs_eoi_type",
+          items: [
+            {
+              value: "all_online",
+              html: "<h3 class='govuk-heading-m'>Provide all information online</h3>",
+              hint: {
+                text: "The Procurement Portal will guide you in this process step-by-step. "
+              },
+              checked: checked("ccs_eoi_type", "all_online")
+            },
+            {
+              value: "download_docs",
+              html: "<h3 class='govuk-heading-m'>Use a downloadable template from the Procurement Portal</h3>",
+              hint: {
+                text: "You'll be able to download a template, fill it offline and resume the process when you’re ready to upload it into the Portal. "
+              },
+              checked: checked("ccs_eoi_type", "download_docs")
+            },
+            {
+              value: "upload_all",
+              html: "<h3 class='govuk-heading-m'>Upload all information</h3>",
+              hint: {
+                text: "Use this option if you prefer to use templates created by your organisation.  "
+              },
+              checked: checked("ccs_eoi_type", "upload_all")
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

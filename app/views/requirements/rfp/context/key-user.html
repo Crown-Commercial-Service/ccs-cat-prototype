@@ -1,0 +1,255 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+ Key users | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Write and publish your requirements",
+  href: "/requirements/rfp/task-list"
+  },
+  {
+    text: "[Add context]",
+    href: "/requirements/rfp/context/sub-task-list"
+    },
+{
+text: "[ Key users (Optional) ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        [ Key users (Optional) ]
+      </h1>
+      
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %}<br>
+
+        <p class="govuk-body">[instructions]</p><br><br>
+
+      <form id="ccs_rfp_key_user_form" name="ccs_rfp_key_user_form" class="form ccs_rfp_key_user_form" action="/requirements/rfp/context/work-done" method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: "[ First key user ]",
+            classes: "govuk-fieldset__legend--m govuk-!-margin-bottom-0",
+            isPageHeading: false
+          },
+          classes: "acronym_1"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "[ Key user ]",
+              classes: "govuk-!-font-weight-bold"
+            },
+            id: "rfp_key_user_1",
+            name: "rfp_key_user_1",
+            classes: "rfi_term_1 govuk-!-margin-bottom-5",
+            value: data['rfp_key_user_1']
+          }) }}
+
+          {{ govukTextarea({
+            name: "rfp_key_user_definition_1",
+            id: "rfp_key_user_definition_1",
+            label: {
+              text: "[ Definition ]",
+              classes: "govuk-!-font-weight-bold"
+            },
+            classes: "rfi_term_definition_1",
+            value: data['rfp_key_user_definition_1']
+          }) }}
+
+        {% endcall %} 
+
+        {% call govukFieldset({
+          legend: {
+            html: "[ Second key user ]<a href='2' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-fieldset__legend--m govuk-!-margin-bottom-0",
+            isPageHeading: false
+          },
+          classes: "acronym_2"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "[key user]"
+            },
+            id: "rfp_key_user_2",
+            name: "rfp_key_user_2",
+            classes: "rfi_term_2 govuk-!-margin-bottom-5",
+            value: data['rfp_key_user_2']
+          }) }}
+
+          {{ govukTextarea({
+            label: {
+              text: "[definition]"
+            },
+            id: "rfp_key_user_definition_2",
+            name: "rfp_key_user_definition_2",
+            spellcheck: false,
+            classes: "rfi_term_definition_2",
+            value: data['rfp_key_user_definition_2']
+          }) }}
+
+        {% endcall %}
+
+        {% call govukFieldset({
+          legend: {
+            html: "[ Third key user ]<a href='3' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-fieldset__legend--m govuk-!-margin-bottom-0",
+            isPageHeading: false
+          },
+          classes: "acronym_3"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "[key user]"
+            },
+            id: "rfp_key_user_3",
+            name: "rfp_key_user_3",
+            classes: "rfi_term_3 govuk-!-margin-bottom-5",
+            value: data['rfp_key_user_3']
+          }) }}
+
+          {{ govukTextarea({
+            label: {
+              text: "[definition]"
+            },
+            id: "rfp_key_user_definition_3",
+            name: "rfp_key_user_definition_3",
+            spellcheck: false,
+            classes: "rfi_term_definition_3",
+            value: data['rfp_key_user_definition_3']
+          }) }}
+
+        {% endcall %}
+
+        {% call govukFieldset({
+          legend: {
+            html: "[ Fourth key user ] <a href='4' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-fieldset__legend--m govuk-!-margin-bottom-0",
+            isPageHeading: false
+          },
+          classes: "acronym_4"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "[key user]"
+            },
+            id: "rfp_key_user_4",
+            name: "rfp_key_user_4",
+            classes: "rfi_term_4 govuk-!-margin-bottom-5",
+            value: data['rfp_key_user_4']
+          }) }}
+
+          {{ govukTextarea({
+            label: {
+              text: "[definition]"
+            },
+            id: "rfp_key_user_definition_4",
+            name: "rfp_key_user_definition_4",
+            spellcheck: false,
+            classes: "rfi_term_definition_4",
+            value: data['rfp_key_user_definition_4']
+          }) }}
+
+        {% endcall %}
+
+        {% call govukFieldset({
+          legend: {
+            html: "Fifth key user <a href='5' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-fieldset__legend--m govuk-!-margin-bottom-0",
+            isPageHeading: false
+          },
+          classes: "acronym_5"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "[key user]"
+            },
+            id: "rfp_key_user_5",
+            name: "rfp_key_user_5",
+            classes: "rfi_term_5 govuk-!-margin-bottom-5",
+            value: data['rfp_key_user_5']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "[definition]"
+            },
+            id: "rfp_key_user_definition_5",
+            name: "rfp_key_user_definition_5",
+            spellcheck: false,
+            classes: "rfi_term_definition_5",
+            value: data['rfp_key_user_definition_5']
+          }) }}
+
+        {% endcall %}
+
+        <p class="govuk-body">
+          {{ govukButton({
+            text: "[ Add another key user ]",
+            attributes: {
+              id: "ccs_rfp_key_user_add"
+            },
+            classes: "govuk-button--secondary"
+          }) }} 
+        </p>
+
+        
+      {{ govukInput ({
+        id: "rfp_key-user_added",
+        name: "rfp_key-user_added",
+        type: "hidden",
+        value: true
+      }) }}
+
+      {{ govukInput({
+        id: "rfp_add_context_started",
+        name: "rfp_add_context_started",
+        type: "hidden",
+        value: true
+      }) }}
+<br><br>
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [Add context]</a>
+        </div>
+      </form>
+    </div>
+
+    {% include "includes/promos/related_only.html" %}
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,272 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  {{ data['choose_pre_engage'] }} review | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: data['choose_pre_engage'] +" review"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Review and publish your {{ data['choose_pre_engage'] }}
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <div class="ccs-page-section">
+
+      {% if data['suppliers_selected'] != "true" %}
+
+        <h2 class="govuk-heading-m">Suppliers</h2>
+
+        <p class="govuk-body">You have not selected any suppliers so your {{ data['choose_pre_engage'] }} will be published to all matching suppliers nationally. </p>
+
+        {{ govukButton({
+          text: "Select suppliers",
+          classes: "govuk-button--secondary",
+          href: "/projects/offer-type"
+        }) }}
+      {% else %}
+
+        {{ govukTable({
+          caption: "Your list of suppliers",
+          captionClasses: "govuk-table__caption--m",
+          firstCellIsHeader: true,
+          rows: [
+            [
+              {
+                text: "Type of specialist"
+              },
+              {
+                text: data['offerTitle']
+              },
+              {
+                html: '<a href="/projects/offer-type" class="govuk-link">Edit<span class="visuallyhidden"> type of specialist</span></a>'
+              }
+            ],
+            [
+              {
+                text: "Location"
+              },
+              {
+                html: '<ul class="govuk-list">' + locationList + '<ul>'
+              },
+              {
+                html: '<a href="/projects/location" class="govuk-link">Edit<span class="visuallyhidden"> locations</span></a>'
+              }
+            ],
+            [
+              {
+                text: supplierCount + " suppliers"
+              },
+              {
+                html: '<ul class="govuk-list">' + supplierList + '<ul>'
+              },
+              {
+                html: '<a href="/projects/location" class="govuk-link">Edit<span class="visuallyhidden"> suppliers</span></a>'
+              }
+            ]
+          ]
+        }) }}
+
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="#" onclick="return false;">Download the list of identified suppliers and selection criteria (.xls)</a></p>
+        <p class="govuk-body"><a href="/projects/location" class="govuk-link">Change supplier selection criteria</a></p>
+
+      {% endif %}
+
+    </div>
+      <div class="ccs-page-section">
+        <h2 class="govuk-heading-m">Your response date and time </h2>
+
+        {% if data['eoi_response_date-day'] == undefined %}
+          <p class="govuk-body">You have not yet defined your {{ data['choose_pre_engage'] }} deadline. </p>
+          {{ govukButton({
+            text: "Add deadline",
+            classes: "govuk-button--secondary",
+            href: "/projects/event-response-deadline"
+          }) }}
+        {% else %}
+          {{ govukInsetText({
+            html: '<strong>' + data['eoi_response_date-day'] + ' ' + thisMonthName + ' ' + data['eoi_response_date-year'] + ' </strong><br>' + deadlineHour + '<br><br><a href="/projects/event-response-deadline" class="govuk-link">Change date and time</a>'
+          }) }}
+        {% endif %}
+      </div>
+
+
+
+
+      <h2 class="govuk-heading-m">Your requirements </h2>
+
+      {{ govukAccordion({
+        id: "requirements-accordion",
+        items: [
+          {
+            heading: {
+              text: "Overview of your needs"
+            },
+            content: {
+              html: "
+              <h3 class='govuk-heading-s'>About your organisation</h3>
+              <p class='govuk-body'>" + data['eoi_about_cust_org'] + "</p>
+              <h3 class='govuk-heading-s'>Type of specialist</h3>
+              <p class='govuk-body'>" + data['offerTitle'] + "</p>
+              <h3 class='govuk-heading-s'>Aims and objectives of the work</h3>
+              <p class='govuk-body'>" + data['eoi_work_objectives'] + "</p>
+              <h3 class='govuk-heading-s'>Other relevant information</h3>
+              <p class='govuk-body'>" + data['eoi_other_info'] + "</p>
+              <p class='govuk-body'><a href='/projects/event-needs' class='govuk-link'>Edit<span class='visuallyhidden'> aims and objectives</span></a></p>
+              "
+            },
+            expanded: false
+          },
+          {
+            heading: {
+              text: "Security and vetting requirements"
+            },
+            content: {
+              html: "
+              <p class='govuk-body'>" + data['ccs_vetting_type'] + "</p>
+              <p class='govuk-body'><a href='/projects/vetting' class='govuk-link'>Edit<span class='visuallyhidden'> security and vetting requirements</span></a></p>"
+            },
+            expanded: false
+          },
+          {
+            heading: {
+              text: "Incumbent supplier"
+            },
+            content: {
+              html: "
+              <p class='govuk-body'>" + data['ccs_eoi_incumbent'] + " <strong>" + data['incumbent_supplier'] + "</strong></p>
+              <p class='govuk-body'><a href='/projects/incumbent' class='govuk-link'>Edit<span class='visuallyhidden'> incumbent supplier</span></a></p>"
+            },
+            expanded: false
+          },
+          {
+            heading: {
+              text: "Budget range"
+            },
+            content: {
+              html: "
+              <p class='govuk-body'>From: £" + data['eoi_min_budget'] + ".00 to: £" + data['eoi_max_budget'] + ".00</p>
+              <p class='govuk-body'><a href='/projects/event-budget' class='govuk-link'>Edit<span class='visuallyhidden'> budget range</span></a></p>"
+            },
+            expanded: false
+          },
+          {
+            heading: {
+              text: "Indication of tender evaluation criteria"
+            },
+            content: {
+              html: "
+              <ul class='govuk-list govuk-list--bullet'>" + evalCriteriaList + "</ul>
+              <p class='govuk-body'><a href='/projects/event-eval-criteria' class='govuk-link'>Edit<span class='visuallyhidden'> evaluation criteria</span></a></p>"
+            },
+            expanded: false
+          },
+          {
+            heading: {
+              text: "Right to cancel notice"
+            },
+            content: {
+              html: "<p class='govuk-body'><a href='/projects/event-right-to-cancel' class='govuk-link'>Edit<span class='visuallyhidden'> right to cancel notice</span></a></p>"
+            },
+            expanded: false
+          }
+        ]
+      }) }}
+
+
+      <div class="ccs-page-section">
+
+
+        {% if docDetailList | length > 0 %}
+
+          {{ govukTable({
+            caption: "Your additional documents",
+            captionClasses: "govuk-table__caption--m",
+            firstCellIsHeader: false,
+            head: [
+              {
+                text: "Document"
+              },
+              {
+                text: "Size"
+              },
+              {
+                text: "Uploaded on"
+              }
+            ],
+            rows: docDetailList
+          }) }}
+
+          <p class='govuk-body'><a href='/projects/event-supporting-docs' class='govuk-link'>Change or remove additional documents</a></p>
+        {% else %}
+
+          <h2 class="govuk-heading-m">Your additional documents </h2>
+          <p class="govuk-body">You have not provided any additional documents. </p>
+          <p class='govuk-body'><a href='/projects/event-supporting-docs' class='govuk-link'>Add supporting documents</a></p>
+
+        {% endif %}
+
+
+      </div>
+
+      <form id="ccs_eoi_conf_supp_form" name="ccs_eoi_conf_supp_form" class="form ccs_eoi_conf_supp_form" action="/projects/event-sent" method="post">
+
+        <h2 class="govuk-heading-m">Publish your {{ data['choose_pre_engage'] }} </h2>
+
+        <p class="govuk-body">After publishing this event, you'll be able to cancel all or part of this {{ data['choose_pre_engage'] }} at any stage / any time or amend, clarify, add to or withdraw all or any part of the {{ data['choose_pre_engage'] }} at any time. </p>
+
+        {{ govukWarningText({
+          text: "By publishing this " + data['choose_pre_engage'] + " to all suppliers in your list, you are stating that, to the best of your knowledge, the information you have provided is correct. ",
+          iconFallbackText: "Warning"
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Publish now"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+        {{ govukInput({
+          id: "finished_pre_engage",
+          name: "finished_pre_engage",
+          type: "hidden",
+          value: "true"
+        }) }}
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

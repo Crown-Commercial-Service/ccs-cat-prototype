@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  CCS CaT Prototype
+{% endblock %}
+
+{% block header %}
+  {% include "includes/ccs_masthead.html" %}
+{% endblock %}
+
+{% block main %}
+  <div class="ccs-width-container {{ containerClasses }}">
+    {% block bcrumbBlock %}{% endblock %}
+    {% block beforeContent %}{% endblock %}
+    <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main"{% if mainLang %} lang="{{ mainLang }}"{% endif %}>
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+{% endblock %}
+
+
+{% block footer %}
+  {% include "includes/ccs_footer.html" %}
+{% endblock %}

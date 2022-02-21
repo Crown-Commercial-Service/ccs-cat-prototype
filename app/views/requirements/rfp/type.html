@@ -1,0 +1,88 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+How to build market event | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "How will you build your one stage further competition"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-xl">
+          How will you build your one stage further competition?
+        </h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        {% include "includes/project_header.html" %} <br>
+
+        <p class="govuk-body">You can choose to either enter the information online to build your one stage further competition or upload your own document.</p> <br>
+
+        <form id="ccs_ca_type_form" name="ccs_ca_type_form" class="form ccs_ca_type_form" action="/requirements/select-fc-type" method="post">
+
+            {{ govukRadios({
+              idPrefix: "ccs_fc_type",
+              name: "ccs_fc_type",
+              items: [
+              {
+                value: "all_online",
+                html: "<h3 class='govuk-heading-m'>Enter all the information online</h3>",
+                hint: {
+                  text: "Enter all the information needed to build your one stage further competition online and submit it to your selected suppliers."
+                },
+                checked: checked("ccs_fc_type", "all_online")
+              },
+              {
+                value: "all_offline",
+                html: "<h3 class='govuk-heading-m'>Complete and upload a document</h3>",
+                hint: {
+                  text: "Use this option to prepare your one stage further competition offline and then upload it."
+                },
+                checked: checked("ccs_fc_type", "all_offline")
+              }
+              ]
+            }) }}
+    
+        {{ govukInput({
+            id: "ccs_fc_type_selected",
+            name: "ccs_fc_type_selected",
+            type: "hidden",
+            value: true
+            }) }}
+        <br><br>
+            <div class="govuk-button-group">
+              {{ govukButton({
+              text: "Save and continue"
+              }) }}
+              <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to Procurement overview  </a>
+            </div>
+        </form>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+
+{% endblock %}

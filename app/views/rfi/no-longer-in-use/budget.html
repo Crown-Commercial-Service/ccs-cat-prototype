@@ -1,0 +1,100 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  RfI - Specify your budget | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Specify your budget"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Specify your budget
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">You can specify your (indicator) budget range, your maximum budget, and, or your maximum rate per day in the next step. </p>
+
+      <form id="ccs_rfi_budget_form" name="ccs_rfi_budget_form" class="form ccs_rfi_budget_form" action="/rfi/budget-step-two" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Maximum indicative budget",
+            classes: "govuk-label--m"
+          },
+          prefix: {
+            text: "£"
+          },
+          id: "rfi_max_budget",
+          name: "rfi_max_budget",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          classes: "govuk-input--width-5",
+          value: data['rfi_max_budget']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Minimum indicative budget (optional)",
+            classes: "govuk-label--m"
+          },
+          prefix: {
+            text: "£"
+          },
+          id: "rfi_min_budget",
+          name: "rfi_min_budget",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          classes: "govuk-input--width-5",
+          value: data['rfi_min_budget']
+        }) }}
+
+        {{ govukInput({
+          id: "rfi_build_started",
+          name: "rfi_build_started",
+          type: "hidden",
+          value: true
+        }) }}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/rfi/online-task-list" class="govuk-link govuk-link--no-visited-state">Return to Build your Request for Information</a>
+        </div>
+
+      </form>
+
+    </div>
+
+
+
+  </div>
+
+{% endblock %}

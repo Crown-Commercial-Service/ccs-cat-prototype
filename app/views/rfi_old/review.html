@@ -1,0 +1,287 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  {{ data['choose_pre_engage'] }} review | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: data['choose_pre_engage'] +" review"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Review and publish your {{ data['choose_pre_engage'] }}
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="ccs-page-section review">
+
+      {% if data['suppliers_selected'] != "true" %}
+
+        <h2 class="govuk-heading-m">Suppliers</h2>
+
+        <p class="govuk-body">You have not selected any suppliers so your {{ data['choose_pre_engage'] }} will be published to all matching suppliers nationally. </p>
+
+        {{ govukButton({
+          text: "Select suppliers",
+          classes: "govuk-button--secondary",
+          href: "/projects/offer-type"
+        }) }}
+      {% else %}
+
+        {{ govukTable({
+          caption: "Your list of suppliers",
+          captionClasses: "govuk-table__caption--m",
+          firstCellIsHeader: true,
+          rows: [
+            [
+              {
+                text: "Type of specialist"
+              },
+              {
+                text: data['offerTitle']
+              },
+              {
+                html: '<a href="/projects/offer-type" class="govuk-link">Edit<span class="visuallyhidden"> type of specialist</span></a>'
+              }
+            ],
+            [
+              {
+                text: "Location"
+              },
+              {
+                html: '<ul class="govuk-list">' + locationList + '<ul>'
+              },
+              {
+                html: '<a href="/projects/location" class="govuk-link">Edit<span class="visuallyhidden"> locations</span></a>'
+              }
+            ],
+            [
+              {
+                text: supplierCount + " suppliers"
+              },
+              {
+                html: '<ul class="govuk-list">' + supplierList + '<ul>'
+              },
+              {
+                html: '<a href="/projects/location" class="govuk-link">Edit<span class="visuallyhidden"> suppliers</span></a>'
+              }
+            ]
+          ]
+        }) }}
+
+        <p class="govuk-body"><a href="#" class="govuk-link">Download the list of identified suppliers and selection criteria (.xls)</a></p>
+        <p class="govuk-body edit"><a href="/projects/location" class="govuk-link">Change supplier selection criteria</a></p>
+
+      {% endif %}
+
+    </div>
+
+    <div class="ccs-page-section review">
+      <h2 class="govuk-heading-m">Contracting Authority: </h2>
+      <p class="govuk-body">{{ data['rfi_contracting_auth'] }}</p>
+      {% if data['rfi_on_behalf_of'] != "" %}
+      <h2 class="govuk-heading-m">Buying on behalf of: </h2>
+      <p class="govuk-body">{{ data['rfi_on_behalf_of'] }}</p>
+      {% endif %}
+      <p class='govuk-body edit'><a href='/rfi/who' class='govuk-link'>Edit<span class='visuallyhidden'> Contracting Authority</span></a></p>
+    </div>
+
+    <div class="ccs-page-section review">
+      <h2 class="govuk-heading-m">Questions for suppliers: </h2>
+      <p class="govuk-body"><strong>Question 1 </strong><br>{{ data['rfi_question_1'] }}</p>
+
+      {% if data['rfi_question_2'] %}
+      <p class="govuk-body"><strong>Question 2 </strong><br>{{ data['rfi_question_2'] }}</p>
+      {% endif %}
+
+      {% if data['rfi_question_3'] %}
+      <p class="govuk-body"><strong>Question 3 </strong><br>{{ data['rfi_question_3'] }}</p>
+      {% endif %}
+
+      {% if data['rfi_question_4'] %}
+      <p class="govuk-body"><strong>Question 4 </strong><br>{{ data['rfi_question_4'] }}</p>
+      {% endif %}
+
+      {% if data['rfi_question_5'] %}
+      <p class="govuk-body"><strong>Question 5 </strong><br>{{ data['rfi_question_5'] }}</p>
+      {% endif %}
+
+      {% if data['rfi_question_6'] %}
+      <p class="govuk-body"><strong>Question 6 </strong><br>{{ data['rfi_question_6'] }}</p>
+      {% endif %}
+
+      {% if data['rfi_question_7'] %}
+      <p class="govuk-body"><strong>Question 7 </strong><br>{{ data['rfi_question_7'] }}</p>
+      {% endif %}
+
+      {% if data['rfi_question_8'] %}
+      <p class="govuk-body"><strong>Question 8 </strong><br>{{ data['rfi_question_8'] }}</p>
+      {% endif %}
+
+      {% if data['rfi_question_9'] %}
+      <p class="govuk-body"><strong>Question 9 </strong><br>{{ data['rfi_question_9'] }}</p>
+      {% endif %}
+
+      {% if data['rfi_question_10'] %}
+      <p class="govuk-body"><strong>Question 10 </strong><br>{{ data['rfi_question_10'] }}</p>
+      {% endif %}
+
+      <p class='govuk-body edit'><a href='/rfi/questions' class='govuk-link'>Edit<span class='visuallyhidden'> Security requirements</span></a></p>
+    </div>
+
+    <div class="ccs-page-section review">
+      <h2 class="govuk-heading-m">Project dates </h2>
+      <p class="govuk-body"><strong>Start: </strong> {{ data['rfi_proj_start_date-day'] }}&nbsp;/&nbsp;{{ data['rfi_proj_start_date-month'] }}&nbsp;/&nbsp;{{ data['rfi_proj_start_date-year'] }}</p>
+      <p class="govuk-body"><strong>End: </strong> {{ data['rfi_proj_end_date-day'] }}&nbsp;/&nbsp;{{ data['rfi_proj_end_date-month'] }}&nbsp;/&nbsp;{{ data['rfi_proj_end_date-year'] }}</p>
+      <p class="govuk-body"><strong>Duration: </strong> {{ data['rfi_proj_duration_number'] }} {{ data['rfi_proj_duration_units'] }}</p>
+      <p class='govuk-body edit'><a href='/rfi/dates' class='govuk-link'>Edit<span class='visuallyhidden'> project dates</span></a></p>
+    </div>
+
+    <div class="ccs-page-section review">
+      <h2 class="govuk-heading-m">Address where the work will be carried out: </h2>
+      {% if data['rfi_proj_address-line-1'] != "" %}
+      <p class="govuk-body">{{ data['rfi_proj_address-line-1'] }}
+
+        {% if data['rfi_proj_address-line-2'] != "" %}
+          <br>{{ data['rfi_proj_address-line-2'] }}
+        {% endif %}
+
+        <br>{{ data['rfi_proj_address-town'] }}
+
+        {% if data['rfi_proj_address-county'] != "" %}
+          <br>{{ data['rfi_proj_address-county'] }}
+        {% endif %}
+
+        <br>{{ data['rfi_proj_address-postcode'] }}</p>
+
+      {% else %}
+      <p class="govuk-body">No address supplied.</p>
+      {% endif %}
+
+      <p class='govuk-body edit'><a href='/rfi/address' class='govuk-link'>Edit<span class='visuallyhidden'> address</span></a></p>
+    </div>
+
+    <div class="ccs-page-section review">
+      <h2 class="govuk-heading-m">Budget </h2>
+      {% if data['rfi_max_budget'] != "" %}
+        <p class="govuk-body"><strong>Total budget: </strong>
+        {% if data['rfi_min_budget'] != "" %}
+          &pound;{{ data['rfi_min_budget'] }} to &nbsp;
+        {% endif %}
+        &pound;{{ data['rfi_max_budget'] }}</p>
+      {% else %}
+      <p class="govuk-body"><strong>Maximum rate per day:</strong> &pound;{{ data['rfi_max_day_rate'] }} {{ data['rfi_day_rate_type'] }}</p>
+      {% endif %}
+
+      <p class='govuk-body edit'><a href='/rfi/budget' class='govuk-link'>Edit<span class='visuallyhidden'> project budget</span></a></p>
+    </div>
+
+    <div class="ccs-page-section review">
+      <h2 class="govuk-heading-m">About the project </h2>
+
+      <p class="govuk-body"><strong>Project / Programme Name:</strong> {{ data['rfi_prog_name'] }} <br>
+      {% if data['rfi_proc_ref'] != "" %}
+        <strong>Procurement reference: </strong>{{ data['rfi_proc_ref'] }}
+      {% endif %}
+      </p>
+
+      <h3 class="govuk-heading-s">Why this work is required </h3>
+      <p class="govuk-body">{{ data['rfi_why_this_work'] | nl2br | safe }}</p>
+
+      <h3 class="govuk-heading-s">Problem to be solved / Impact of not completing deliverables and outcomes </h3>
+      <p class="govuk-body">{{ data['rfi_prob_statement'] | nl2br | safe }}</p>
+
+      <h3 class="govuk-heading-s">What resource will work on </h3>
+      <p class="govuk-body">{{ data['rfi_will_work_on'] | nl2br | safe }}</p>
+
+      <p class="govuk-body"><strong>Key users:</strong> {{ data['rfi_key_users_name'] }} </p>
+
+      <p class="govuk-body"><strong>Key outcomes:</strong> {{ data['rfi_key_users_outcomes'] | nl2br | safe }} </p>
+
+      <p class='govuk-body edit'><a href='/rfi/project' class='govuk-link'>Edit<span class='visuallyhidden'> project details / overview</span></a></p>
+    </div>
+
+    <div class="ccs-page-section review">
+      <h2 class="govuk-heading-m">Current project status </h2>
+
+      <p class="govuk-body"><strong>Current phase:</strong> {{ data['rfi_prog_phase'] }} </p>
+
+      <p class="govuk-body"><strong>Resourse required for phase:</strong> {{ data['rfi_prog_phase_req'] }} </p>
+
+      <h3 class="govuk-heading-s">Work completed to date </h3>
+      <p class="govuk-body">{{ data['rfi_work_to_date'] | nl2br | safe }}</p>
+
+      <h3 class="govuk-heading-s">Market engagement to date </h3>
+      <p class="govuk-body">{{ data['rfi_engagement_to_date'] | nl2br | safe }}</p>
+
+      <p class="govuk-body"><strong>Working arrangements:</strong> {{ data['rfi_work_arrangements'] }} </p>
+
+      {% if data['rfi_existing_team'] %}
+
+      <h3 class="govuk-heading-s">Existing team </h3>
+      <p class="govuk-body">{{ data['rfi_existing_team'] | nl2br | safe }}</p>
+      {% endif %}
+
+      <p class='govuk-body edit'><a href='/rfi/project-status' class='govuk-link'>Edit<span class='visuallyhidden'> current project status</span></a></p>
+    </div>
+
+
+      <form id="ccs_eoi_conf_supp_form" name="ccs_eoi_conf_supp_form" class="form ccs_eoi_conf_supp_form" action="/projects/event-sent" method="post">
+
+        <h2 class="govuk-heading-m">Publish your {{ data['choose_pre_engage'] }} </h2>
+
+        <p class="govuk-body">After publishing this event, you'll be able to cancel all or part of this {{ data['choose_pre_engage'] }} at any stage / any time or amend, clarify, add to or withdraw all or any part of the {{ data['choose_pre_engage'] }} at any time. </p>
+
+        {{ govukWarningText({
+          text: "By publishing this " + data['choose_pre_engage'] + " to all suppliers in your list, you are stating that, to the best of your knowledge, the information you have provided is correct. ",
+          iconFallbackText: "Warning"
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Publish now"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+        {{ govukInput({
+          id: "finished_pre_engage",
+          name: "finished_pre_engage",
+          type: "hidden",
+          value: "true"
+        }) }}
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

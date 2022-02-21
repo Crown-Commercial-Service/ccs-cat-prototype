@@ -1,0 +1,93 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Set essential and preferred skills | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements/rfp/task-list"
+},
+{
+text: "[Add context]",
+href: "/requirements/rfp/context/sub-task-list"
+},
+{
+text: "[Set essential and preferred skills]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">
+      [ Set essential and preferred skills ]
+    </h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+    {% include "includes/project_header.html" %}<br>
+
+    <p class="govuk-body-l">[ Instructions for this page ]</p><br><br>
+
+    <form id="ccs_rfp_skills_form" name="ccs_rfp_skills_form" class="form ccs_rfp_skills_form"
+      action="/requirements/rfp/context/management-information" method="post">
+
+      <div class="govuk-!-width-two-third govuk-!-padding-bottom-9"
+        style="border: 4px solid #fdf90a; text-align: center;">
+        <br><br><br><label class="govuk-heading-m  govuk-!-padding-bottom-9 govuk-!-margin-top-9">Coming Soon</label>
+      </div>
+      <br><br><br><br>
+
+
+      {{ govukInput({
+      id: "rfp_skills_added",
+      name: "rfp_skills_added",
+      type: "hidden",
+      value: true
+      }) }}
+
+      {{ govukInput({
+        id: "rfp_add_context_started",
+        name: "rfp_add_context_started",
+        type: "hidden",
+        value: true
+      }) }}
+      <div class="govuk-button-group">
+        {{ govukButton({
+        text: "Save and continue"
+        }) }}
+        <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [
+          Add context]</a>
+      </div>
+
+    </form>
+
+  </div>
+
+  {% include "includes/promos/related_only.html" %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  {{ theSupplier.name }} | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: "Matching suppliers",
+        href: "/projects/filter-suppliers"
+      },
+      {
+        text: theSupplier.name
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        {{ theSupplier.name }}
+      </h1>
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "includes/project_header.html" %}
+
+      <p class="govuk-body-l">{{ theSupplier.description }}</p>
+
+      <div class="ccs-page-section">
+        <ul class="govuk-list">
+          <li>&mdash; <a href="#specialist">Available specialist types</a></li>
+          <li>&mdash; <a href="#locations">Available locations</a></li>
+        </ul>
+      </div>
+
+      <a name="specialist"></a>
+
+      {% for off in offerList %}
+      <div class="ccs-page-section">
+        <h2 class="govuk-heading-m ccs-supplier-profile">{{ off.name }} <span class="offered {{ off.offered }}">{{ off.offered }}</span></h2>
+        <p class="govuk-body">{{ off.desc }}</p>
+      </div>
+      {% endfor %}
+
+      <div class="ccs-page-section">
+        <h2 class="govuk-heading-m" id="locations">Available locations</h2>
+      </div>
+
+      {% for loc in locationList %}
+      <h2 class="govuk-heading-m ccs-supplier-profile">{{ loc.name }} <span class="offered {{ loc.covered }}">{{ loc.covered }}</span></h2>
+      {% endfor %}
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <div class="ccs-callout-panel">
+        <h2 class="govuk-heading-m">Pricing information</h2>
+        <p class="govuk-body"><strong>£780 per day</strong></p>
+      </div>
+
+      <div class="ccs-callout-panel">
+        <h2 class="govuk-heading-m">Supplier documents</h2>
+        <ul class="govuk-list">
+          <li><a href="#">Document title</a></li>
+          <li><a href="#">Document title</a></li>
+          <li><a href="#">Document title</a></li>
+        </ul>
+        <p class="govuk-body"><a href="#">Request an accessible format</a></p>
+      </div>
+
+      <div class="ccs-callout-panel">
+        <h2 class="govuk-heading-m">Key facts</h2>
+        <p class="govuk-body-l"><strong>Agreement ID: </strong>{{ data['this_agreement_id'] }}</p>
+        <p class="govuk-body"><a href="/agreement?id={{ data['this_agreement_id'] }}">{{ data['this_agreement_name'] }}, {{ data['this_lot'] }}</a></p>
+      </div>
+
+      <div class="ccs-callout-panel">
+        <h2 class="govuk-heading-m">Contact supplier</h2>
+        <p class="govuk-body">You can contact a supplier directly if you require any clarification.</p>
+        {{ govukButton({
+          text: "Contact supplier",
+          href: "#",
+          classes: "contact_supp_butt"
+        }) }}
+      </div>
+
+    </div>
+
+  </div>
+
+{% endblock %}

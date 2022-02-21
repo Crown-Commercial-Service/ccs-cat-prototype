@@ -1,0 +1,274 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Special terms and conditions | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Do pre-market engagement",
+href: "/eoi/eoi-task-list"
+},
+{
+text: "Build your EoI",
+href: "/eoi/online-task-list"
+},
+{
+text: "Special terms and conditions (Optional)"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">
+      Special terms and conditions (Optional)
+    </h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+    {% include "includes/project_header.html" %} <br>
+
+    <p class="govuk-body">Define any special terms and conditions that you will need to the supplier to meet.</p>
+    <br><br>
+
+    <form id="ccs_eoi_terms_form" name="ccs_eoi_terms_form" class="form ccs_rfi_acronyms_form" action="/eoi/vetting"
+      method="post">
+
+      {% call govukFieldset({
+        legend: {
+          text: "First term or condition",
+          classes: "govuk-fieldset__legend--m",
+          isPageHeading: false
+        },
+        classes: "acronym_1"
+      }) %}
+
+      {{ govukCharacterCount({
+        name: "eoi_term_1",
+        id: "eoi_term_1",
+        maxlength: 100,
+        rows: "2",
+        label: {
+          text: "Enter the first special term or condition",
+          classes: "govuk-label--m govuk-!-font-weight-regular",
+          isPageHeading: false
+        },
+        value:data['eoi_term_1']
+      }) }}
+
+      {{ govukCharacterCount({
+        name: "eoi_condition_1",
+        id: "eoi_condition_1",
+        maxlength: 1000,
+        rows: "13",
+        label: {
+          text: "Explain the first special term or condition",
+          classes: "govuk-label--m govuk-!-font-weight-regular",
+          isPageHeading: false
+        },
+        value:data['eoi_condition_1']
+      }) }}
+
+      {% endcall %} 
+
+      {% call govukFieldset({
+        legend: {
+         html: "Second term and condition<a href='2' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+          classes: "govuk-fieldset__legend--m",
+          isPageHeading: false
+        },
+        classes: "acronym_2"
+      }) %}
+
+      {{ govukCharacterCount({
+        name: "eoi_term_2",
+        id: "eoi_term_2",
+        maxlength: 100,
+        rows: "2",
+        label: {
+          text: "Enter the second special term or condition",
+          classes: "govuk-label--m govuk-!-font-weight-regular",
+          isPageHeading: false
+        },
+        value:data['eoi_term_2']
+      }) }}
+
+      {{ govukCharacterCount({
+        name: "eoi_condition_2",
+        id: "eoi_condition_2",
+        maxlength: 1000,
+        rows: "13",
+        label: {
+          html: "Explain the second special term or condition",
+          classes: "govuk-label--m govuk-!-font-weight-regular",
+          isPageHeading: false
+        },
+        value:data['eoi_condition_2']
+      }) }}
+
+      {% endcall %} 
+
+      {% call govukFieldset({
+        legend: {
+         html: "Third term and condition<a href='3' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+          classes: "govuk-fieldset__legend--m",
+          isPageHeading: false
+        },
+        classes: "acronym_3"
+      }) %}
+
+      {{ govukCharacterCount({
+        name: "eoi_term_3",
+        id: "eoi_term_3",
+        maxlength: 100,
+        rows: "2",
+        label: {
+          text: "Enter the third special term or condition",
+          classes: "govuk-label--m govuk-!-font-weight-regular",
+          isPageHeading: false
+        },
+        value:data['eoi_term_3']
+      }) }}
+
+      {{ govukCharacterCount({
+        name: "eoi_condition_3",
+        id: "eoi_condition_3",
+        maxlength: 1000,
+        rows: "13",
+        label: {
+          html: "Explain the third special term or condition",
+          classes: "govuk-label--m govuk-!-font-weight-regular",
+          isPageHeading: false
+        },
+        value:data['eoi_condition_3']
+      }) }}
+
+      {% endcall %} 
+
+      {% call govukFieldset({
+        legend: {
+         html: "Fourth term and condition<a href='4' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+          classes: "govuk-fieldset__legend--m",
+          isPageHeading: false
+        },
+        classes: "acronym_4"
+      }) %}
+
+      {{ govukCharacterCount({
+        name: "eoi_term_4",
+        id: "eoi_term_4",
+        maxlength: 100,
+        rows: "2",
+        label: {
+          text: "Enter the fourth special term or condition",
+          classes: "govuk-label--m govuk-!-font-weight-regular",
+          isPageHeading: false
+        },
+        value:data['eoi_term_4']
+      }) }}
+
+      {{ govukCharacterCount({
+        name: "eoi_condition_4",
+        id: "eoi_condition_4",
+        maxlength: 1000,
+        label: {
+          html: "Explain the fourth special term or condition",
+          classes: "govuk-label--m govuk-!-font-weight-regular",
+          isPageHeading: false
+        },
+        value:data['eoi_condition_4']
+      }) }}
+
+      {% endcall %}
+
+      {% call govukFieldset({
+        legend: {
+         html: "Fifth term and condition<a href='5' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+          classes: "govuk-fieldset__legend--m",
+          isPageHeading: false
+        },
+        classes: "acronym_5"
+      }) %}
+
+      {{ govukCharacterCount({
+        name: "eoi_term_5",
+        id: "eoi_term_5",
+        maxlength: 100,
+        rows: "2",
+        label: {
+          text: "Enter the Fifth special term or condition",
+          classes: "govuk-label--m govuk-!-font-weight-regular",
+          isPageHeading: false
+        },
+        value:data['eoi_term_5']
+
+      }) }}
+
+      {{ govukCharacterCount({
+        name: "eoi_condition_5",
+        id: "eoi_condition_5",
+        maxlength: 1000,
+        label: {
+          html: "Explain the fifth special term or condition",
+          classes: "govuk-label--m govuk-!-font-weight-regular",
+          isPageHeading: false
+        },
+        value:data['eoi_condition_5']
+      }) }}
+
+      {% endcall %}
+
+
+      <p class="govuk-body">
+        {{ govukButton({
+          text: "Add another special term or condition",
+          attributes: {
+            id: "ccs_specialTerm_add"
+          },
+          classes: "govuk-button--secondary"
+        }) }}
+      </p>
+
+      {{ govukInput({
+        id: "pre_build_started",
+        name: "pre_build_started",
+        type: "hidden",
+        value: true
+        }) }}
+  
+        <div class="govuk-button-group">
+          {{ govukButton({
+          text: "Save and continue"
+          }) }}
+          <a href="/eoi/online-task-list" class="govuk-link govuk-link--no-visited-state">Return to Build your Expression of Interest</a>
+      </div>
+  
+      </form>
+  
+    </div>
+  
+    {% include "includes/promos/related_only.html" %}
+  
+  </div>
+  
+  {% endblock %}

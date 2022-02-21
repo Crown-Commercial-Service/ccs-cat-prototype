@@ -1,0 +1,70 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Write requirements | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Write requirements"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Write a short summary of your needs
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">List all the work you require the supplier to carry out, they can only do the work that you list here. </p>
+
+      <form action="/projects/review-requirements" method="post">
+
+        {{ govukTextarea({
+          name: "projReq",
+          id: "projReq",
+          label: {
+            text: "Project requirements",
+            classes: "govuk-label--m",
+            isPageHeading: false
+          },
+          value: data['projReq']
+        }) }}
+        
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+
+
+
+  </div>
+
+{% endblock %}

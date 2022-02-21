@@ -1,0 +1,61 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+1-stage further competition issued | Crown Commercial Service
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        [ Your 1-stage further competition has been published ]
+      </h1>
+    
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% include "includes/project_header.html" %} <br>
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h2 class="govuk-panel__title">
+          [ Your 1-stage further competition has been sent to suppliers ]  
+      </h2>
+        <br><br><br>
+        <div class="govuk-panel__body">
+          Your unique reference number is: <strong>{{ rfp_ref_no }} </strong><p class="govuk-body">Please quote this number, along with your project ID ({{ data['projPersistID'] }}),  if you need to contact CCS for support. You can contact CCS by phone on 0345 410 2222 or <a class="govuk-link govuk-link--no-visited-state css-link-white" href="mailto:info@crowncommercial.gov.uk">info@crowncommercial.gov.uk</a></p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <ol class="govuk-list govuk-list--number">
+        <li>[Next step 1]</span></li>
+        <li>[Next step 2]</li>
+        <li>[Next step 3]</li>
+      </ol>
+<br><br><br>
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: " Go to your project dashboard",
+          href: "/dashboard"
+        }) }}
+        <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to procurement overview </a>
+      </div>
+
+    </div>
+
+  </div>
+
+{% endblock %}

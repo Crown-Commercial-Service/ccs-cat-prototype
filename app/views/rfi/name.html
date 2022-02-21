@@ -1,0 +1,88 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Name project | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+  items: [
+  {
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: " Do pre-market engagement ",
+  href: "/rfi/rfi-task-list"
+  },
+  {
+    text: "Name your project"
+  }
+  ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+         Name your project 
+      </h1>
+    
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %} <br>
+      {{ govukInsetText({
+        html: '<p class="govuk-body">Your unique project ID is ' + projectID + '<br>You should include this ID in any correspondence with CCS. </p>',
+        classes:"govuk-!-margin-bottom-9"
+      }) }}
+
+      <!-- <p class="govuk-body">You can change the name of your project. Enter the new name below.</p> -->
+     
+      <form id ="ccs_project_name_form" name="ccs_project_name_form" action="/rfi/procurement-lead" method="post">
+
+        {{ govukInput({
+          id: "projLongName",
+          name: "projLongName",
+          value: data['projLongName'],
+          label: {
+            text: "You can change the name of your project. Enter the new name below.",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          }
+        }) }}
+
+        {{ govukInput({
+          id: "projPersistID",
+          name: "projPersistID",
+          type: "hidden",
+          value: projectID
+        }) }}
+<br><br>
+        <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+        <a href="/rfi/rfi-task-list" class="govuk-link govuk-link--no-visited-state">Return to pre-market engagement </a>
+      </div>
+      </form>
+
+    </div>
+
+    {% include "includes/promos/related_only.html" %}
+
+  </div>
+
+{% endblock %}

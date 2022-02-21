@@ -1,0 +1,239 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+CCS scoring criteria | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements/rfp/task-list"
+},
+{
+text: "[ Set your scoring criteria ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-xl">
+            [ How would you like to set your scoring criteria? ]
+        </h1>
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        {% include "includes/project_header.html" %} <br>
+
+        <p class="govuk-body">[ Instructions for this page ]</p> <br>
+        <form id="rfp_ccs_scoring_criteria_form" name="rfp_ccs_scoring_criteria_form" class="form rfp_ccs_scoring_criteria" action="/requirements/rfp/task-list" method="post">
+
+            {% set tier5html %}
+             <p class='govuk-body'>[ Description for this option ] </p> <br>
+             {{ govukTable({
+                  firstCellIsHeader: true,
+                  head: [
+                  {
+                  text: "Tier",
+                  classes: "app-custom-class"
+                  },
+                  {
+                  text: "Points",
+                  classes: "app-custom-class"
+                  },
+                  {
+                  text: "Description",
+                  classes: "app-custom-class"
+                  }
+                  ],
+                  rows: [
+                  [
+                  {
+                  text: "Tier 1"
+                  },
+                  {
+                  text: "XX points"
+                  },
+                  {
+                  text: "Description"
+                  }
+                  ],
+                  [
+                  {
+                      text: "Tier 2"
+                      },
+                      {
+                      text: "XX points"
+                      },
+                      {
+                      text: "Description"
+                      }
+                  ],
+                  [
+                  {
+                      text: "Tier 3"
+                      },
+                      {
+                      text: "XX points"
+                      },
+                      {
+                      text: "Description"
+                      }
+                  ],
+                  [
+                  {
+                      text: "Tier 4"
+                      },
+                      {
+                      text: "XX points"
+                      },
+                      {
+                      text: "Description"
+                      }
+                  ],
+                  [
+                  {
+                      text: "Tier 5"
+                      },
+                      {
+                      text: "XX points"
+                      },
+                      {
+                      text: "Description"
+                      }
+                  ]
+                  ]
+                  }) }}
+                  
+                  {% endset %}
+
+                  {% set tier4html %}
+                  <p class='govuk-body'>[ Description for this option ] </p> <br>
+                  {{ govukTable({
+                       firstCellIsHeader: true,
+                       head: [
+                       {
+                       text: "Tier",
+                       classes: "app-custom-class"
+                       },
+                       {
+                       text: "Points",
+                       classes: "app-custom-class"
+                       },
+                       {
+                       text: "Description",
+                       classes: "app-custom-class"
+                       }
+                       ],
+                       rows: [
+                       [
+                       {
+                       text: "Tier 1"
+                       },
+                       {
+                       text: "XX points"
+                       },
+                       {
+                       text: "Description"
+                       }
+                       ],
+                       [
+                       {
+                           text: "Tier 2"
+                           },
+                           {
+                           text: "XX points"
+                           },
+                           {
+                           text: "Description"
+                           }
+                       ],
+                       [
+                       {
+                           text: "Tier 3"
+                           },
+                           {
+                           text: "XX points"
+                           },
+                           {
+                           text: "Description"
+                           }
+                       ],
+                       [
+                       {
+                           text: "Tier 4"
+                           },
+                           {
+                           text: "XX points"
+                           },
+                           {
+                           text: "Description"
+                           }
+                       ]
+                       ]
+                       }) }}
+                       
+                       {% endset %}
+
+            {{ govukRadios({
+              idPrefix: "rfp_scoring_criteria_tier",
+              name: "rfp_scoring_criteria_tire",
+              items: [
+              {
+                value: "tier-5",
+                html: "<h3 class='govuk-heading-m'>[ Use our 5-tier scoring criteria ]</h3>",
+                hint: {
+                  html: tier5html
+                },
+                checked: checked("rfp_scoring_criteria_tier", "tier-5")
+              },
+              {
+                value: "tier-4",
+                html: "<h3 class='govuk-heading-m'>[ Use our 4-tier scoring criteria ]</h3>",
+                hint: {
+                  html: tier4html
+                },
+                checked: checked("rfp_scoring_criteria_tier", "tier-4")
+              }
+              ]
+            }) }}
+            
+            {{ govukInput({
+                id: "rfp_scoring_criteria_defined",
+                name: "rfp_scoring_criteria_defined",
+                type: "hidden",
+                value: true
+            }) }}
+        
+        <br><br>
+        <div class="govuk-button-group">
+            {{ govukButton({
+            text: "Save and continue"
+            }) }}
+            <a href="/requirements/rfp/task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Write and
+                publish your requirements ] </a>
+        </div>
+        </form>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+
+{% endblock %}

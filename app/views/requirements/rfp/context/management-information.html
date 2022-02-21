@@ -1,0 +1,90 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Management information | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Write and publish your requirements",
+  href: "/requirements/rfp/task-list"
+  },
+  {
+    text: "[Add context]",
+    href: "/requirements/rfp/context/sub-task-list"
+    },
+{
+text: "[ Management information and reporting ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-three-quarters-from-desktop">
+      <h1 class="govuk-heading-xl">
+        [ Management information and reporting ]
+      </h1>
+      
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %}<br>
+        <p class="govuk-body">[ Instructions for this page ]</p><br><br>
+
+        <form id="ccs_rfp_management_info_form" name="ccs_rfp_management_info_form" class="form ccs_rfp_management_info_form" action="/requirements/rfp/context/service-levels" method="post">
+
+            {{ govukTextarea({
+              name: "rfp-management-info",
+              id: "rfp-management-info",
+              label: {
+                text: "[ Please insert any specific details relating to the provision of management information or reporting by the Supplier ]",
+                classes: "govuk-!-font-weight-bold"
+              },
+              hint: {
+                text: "[ Description ]"
+              }
+            }) }}
+
+            {{ govukInput({
+              id: "rfp_management-information_added",
+              name: "rfp_management-information_added",
+              type: "hidden",
+              value: true
+            }) }}
+
+            {{ govukInput({
+              id: "rfp_add_context_started",
+              name: "rfp_add_context_started",
+              type: "hidden",
+              value: true
+            }) }}
+<br><br>
+            <div class="govuk-button-group">
+                {{ govukButton({
+                  text: "Save and continue"
+                }) }}
+                <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Add context ]</a>
+              </div>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+{% endblock %}

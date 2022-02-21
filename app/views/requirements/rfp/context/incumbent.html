@@ -1,0 +1,131 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Incumbent supplier | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Write and publish your requirements",
+  href: "/requirements/rfp/task-list"
+  },
+  {
+    text: "[Add context]",
+    href: "/requirements/rfp/context/sub-task-list"
+    },
+{
+text: "Incumbent supplier"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">
+      [ Is there an incumbent supplier? ]
+    </h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% include "includes/project_header.html" %} <br>
+
+    <form id="ccs_rfp_incumbent_form" name="ccs_rfp_incumbent_form" class="form ccs_rfp_incumbent_form"
+      action="/requirements/rfp/context/skills" method="post">
+
+      {% set supplierHtml %}
+      {{ govukInput({
+        id: "incumbent_supplier",
+        name: "incumbent_supplier",
+      spellcheck: false,
+      classes: "govuk-!-width-one-third",
+      label: {
+      text: "[ Please enter the name of the incumbent supplier ]"
+      },
+      value: data['incumbent_supplier']
+      }) }}
+      
+      {% endset -%}
+
+      {{ govukRadios({
+      idPrefix: "ccs_rfp_incumbent",
+      name: "ccs_rfp_incumbent",
+
+      items: [
+      {
+      value: "Yes",
+      html: "<label class='govuk-!-font-weight-bold'>Yes</label>",
+      checked: checked("ccs_rfp_incumbent", "Yes"),
+      label: {
+      classes: "ccs_eoi_incumbent"
+      },
+      hint :{
+      html: '<label class="govuk-!-margin-top-(-7)">[ Description for this option ]</label>'
+      },
+      conditional: {
+        html: supplierHtml
+      }
+      },
+      {
+      value: "No",
+      html: "<label class='govuk-!-font-weight-bold'>No</label>",
+      checked: checked("ccs_rfp_incumbent", "No"),
+      label: {
+      classes: "ccs_eoi_incumbent"
+      },
+      hint :{
+      html: '<label class="govuk-!-margin-top-(-7)">[ Description for this option ]</label>'
+      }
+      }
+      ]
+      }) }}
+
+
+      {{ govukInput({
+        id: "rfp_incumbent_added",
+        name: "rfp_incumbent_added",
+        type: "hidden",
+        value: true
+        }) }}
+
+        {{ govukInput({
+          id: "rfp_add_context_started",
+          name: "rfp_add_context_started",
+          type: "hidden",
+          value: true
+        }) }}
+      <br><br>
+      <div class="govuk-button-group">
+        {{ govukButton({
+        text: "Save and continue"
+        }) }}
+        <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Add context ]</a>
+       
+      </div>
+
+    </form>
+
+  </div>
+  {% include "includes/promos/related_only.html" %}
+
+</div>
+
+{% endblock %}

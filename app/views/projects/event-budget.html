@@ -1,0 +1,94 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Budget | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Budget"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Provide a range for your budget
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">We recommend not to share your exact budget. </p>
+
+      <form id="ccs_eoi_budget_form" name="ccs_eoi_budget_form" class="form ccs_eoi_budget_form" action="/projects/event-eval-criteria" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Minimum indicative budget (optional)",
+            classes: "govuk-label--m"
+          },
+          prefix: {
+            text: "£"
+          },
+          id: "eoi_min_budget",
+          name: "eoi_min_budget",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          classes: "govuk-input--width-5",
+          value: data['eoi_min_budget']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Maximum indicative budget",
+            classes: "govuk-label--m"
+          },
+          prefix: {
+            text: "£"
+          },
+          id: "eoi_max_budget",
+          name: "eoi_max_budget",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          classes: "govuk-input--width-5",
+          value: data['eoi_max_budget']
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+      </form>
+
+    </div>
+
+
+
+  </div>
+
+{% endblock %}

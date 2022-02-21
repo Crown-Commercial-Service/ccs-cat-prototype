@@ -1,0 +1,131 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  RfI - Specify your budget | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Specify your budget"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Specify your budget
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">You can specify your (indicative) budget range, your maximum budget, or, your maximum daily rate. </p>
+
+      <form id="ccs_rfi_budget_form" name="ccs_rfi_budget_form" class="form ccs_rfi_budget_form" action="/rfi/project" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Maximum indicative budget",
+            classes: "govuk-label--m"
+          },
+          prefix: {
+            text: "£"
+          },
+          id: "rfi_max_budget",
+          name: "rfi_max_budget",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          classes: "govuk-input--width-5",
+          value: data['rfi_max_budget']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Minimum indicative budget (optional)",
+            classes: "govuk-label--m"
+          },
+          prefix: {
+            text: "£"
+          },
+          id: "rfi_min_budget",
+          name: "rfi_min_budget",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          classes: "govuk-input--width-5",
+          value: data['rfi_min_budget']
+        }) }}
+
+        <p class="govuk-body-l">OR </p>
+
+        {{ govukInput({
+          label: {
+            text: "Maximum rate per day",
+            classes: "govuk-label--m"
+          },
+          prefix: {
+            text: "£"
+          },
+          id: "rfi_max_day_rate",
+          name: "rfi_max_day_rate",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          classes: "govuk-input--width-5",
+          value: data['rfi_max_day_rate']
+        }) }}
+
+        {{ govukSelect({
+          id: "rfi_day_rate_type",
+          name: "rfi_day_rate_type",
+          label: {
+            text: "Rate per day",
+            classes: "govuk-label--m"
+          },
+          items: [
+            {
+              text: "per individual",
+              value: "per individual"
+            },
+            {
+              text: "in aggregate",
+              value: "in aggregate"
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+      </form>
+
+    </div>
+
+
+
+  </div>
+
+{% endblock %}

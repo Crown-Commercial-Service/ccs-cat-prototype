@@ -1,0 +1,164 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Select locations | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Write and publish your requirements",
+  href: "/requirements/rfp/task-list"
+  },
+  {
+    text: "[Add context",
+    href: "/requirements/rfp/context/sub-task-list"
+  },
+{
+text: "[ Where the work will be done / working arrangements / address (Optional) ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        [ Where the work will be done / working arrangements / address (Optional) ]
+      </h1>
+    
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %}<br>
+
+      <p class="govuk-body">[ Select the locations where they'll be working. Suppliers have said where they'll provide specialists. ]</p><br>
+
+      <form id="rfp_location" name="rfp_location" class="form rfi_location" action="/requirements/rfp/context/sub-task-list" method="post">
+
+        {{ govukCheckboxes({
+          idPrefix: "required_locations",
+          name: "required_locations",
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              "value": "North East England",
+              "text": "North East England",
+              checked: checked("required_locations", "North East England")
+            },
+            {
+              "value": "North West England",
+              "text": "North West England",
+              checked: checked("required_locations", "North West England")
+            },
+            {
+              "value": "Yorkshire and the Humber",
+              "text": "Yorkshire and the Humber",
+              checked: checked("required_locations", "Yorkshire and the Humber")
+            },
+            {
+              "value": "East Midlands",
+              "text": "East Midlands",
+              checked: checked("required_locations", "East Midlands")
+            },
+            {
+              "value": "East of England",
+              "text": "East of England",
+              checked: checked("required_locations", "East of England")
+            },
+            {
+              "value": "London",
+              "text": "London",
+              checked: checked("required_locations", "London")
+            },
+            {
+              "value": "South East England",
+              "text": "South East England",
+              checked: checked("required_locations", "South East England")
+            },
+            {
+              "value": "South West England",
+              "text": "South West England",
+              checked: checked("required_locations", "South West England")
+            },
+            {
+              "value": "Wales",
+              "text": "Wales",
+              checked: checked("required_locations", "Wales")
+            },
+            {
+              "value": "Scotland",
+              "text": "Scotland",
+              checked: checked("required_locations", "Scotland")
+            },
+            {
+              "value": "Northern Ireland",
+              "text": "Northern Ireland",
+              checked: checked("required_locations", "Northern Ireland")
+            },
+            {
+              "value": "West Midlands",
+              "text": "West Midlands",
+              checked: checked("required_locations", "West Midlands")
+            },
+            {
+              divider:"OR"
+            },
+            {
+              "value": 13,
+              "text": "No specific location, for example they can work remotely",
+              checked: checked("required_locations", "13")
+            }
+          ]
+        }) }}
+
+        {{ govukInput({
+          id: "rfp_location_added",
+          name: "rfp_location_added",
+          type: "hidden",
+          value: true
+        }) }}
+
+        {{ govukInput({
+          id: "rfp_add_context_started",
+          name: "rfp_add_context_started",
+          type: "hidden",
+          value: true
+        }) }}
+<br><br>
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and Continue"
+          }) }}
+
+          <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Add context ]</a>
+        </div>
+
+      </form>
+
+    </div>
+
+    {% include "includes/promos/related_only.html" %}
+
+  </div>
+
+{% endblock %}

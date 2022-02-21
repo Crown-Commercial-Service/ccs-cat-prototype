@@ -1,0 +1,6 @@
+<div class="govuk-grid-column-one-third-from-desktop govuk-grid-column-one-half">
+  {% if data['user_email'] == undefined %}
+  {% include "includes/promos/get_help.html" %}
+  {% endif %}
+  {% include "includes/promos/whitepaper.html" %}
+</div>

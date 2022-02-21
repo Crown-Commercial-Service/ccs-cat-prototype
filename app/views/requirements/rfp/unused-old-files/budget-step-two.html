@@ -1,0 +1,112 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Specify your daily rate | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Write and publish your requirements",
+  href: "/requirements/rfp/task-list"
+  },
+  {
+    text: "[Add context]",
+    href: "/requirements/rfp/context/sub-task-list"
+    },
+{
+text: "[ Specify your daily rate ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        [ Specify your daily rate ]
+            </h1>
+      
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %}<br>
+
+      <p class="govuk-body-l">[ Instructions for this page ]</p><br><br>
+
+      <form id="ccs_rfp_budget-step-two_form" name="ccs_rfp_budget-step-two_form" class="form ccs_rfp_budget-step-two_form" action="/requirements/rfp/context/sub-task-list" method="post">
+
+
+        {{ govukInput({
+          label: {
+            text: "Maximum rate per day",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            html: '<p class="govuk-hint">For example £ 500</p>'
+          },
+          prefix: {
+            text: "£"
+          },
+          id: "rfp_max_day_rate",
+          name: "rfp_max_day_rate",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          classes: "govuk-input--width-5",
+          value: data['rfp_max_day_rate']
+        }) }}
+
+        {{ govukSelect({
+          id: "rfp_day_rate_type",
+          name: "rfp_day_rate_type",
+          label: {
+            text: "Rate per day",
+            classes: "govuk-label--m"
+          },
+          items: [
+            {
+              text: "per individual",
+              value: "per individual"
+            },
+            {
+              text: "in aggregate",
+              value: "in aggregate"
+            }
+          ]
+        }) }}
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Add context ]</a>
+        </div>
+
+      </form>
+
+    </div>
+
+    {% include "includes/promos/related_only.html" %}
+
+
+  </div>
+
+{% endblock %}

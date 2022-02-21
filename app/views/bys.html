@@ -1,0 +1,80 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Contract award service | Crown Commercial Service
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {# <div class="ccs-callout-panel info-banner">
+        <h2 class="govuk-heading-m">Single sign on warning</h2>
+        <p class="govuk-body">Something about SSO. </p>
+      </div> #}
+      <h1 class="govuk-heading-xl">
+        Buy online using our contract award service
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row ccs-page-section">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">How you can use this service</p>
+
+      <p class="govuk-body">This service enables you to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Shortlist suppliers and upload a list of your requirements. </li>
+        <li>Run a pre-market engagement event such as a Request for Information (RfI) or Expression of Interest (EoI). </li>
+        <li>Run a Request for Proposal (RfP) or Direct Award (DA).</li>
+        <li>Respond to clarification questions from suppliers.</li>
+        <li>Manage an evaluation process with colleagues.</li>
+        <li>Score proposals and award a contract.</li>
+        <li>Access and download an audit record of the procurement.</li>
+      </ul>
+
+      {{ govukButton({
+        text: "Sign in or Register",
+        href: "/dashboard"
+      }) }}
+    </div>
+
+    {% include "includes/promos/help_only.html" %}
+
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h2 class="govuk-heading-m">
+        Agreements available through this service
+      </h2>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds ccs-page-section">
+
+      <h3 class="govuk-heading-s comm-agreemnt"><a href="#" class="govuk-link">Management Consultancy Framework Two (MCF2)</a></h3>
+      <p class="govuk-body"><strong>Agreement ID:</strong> RM6008</p>
+
+    </div>
+
+    <div class="govuk-grid-column-two-thirds ccs-page-section">
+
+      <h3 class="govuk-heading-s comm-agreemnt"><a href="#" class="govuk-link">Digital Outcomes &amp; Specialists 5</a></h3>
+      <p class="govuk-body"><strong>Agreement ID:</strong> RM1043.7</p>
+
+    </div>
+
+    <div class="govuk-grid-column-two-thirds">
+
+      <h3 class="govuk-heading-s comm-agreemnt"><a href="#" class="govuk-link">G-Cloud 12</a></h3>
+      <p class="govuk-body"><strong>Agreement ID:</strong> RM1557.12</p>
+
+    </div>
+
+  </div>
+
+{% endblock %}

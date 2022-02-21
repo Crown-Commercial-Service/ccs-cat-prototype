@@ -1,0 +1,94 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Select Suppliers | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: "Choose a commercial agreement",
+        href: "/projects/choose-agreement"
+      },
+      {
+        text: "Select Suppliers"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Select Suppliers
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body-l">You have chosen <strong>{{ the_agreement }}, {{ the_lot }}</strong>
+      </p>
+
+      <form id="ccs_create_or_choose" name="ccs_create_or_choose" class="form ccs_create_or_choose" action="/projects/" method="post">
+
+        {{ govukRadios({
+          idPrefix: "create_or_choose",
+          name: "create_or_choose",
+          items: [
+            {
+              value: "choose_supplier",
+              html: "<h3 class='govuk-heading-m'>Choose supplier</h3>",
+              hint: {
+                text: "Select this option if you'd like to find a supplier straight away and download a list that you can use with your internal procurement systems. You can still run your procurement here if you wish to do so. "
+              }
+            },
+            {
+              value: "create_project",
+              html: "<h3 class='govuk-heading-m'>Create a procurement project</h3>",
+              hint: {
+                text: "Choose this option if you prefer to create a project first. You’ll be able to select suppliers straight after. "
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        {{ govukInput({
+          id: "selected_agreement",
+          name: "selected_agreement",
+          type: "hidden",
+          value: the_agreement
+        }) }}
+
+        {{ govukInput({
+          id: "selected_lot",
+          name: "selected_lot",
+          type: "hidden",
+          value: the_lot
+        }) }}
+
+      </form>
+
+      <p class="govuk-body"><a href="/projects/choose-agreement">Start again</a> </p>
+    </div>
+
+    {% include "includes/promos/help_only.html" %}
+
+  </div>
+
+{% endblock %}

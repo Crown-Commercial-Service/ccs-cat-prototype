@@ -1,0 +1,130 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  RfI - Where the work will be completed | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+  items: [
+  {
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "[Procurement overview]",
+  href: "/projects/"
+  },
+  {
+  text: "[ 2. Run pre-market engagement ]",
+  href: "/rfi/rfi-task-list"
+  },
+  {
+    text: "[Build your Request for Information (RfI)]",
+    href: "/rfi/online-task-list"
+  },
+  {
+    text: "[ Where the work be completed (optional) ]"
+  }
+  ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+       [Where the work will be completed (optional)]
+      </h1>
+    
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "includes/project_header.html" %}<br>
+      <p class="govuk-body">[ Instructions for this page ]</p><br><br>
+      <form id="ccs_rfi_address_form" name="ccs_rfi_address_form" class="form ccs_rfi_address_form" action="/rfi/project" method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: "Where will the work be completed (optional)",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          }
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "Postcode",
+              classes: "govuk-label--m"
+            },
+            classes: "govuk-input--width-10",
+            id: "rfi_proj_address-postcode",
+            name: "rfi_proj_address-postcode",
+            autocomplete: "postal-code",
+            value: data['rfi_proj_address-postcode']
+          }) }}
+
+          <div id="ccs_postcode_holder" class="ccs-dynaform-hidden">
+            <p class="govuk-body-l"><span id="display_postcode" class="govuk-!-font-weight-bold"></span>&nbsp;&nbsp; <a id="change_postcode" href="change" class="govuk-link govuk-link--no-visited-state">Change</a></p>
+          </div>
+
+          {{ govukSelect({
+            id: "rfi_proj_address-address",
+            name: "rfi_proj_address-address",
+            label: {
+              text: "Select an address",
+              classes: "govuk-label--m"
+            },
+            items: []
+          }) }}
+
+          {{ govukButton({
+            text: "Find address",
+            attributes: {
+              id: "rfi_find_address_btn"
+            },
+            classes: "govuk-button--secondary"
+          }) }}
+
+        {% endcall %}
+        <span>
+          <a href="/rfi/address-manual" class="govuk-link govuk-link--no-visited-state">Enter address manually</a>
+        </span>
+
+        <br> 
+        <br>
+        <br>
+
+        {{ govukInput({
+          id: "rfi_build_started",
+          name: "rfi_build_started",
+          type: "hidden",
+          value: true
+        }) }}
+   
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue",
+            attributes: {
+              id: "rfi_save_address_btn"
+            }
+          }) }}
+          <a href="/rfi/online-task-list" class="govuk-link govuk-link--no-visited-state">Return to Build your Request for Information</a>
+        </div>
+
+      </form>
+
+    </div>
+
+    {% include "includes/promos/related_only.html" %}
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Security and vetting requirements | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Security and vetting requirements"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Security and vetting requirements
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">Select the required level of <a class="govuk-link" href="https://www.gov.uk/government/publications/united-kingdom-security-vetting-clearance-levels/national-security-vetting-clearance-levels">national security vetting</a> required for this project. </p>
+
+      <form id="ccs_eoi_vetting_form" name="ccs_eoi_vetting_form" class="form ccs_eoi_vetting_form" action="/projects/incumbent" method="post">
+
+        {{ govukRadios({
+          idPrefix: "ccs_vetting_type",
+          name: "ccs_vetting_type",
+          items: [
+            {
+              value: "Baseline Personnel Security Standard (BPSS)",
+              text: "Baseline Personnel Security Standard (BPSS)",
+              checked: checked("ccs_vetting_type", "Baseline Personnel Security Standard (BPSS)"),
+              label: {
+                classes: "ccs_eoi_vetting"
+              }
+            },
+            {
+              value: "Counter Terrorist Check (CTC)",
+              text: "Counter Terrorist Check (CTC)",
+              checked: checked("ccs_vetting_type", "Counter Terrorist Check (CTC)"),
+              label: {
+                classes: "ccs_eoi_vetting"
+              }
+            },
+            {
+              value: "Security Check (SC)",
+              text: "Security Check (SC)",
+              checked: checked("ccs_vetting_type", "Security Check (SC)"),
+              label: {
+                classes: "ccs_eoi_vetting"
+              }
+            },
+            {
+              value: "Enhanced Security Check (eSC)",
+              text: "Enhanced Security Check (eSC)",
+              checked: checked("ccs_vetting_type", "Enhanced Security Check (eSC)"),
+              label: {
+                classes: "ccs_eoi_vetting"
+              }
+            },
+            {
+              value: "Developed Vetting (DV)",
+              text: "Developed Vetting (DV)",
+              checked: checked("ccs_vetting_type", "Developed Vetting (DV)"),
+              label: {
+                classes: "ccs_eoi_vetting"
+              }
+            },
+            {
+              value: "Renewal and Enhanced Developed Vetting (eDV)",
+              text: "Renewal and Enhanced Developed Vetting (eDV)",
+              checked: checked("ccs_vetting_type", "Renewal and Enhanced Developed Vetting (eDV)"),
+              label: {
+                classes: "ccs_eoi_vetting"
+              }
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

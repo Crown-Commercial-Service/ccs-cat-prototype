@@ -1,0 +1,61 @@
+{% extends "layout_unbranded.html" %}
+
+{% block pageTitle %}
+By pass entering data
+{% endblock %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% block content %}
+<p class="govuk-body">Hit the button below to 'log in' to the prototype and populate a project.</p>
+<form id="dev_data" method="POST" name="dev_data" action="/set-a-date" >
+    <div class="global-navigation"></div>
+    <div class="global-navigation__toggler"></div>
+    {{ govukInput({
+   
+    id: "user_email",
+    name: "user_email",
+    type: "hidden",
+    value: 'fake@email.com'
+   }) }}
+
+   <!-- {{ govukInput({
+    id: "projPersistID",
+    name: "projPersistID",
+    type: "hidden",
+    value: "RM6263-Lot 2-Department of work and pension"
+  }) }} -->
+
+  <!-- {{ govukInput({
+    id: "projLongName",
+    name: "projLongName",
+    type: "hidden",
+    value: "My first project"
+  }) }} -->
+
+  {{ govukInput({
+    id: "this_agreement_name",
+    name: "this_agreement_name",
+    type: "hidden",
+    value: "Digital Specialists and Programmes"
+  }) }}
+
+  {{ govukInput({
+    id: "this_agreement_id",
+    name: "this_agreement_id",
+    type: "hidden",
+    value: "RM6263"
+  }) }}
+
+  {{ govukInput({
+    id: "this_lot",
+    name: "this_lot",
+    type: "hidden",
+    value: data[agreements].lots[1]
+  }) }}
+
+  {{ govukButton ({
+    text: "Populate data and continue"
+    }) }} 
+</form>
+{% endblock content %}

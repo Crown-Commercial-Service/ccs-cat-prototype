@@ -1,0 +1,105 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Supporting documents | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Supporting documents"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Upload supporting documentation
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body">You can upload up to 4 Microsoft<sup>&trade;</sup> Word<sup>&copy;</sup> (.doc / .docx) or Adobe Acrobat<sup>&trade;</sup> (.pdf) files.</p>
+
+      <form id="ccs_eoi_docs_form" name="ccs_eoi_docs_form" class="form ccs_eoi_docs_form" action="/projects/event-response-deadline" method="post">
+
+        {{ govukFileUpload({
+          id: "eoi_file_upload_1",
+          name: "eoi_file_upload_1",
+          value: data['eoi_file_upload_1'],
+          label: {
+            text: "Upload supporting document 1",
+            classes: "govuk-label--m"
+          }
+        }) }}
+
+        {{ govukFileUpload({
+          id: "eoi_file_upload_2",
+          name: "eoi_file_upload_2",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_file_upload_2'],
+          label: {
+            html: "Upload supporting document 2 <a href='2' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          }
+        }) }}
+
+        {{ govukFileUpload({
+          id: "eoi_file_upload_3",
+          name: "eoi_file_upload_3",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_file_upload_3'],
+          label: {
+            html: "Upload supporting document 3 <a href='3' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          }
+        }) }}
+
+        {{ govukFileUpload({
+          id: "eoi_file_upload_4",
+          name: "eoi_file_upload_4",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_file_upload_4'],
+          label: {
+            html: "Upload supporting document 4 <a href='4' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          }
+        }) }}
+
+        <p class="govuk-body"><a href="#" id="ccs_eoi_file_add" class="govuk-link govuk-link--no-visited-state">Add another document</a> </p>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

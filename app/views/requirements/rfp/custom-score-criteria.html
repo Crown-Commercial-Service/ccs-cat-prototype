@@ -1,0 +1,201 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+CCS scoring criteria | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements/rfp/task-list"
+},
+{
+text: "[ Set your scoring criteria ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-xl">
+            [ How would you like to set your scoring criteria? ]
+        </h1>
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        {% include "includes/project_header.html" %} <br>
+
+        <p class="govuk-body">[ Instructions for this page ]<br>
+            [ The minimum number of tiers is 2 and the maximum number of tiers is 10 ]<br>
+            [ Below is an example of a tier-4 scoring criteria ]</p> <br>
+        <br>
+
+        {{ govukTable({
+        firstCellIsHeader: true,
+        head: [
+        {
+        text: "Tier",
+        classes: "app-custom-class"
+        },
+        {
+        text: "Points",
+        classes: "app-custom-class"
+        },
+        {
+        text: "Description",
+        classes: "app-custom-class"
+        }
+        ],
+        rows: [
+        [
+        {
+        text: "Tier 1"
+        },
+        {
+        text: "XX points"
+        },
+        {
+        text: "Description"
+        }
+        ],
+        [
+        {
+        text: "Tier 2"
+        },
+        {
+        text: "XX points"
+        },
+        {
+        text: "Description"
+        }
+        ],
+        [
+        {
+        text: "Tier 3"
+        },
+        {
+        text: "XX points"
+        },
+        {
+        text: "Description"
+        }
+        ],
+        [
+        {
+        text: "Tier 4"
+        },
+        {
+        text: "XX points"
+        },
+        {
+        text: "Description"
+        }
+        ]
+        ]
+        }) }}
+
+
+        <h2 class="govuk-heading-m"> <span id="tier-counter">X </span>tiers added so far</h2>
+
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+        <form id="rfp_own_scoring_criteria_form" name="rfp_own_scoring_criteria_form"
+            class="form rfp_own_scoring_criteria" action="/requirements/rfp/task-list" method="post">
+            
+            {% call govukFieldset({
+            legend: {
+
+            isPageHeading: false
+            },
+            classes: "acronym_1 ccs-page-section"
+            }) %}
+
+            {{ govukInput({
+            label: {
+            text: "[ Enter the name for this tier ]",
+            classes: "govuk-label--m"
+            },
+            hint: {
+            text: "[ Description for this option ]"
+            },
+            id: "rfp_tier_name_1",
+            name: "rfp_tier_name_1",
+            classes: "rfi_term_1 govuk-!-margin-bottom-5",
+            value: data['rfp_tier_name_1']
+            }) }}
+
+            {{ govukInput({
+            label: {
+            text: "[ Enter the points for this tier ]",
+            classes: "govuk-label--m"
+            },
+            hint: {
+            text: "[ Description for this option ]"
+            },
+            id: "rfp_tier_points_1",
+            name: "rfp_tier_points_1",
+            classes: "govuk-!-margin-bottom-5",
+            value: data['rfp_tier_points_1']
+            }) }}
+
+
+            {{ govukTextarea({
+            name: "rfp_tier_description_1",
+            id: "rfp_tier_description_1",
+            classes: " govuk-!-margin-bottom-5",
+            label: {
+            text: "[ Enter the description for this tier ]",
+            classes: "govuk-label--m"
+            },
+            hint: {
+            text: "[ Description for this option ]"
+            },
+            value: data['rfp_tier_description_1']
+            }) }}
+
+
+            {% endcall %}
+
+            <button class="govuk-button govuk-!-font-weight-bold clear-button" onclick="return false;">[ Enter your
+                second tier ]</button><br><br>
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+
+            {{ govukInput({
+            id: "rfp_scoring_criteria_defined",
+            name: "rfp_scoring_criteria_defined",
+            type: "hidden",
+            value: true
+            }) }}
+            <br><br>
+            <div class="govuk-button-group">
+                {{ govukButton({
+                text: "Save and continue"
+                }) }}
+                <a href="/requirements/rfp/task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Write
+                    and publish your requirements ] </a>
+            </div>
+        </form>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Project requiremwents | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: "Procurement overview",
+        href: "/projects/"
+      },
+      {
+        text: "Review requirements"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        {% if data['reqsPublished'] != 'true' %}
+        Review and publish your reqirements
+        {% else %}
+        Your published requirements
+        {% endif %}
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop govuk-grid-column-full">
+
+      <p class="govuk-body-l">
+      {% if data['reqsPublished'] != 'true' %}
+        Your current requirements are as follows:
+      {% else %}
+        Your requirements have been published and can no longer be editied. </p>
+        <p class="govuk-body">Your requirements are as follows:
+      {% endif %} </p>
+
+      <p class="govuk-body"><strong>{{ data['projReq'] | escape | nl2br }}</strong> </p>
+
+      <form action="/projects/" method="post">
+
+        {% if data['reqsPublished'] != 'true' %}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Publish"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Save</a>
+          <a href="/projects/requirements" class="govuk-link govuk-link--no-visited-state">Edit</a>
+        </div>
+
+        {% else %}
+
+        <div class="govuk-button-group">
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+        {% endif %}
+
+        {{ govukInput({
+          id: "reqsPublished",
+          name: "reqsPublished",
+          type: "hidden",
+          value: "true"
+        }) }}
+
+      </form>
+
+    </div>
+
+
+
+  </div>
+
+{% endblock %}

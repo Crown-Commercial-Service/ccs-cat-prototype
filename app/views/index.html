@@ -1,0 +1,27 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Prototype home | Contract a Thing | Crown Commercial Service
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-xl">
+        Commercial agreements
+      </h1>
+      <ul class="govuk-list">
+        {% for agreement in data['agreements'] %}
+        <li>
+          <a class="govuk-link" href="/agreement?id={{ agreement.number }}">{{ agreement.name }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    {% include "includes/promos/help_only.html" %}
+
+  </div>
+
+{% endblock %}

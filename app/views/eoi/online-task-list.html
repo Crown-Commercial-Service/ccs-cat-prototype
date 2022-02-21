@@ -1,0 +1,136 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Provide information online | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+    items: [
+    {
+    text: "Dashboard",
+    href: "/dashboard"
+    },
+    {
+    text: "Choose a commercial agreement",
+    href: "/projects/choose-agreement"
+    },
+    {
+    text: "Procurement overview",
+    href: "/projects/"
+    },
+    {
+    text: "Do pre-market engagement",
+    href: "/eoi/eoi-task-list"
+    },
+    {
+      text: "Build your Expression of Interest"
+    }
+    ]
+    }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">
+            Build your Expression of Interest
+        </h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        {% include "includes/project_header.html" %}
+        <br>
+        
+        <p class="govuk-body">Follow each of the steps below to build your EoI.</p>  
+
+        <p class="govuk-body">If a step is optional you don’t have to complete it but it may help the supplier to give you further details about what they can offer.</p><br><br>
+
+        <ul class="app-task-list ccs-rfi-buildtask-list">
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Project objectives</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="purpose" aria-describedby="purpose-of-service">Add objectives</a>
+            </li>
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Project scope (Optional)</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="scope" aria-describedby="scope-of-service">Add scope</a>
+            </li>
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Terms and acronyms (Optional)</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="acronyms" aria-describedby="key-terms-and-acronyms">Add terms and acronyms</a>
+            </li>
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Background for your procurement</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="context" aria-describedby="context-to-requirements">Add informatiom about the project</a>
+            </li>
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>The buying organisation (Optional) </strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="who" aria-describedby="who-is-buyer">Add buyer details</a>
+            </li>
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Is this a new, replacement or expanded product or services?</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="new" aria-describedby="new-expanded-service-or-products">Add more details</a>
+            </li>
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Is another supplier already providing this product or service?</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="incumbent" aria-describedby="incumbent-supplier">Add supplier details</a>
+            </li>         
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Special terms and conditions (Optional)</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="terms" aria-describedby="terms-and-conditions">Add special terms and conditions</a>
+            </li>
+          
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Security and vetting requirements</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="vetting" aria-describedby="security-vetting-requirements">Add security and vetting requirements</a>
+            </li>
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>Where will the supplied staff work?</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="location" aria-describedby="work-location">Add location</a>
+            </li>
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>How long is your project?</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="duration" aria-describedby="duration-of-work">Set dates</a>
+            </li>
+            <li class="app-task-list__item">
+                <span class="app-task-list__task-name">
+                    <strong>What is your budget?</strong>
+                </span>
+                <a class="app-task-list__tag govuk-link--no-visited-state" href="budget" aria-describedby="specify-budget">Set budget</a>
+            </li>
+        </ul>
+            <br>
+            <br>
+        <p class="govuk-body">
+            <a href="/eoi/eoi-task-list" class="govuk-link govuk-link--no-visited-state">Return to pre-market engagement </a>
+        </p>
+       
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+
+{% endblock %}

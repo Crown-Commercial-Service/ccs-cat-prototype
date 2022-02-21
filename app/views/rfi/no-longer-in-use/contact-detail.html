@@ -1,0 +1,118 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+ Review contact details | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "RFI" +" contact details"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Review contact details 
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body">These are contact details associated to your account. </p>
+
+      {{ govukTable({
+        firstCellIsHeader: true,
+        rows: [
+          [
+            {
+              text: "Name"
+            },
+            {
+              text: "John Adams"
+            }
+          ],
+          [
+            {
+              text: "Telephone"
+            },
+            {
+              text: "01226 222 222"
+            }
+          ],
+          [
+            {
+              text: "Email address"
+            },
+            {
+              text: "john@adams.co"
+            }
+          ]
+        ]
+      }) }}
+
+      <form id="ccs_rfi_contact_form" name="ccs_rfi_contact_form" class="form ccs_rfi_contact_form" action="/rfi/" method="post">
+
+        {{ govukRadios({
+          idPrefix: "use_stored_contact",
+          name: "use_stored_contact",
+          fieldset: {
+            legend: {
+              text: "Would you like to use the contact details above to let suppliers respond?",
+            classes: "govuk-label--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukInput({
+          id: "rfi_contact_reviewed",
+          name: "rfi_contact_reviewed",
+          type: "hidden",
+          value: true
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/rfi/rfi-task-list" class="govuk-link govuk-link--no-visited-state">Return to Run pre-market engagement</a>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

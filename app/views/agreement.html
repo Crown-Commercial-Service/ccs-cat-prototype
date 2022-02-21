@@ -1,0 +1,234 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+{{ theAgreement.name }} | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Home",
+href: "/"
+},
+{
+text: theAgreement.name
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-xl ccs-agrement-pagetitle">
+      {{ theAgreement.name }}
+    </h1>
+    <p class="govuk-body-s agreement-subtitle">{{theAgreement.subtitle}}</p>
+  </div>
+</div>
+<br>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+    <div class="project-overview">
+      <p class="govuk-body">Agreement number: <strong>{{ theAgreement.number }}</strong></p>
+      <p class="govuk-body">Start date: <strong>{{ theAgreement.startDate }}</strong></p>
+      <p class="govuk-body">End date: <strong>{{ theAgreement.endDate }}</strong></p>
+    </div>
+    <!-- </div> -->
+
+    <!-- </div> -->
+
+    <!-- <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds"> -->
+    <div class="ccs-agreement-intro">
+      {{ govukInsetText({
+      html: '<p class="govuk-body"><strong>You can now procure online with CCS.</strong> <br>
+        Go to Products and Services and <a href="#agreement-lots"
+          class="govuk-link govuk-link--no-visited-state">select a lot to start.</a></p>'
+      }) }} <br>
+      <!-- <br>
+      <p class="govuk-body">{{ theAgreement.description }} </p>
+      <br><br> -->
+      <p class="govuk-body agreement-margin"><strong>Available for:</strong> {{ theAgreement.sectors }}</p>
+
+      {% if theAgreement.updates | length > 0 %}
+      <div id="short-update" class="agreement-margin"> 
+        <h2 class="govuk-heading-s">Updates</h2>
+        <p class="govuk-body"><strong>{{ theAgreement.updates[0].date }} : </strong>{{ theAgreement.updates[0].desc }}
+        </p>
+        {% if theAgreement.updates | length > 1 %}
+        <br>
+        <a id="show-prev-updates" class="govuk-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14"
+            height="14" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 14 14">
+            <path
+              d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z">
+            </path>
+          </svg> Show previous updates</a>
+        {% endif %}
+      </div>
+      <div id="long-update" class="agreement-margin">
+        <h2 class="govuk-heading-s">Updates</h2>
+        <p class="govuk-body"><strong>{{ theAgreement.updates[0].date }} : </strong>{{ theAgreement.updates[0].desc |
+          safe }}
+        </p>
+        <a id="hide-prev-updates" class="govuk-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14"
+            height="14" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 14 14">
+            <path
+              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+          </svg> Hide previous updates</a> <br><br>
+        {% if theAgreement.updates.length > 4 %}
+        {% set update_length = 4 %}
+        {% else %}
+        {% set update_length = theAgreement.updates.length %}
+        {% endif %}
+        {% for update in theAgreement.updates.slice(1,update_length) %}
+        <p class="govuk-body ccs-page-section"><strong>{{update.date }} : </strong>{{ update.desc | safe }} <br><br></p>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div id="contents-top"><br>
+        <div>
+          <h3 class="govuk-heading-s" id="contents">Contents</h3>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li> <a class="govuk-link govuk-link--no-visited-state" href="#ataglance">At a glance</a></li>
+            <li> <a class="govuk-link govuk-link--no-visited-state" href="#products">Products and suppliers</a></li>
+            <li> <a class="govuk-link govuk-link--no-visited-state" href="#documents">Documents</a></li>
+            <!-- <li><a href="#furtherinformation">Further information</a></li> -->
+            <li> <a class="govuk-link govuk-link--no-visited-state" href="#benefitsofccs">The benefits of using CCS</a>
+            </li>
+          </ul>
+        </div>
+        <div data-sticky-element="" id="back-link-container"
+          class="app-c-contents-list-with-body__link-wrapper sticky-element--stuck-to-window sticky-element--enabled">
+          <div class="app-c-contents-list-with-body__link-container">
+            <a class="govuk-link app-c-back-to-top dont-print" id="js-top" href="#contents">
+              <svg class="app-c-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="13" height="17"
+                viewBox="0 0 13 17" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path>
+              </svg>
+              Contents
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+      <br>
+      <h2 class="govuk-heading-m" id="ataglance">At a glance</h2>
+
+      {{ govukTabs({
+      items: [
+      {
+      label: "Description",
+      id: "desc",
+      panel: {
+        html: theAgreement.longDescHTML
+      }
+      },
+      {
+      label: "When you can’t use this agreement",
+      id: "nottousefor",
+      panel: {
+      html: theAgreement.notToUseForHtml
+      }
+      },
+      {
+      label: "Contract length",
+      id: "key-facts",
+      panel: {
+      html: theAgreement.contractLengthHTML
+      }
+      },
+      {
+      label: "Benefits",
+      id: "benefits",
+      panel: {
+      html: theAgreement.benefits
+      }
+      }
+      ]
+      }) }}
+
+      <div class="ccs-page-section">
+        <h2 class="govuk-heading-m" id="products">Products and suppliers</h2>
+        <!-- <p class="govuk-body">The <a href="{{ theAgreement.supplierList }}">supplier list</a> can be downloaded and is constantly updated inside this agreement. </p> -->
+        <!-- <p class="govuk-body">Click on the name of the lot that meets your needs, to find out more about how to use our digital contracting service or start the process. You will need to either register for an account or sign in to use this service.
+        You can also select the suppliers and create a list using the lot supplier list below.</p> -->
+        {{ govukInsetText({
+        html: '<p class="govuk-body"><strong>You can now procure online with CCS.</strong> <br>
+          Select a lot to start</p>'
+        }) }}
+      </div>
+      <div id="agreement-lots">
+        {% if theAgreement.lots | length > 0 %}
+        <dl class="ccs-desc-list">
+          {% for lot in theAgreement.lots %}
+          <div class="ccs-page-section">
+            {% if theAgreement.number === 'RM6187' and lot.number > 1 %}
+            <dt><a href="#" onclick="return false;" class="ccs-workinprogress">Lot {{ lot.number }} {{ lot.name }}</a> 
+            <div class="ccs-hide">Not available in this prototype, please select lot 1</div>
+            </dt>
+            {% else %}
+            <dt><a href={{lot.href}}>Lot {{ lot.number }} {{ lot.name }}</a> </dt>
+            {% endif %}
+            <br>
+            <dd>
+              {% include lot.descriptionLink %} <br><br>
+              <p><strong>Expiry date:</strong><time>{{ lot.endDate}}</time> </p>
+              <p>Take a look at and download the <a class="govuk-link govuk-link--no-visited-state" href="#" onclick="return false;" >lot supplier list (xx suppliers)</a></p>
+            </dd>
+          </div>
+          {% endfor %}
+        </dl>
+        {% endif %}
+      </div>
+
+      <h2 class="govuk-heading-m" id="documents">Documents</h2>
+
+      <p class="govuk-body">You might not need all of the documents below to buy the services from this agreement, </p>
+      <p class="govuk-body">If you’re not sure what documents you need, when and how to use them, open each of the
+        sections below to read a description of the document.</p>
+      <br><br>
+      <!-- 
+    <h2 class="govuk-heading-m" id="furtherinformation">Further Information </h2>
+
+    <p class="govuk-body">The document section below is listed in the order you might need to use each set of documents. There are also a set of guides to help you further.
+    </p>
+    <a href="#">RM6263 Customer guide</a><br>
+    <a href="#">RM6263 Call-off procedure guide</a><br>
+    <a href="#">RM6263 Call-off and join schedule guide</a> -->
+
+      <!-- <h2 class="govuk-heading-m">[For buyers]</h2>
+
+    <p class="govuk-body">[description text]</p>
+    <br><br> -->
+
+      {% include theAgreement.documentsLink %}
+
+      <br><br>
+
+      <div>
+        <h2 class="govuk-heading-m" id="benefitsofccs">The benefits of using CCS</h2>
+        <p class="responsive-video widescreen">
+          <iframe title="An overview of CCS in 30 seconds" src="https://www.youtube-nocookie.com/embed/_p61ZX4zQHU"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""
+            width="560" height="315"></iframe>
+        </p>
+      </div>
+      <br>
+      <div class="app-c-print-link">
+        <button onclick="window.print();" type="button" class="app-c-print-link__link" rel="alternate">
+          Print this page
+        </button>
+      </div>
+    </div>
+
+  </div>
+  {% include "includes/promos/help_promo.html" %}
+</div>
+
+{% endblock %}

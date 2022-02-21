@@ -1,0 +1,464 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+RFI select suppliers | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Home",
+href: "/"
+},
+{
+text: data['portal_name'],
+href: "/dashboard"
+},
+{
+text: data['projPersistID'],
+href: "/projects/"
+},
+{
+text: "Select suppliers"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">
+      Choose the suppliers to contact for this Request for Information (RfI)
+    </h1>
+    {% include "includes/project_header.html" %}
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="ccs-page-section">
+      <p class="govuk-body">You are not obliged to ask every supplier to respond to your RFI and can select the
+        suppliers who you believe can assist you with the information you are looking for.</p>
+
+      <p class="govuk-body">In progressing to either the capability assessment or further competition stages then all
+        suppliers will be included in these competitive stages.</p>
+
+      <p class="govuk-body"><strong>In this step you can:</strong></p>
+
+      <ol class="govuk-list govuk-list--number">
+        <li>
+          View suppliers who will provide digital specialists and digital programme support and select the suppliers to
+          receive your RFI
+        </li>
+        <li>
+          See their pricing information.
+        </li>
+        <li>
+          <a
+            href="https://assets.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists-5/communications/catalogues/digital-specialists-suppliers.csv">Download
+            a list of the suppliers</a> to recieve your RFI
+        </li>
+      </ol>
+    </div>
+    <div class="ccs-page-section">
+      <p class="govuk-body">You have not excluded any suppliers yet</p>
+      {{ govukButton({
+      text: "Continue with all suppliers",
+      classes: "govuk-button--secondary",
+      href: "/rfi/response-date"
+      }) }}
+    </div>
+    <form id="ccs-rfi-suppliers-form" class="ccs-rfi-suppliers-form" action="/rfi/response-date" method="POST">
+
+      <div id="supplier-page1">
+
+        <div class="ccs-page-section">
+          {{ govukCheckboxes({
+          idPrefix: "rfi_required_suppliers_Page1",
+          name: "rfi_required_suppliers_Page1",
+          items: [
+          {
+          "value": 1,
+          html: "<h6 class='govuk-heading-m'>4net Technologies Ltd</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label><br><a href='https://cognizant.com' target='_blank'>www.cognizant.com</a>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "1")
+          },
+          {
+          "value": 2,
+          html: "<h6 class='govuk-heading-m'>8x8</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "2")
+          },
+          {
+          "value": 3,
+          html: "<h6 class='govuk-heading-m'>AdEPT Technology Group Plc</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "3")
+          },
+          {
+          "value": 4,
+          html: "<h6 class='govuk-heading-m'>Affini Technology Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "4")
+          },
+          {
+          "value": 5,
+          html: "<h6 class='govuk-heading-m'>Airwave Solutions Limited</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "5")
+          },
+          {
+          "value": 6,
+          html: "<h6 class='govuk-heading-m'>Amillan Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "6")
+          },
+          {
+          "value": 7,
+          html: "<h6 class='govuk-heading-m'>Anywhere Sim Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "7")
+          },
+          {
+          "value": 8,
+          html: "<h6 class='govuk-heading-m'>APD Communications Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "8")
+          },
+          {
+          "value": 9,
+          html: "<h6 class='govuk-heading-m'>Ascom (UK) LTD</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "9")
+          },
+          {
+          "value": 10,
+          html: "<h6 class='govuk-heading-m'>Atos IT Services UK Limited</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "10")
+          },
+          {
+          "value": 11,
+          html: "<h6 class='govuk-heading-m'>British Telecommunications Plc</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "11")
+          },
+          {
+          "value": 12,
+          html: "<h6 class='govuk-heading-m'>Business System (U.K) Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "12")
+          }
+          ]
+          })
+          }}
+        </div>
+        <div class="ccs-page-section" id="page-footer-1">
+          <p class="govuk-body"><a id="rfi_page-1-next-link" class="govuk-link govuk-link--no-visited-state pag-link" href="#">
+              <svg style="margin-right:10px;vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="16"
+                height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+              </svg><strong class="pagination_title">Next Page</strong>
+              <br><span class="pagination_pad"> 1 of 3<span>
+            </a></p>
+        </div>
+
+      </div>
+
+      <div id="supplier-page2">
+
+        <div class="ccs-page-section">
+          {{ govukCheckboxes({
+          idPrefix: "rfi_required_suppliers_Page2",
+          name: "rfi_required_suppliers_Page2",
+          items: [
+          {
+          "value": 1,
+          html: "<h6 class='govuk-heading-m'>4net Technologies Ltd</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "1")
+          },
+          {
+          "value": 2,
+          html: "<h6 class='govuk-heading-m'>8x8</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "2")
+          },
+          {
+          "value": 3,
+          html: "<h6 class='govuk-heading-m'>AdEPT Technology Group Plc</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "3")
+          },
+          {
+          "value": 4,
+          html: "<h6 class='govuk-heading-m'>Affini Technology Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "4")
+          },
+          {
+          "value": 5,
+          html: "<h6 class='govuk-heading-m'>Airwave Solutions Limited</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "5")
+          },
+          {
+          "value": 6,
+          html: "<h6 class='govuk-heading-m'>Amillan Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "6")
+          },
+          {
+          "value": 7,
+          html: "<h6 class='govuk-heading-m'>Anywhere Sim Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "7")
+          },
+          {
+          "value": 8,
+          html: "<h6 class='govuk-heading-m'>APD Communications Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "8")
+          },
+          {
+          "value": 9,
+          html: "<h6 class='govuk-heading-m'>Ascom (UK) LTD</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "9")
+          },
+          {
+          "value": 10,
+          html: "<h6 class='govuk-heading-m'>Atos IT Services UK Limited</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "10")
+          },
+          {
+          "value": 11,
+          html: "<h6 class='govuk-heading-m'>British Telecommunications Plc</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "11")
+          },
+          {
+          "value": 12,
+          html: "<h6 class='govuk-heading-m'>Business System (U.K) Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "12")
+          }
+          ]
+         
+          })
+          }}
+        </div>
+        <div id="page-footer-2">
+
+          <div class="ccs-page-section">
+            <p class="govuk-body"> <a id="rfi_page-2-previous-link" class="govuk-link govuk-link--no-visited-state pag-link" href="#">
+                <svg style="margin-right:10px;vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="16"
+                  height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                </svg><strong class="pagination_title">previous Page</strong>
+              <br><span class="pagination_pad"> 2 of 3<span>
+              </a></p> 
+          </div>
+
+          <div class="ccs-page-section">
+            <p class="govuk-body"><a id="rfi_page-2-next-link" class="govuk-link govuk-link--no-visited-state pag-link" href="#supplier-page3">
+                <svg style="margin-right:10px;vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="16"
+                  height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                </svg><strong class="pagination_title">Next Page</strong>
+              <br><span class="pagination_pad"> 3 of 3<span>
+              </a></p>
+          </div>
+        
+        </div>
+
+      </div>
+
+      <div id="supplier-page3">
+
+        <div class="ccs-page-section">
+          {{ govukCheckboxes({
+          idPrefix: "rfi_required_suppliers_Page1",
+          name: "rfi_required_suppliers_Page1",
+          items: [
+          {
+          "value": 1,
+          html: "<h6 class='govuk-heading-m'>4net Technologies Ltd</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "1")
+          },
+          {
+          "value": 2,
+          html: "<h6 class='govuk-heading-m'>8x8</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "2")
+          },
+          {
+          "value": 3,
+          html: "<h6 class='govuk-heading-m'>AdEPT Technology Group Plc</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "3")
+          },
+          {
+          "value": 4,
+          html: "<h6 class='govuk-heading-m'>Affini Technology Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "4")
+          },
+          {
+          "value": 5,
+          html: "<h6 class='govuk-heading-m'>Airwave Solutions Limited</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "5")
+          },
+          {
+          "value": 6,
+          html: "<h6 class='govuk-heading-m'>Amillan Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "6")
+          },
+          {
+          "value": 7,
+          html: "<h6 class='govuk-heading-m'>Anywhere Sim Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "7")
+          },
+          {
+          "value": 8,
+          html: "<h6 class='govuk-heading-m'>APD Communications Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "8")
+          },
+          {
+          "value": 9,
+          html: "<h6 class='govuk-heading-m'>Ascom (UK) LTD</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "9")
+          },
+          {
+          "value": 10,
+          html: "<h6 class='govuk-heading-m'>Atos IT Services UK Limited</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "10")
+          },
+          {
+          "value": 11,
+          html: "<h6 class='govuk-heading-m'>British Telecommunications Plc</h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "11")
+          },
+          {
+          "value": 12,
+          html: "<h6 class='govuk-heading-m'>Business System (U.K) Limited </h6>",
+          hint: {
+          html: "<label>4net Technologies Ltd<br><strong>London, SW3 76ED</strong></label>"
+          },
+          checked: checked("rfi_required_suppliers_Page1", "12")
+          }
+          ]
+         
+          })
+          }}
+        </div>
+        <div class="ccs-page-section" id="page-footer-3">
+
+          <p class="govuk-body"> <a id="rfi_page-3-previous-link" class="govuk-link govuk-link--no-visited-state pag-link" href="#supplier-page2">
+              <svg style="margin-right:10px;vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="16"
+                height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+              </svg><strong class="pagination_title">previous Page</strong>
+              <br><span class="pagination_pad"> 3 of 3<span>
+            </a></p>
+
+        </div>
+
+      </div>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+        text: "Save and Continue"
+        }) }}
+
+        <a href="/rfi/rfi-task-list" class="govuk-link govuk-link--no-visited-state">Return to pre-market engagement</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

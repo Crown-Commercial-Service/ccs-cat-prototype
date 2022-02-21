@@ -1,0 +1,246 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Terms and acronyms| Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+  items: [
+  {
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Do pre-market engagement",
+  href: "/eoi/eoi-task-list"
+  },
+  {
+    text: "Build your EoI",
+    href: "/eoi/online-task-list"
+  },
+  {
+    text: "Terms and acronyms(Optional)"
+  }
+  ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Terms and acronyms (Optional)
+      </h1>
+      
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %}<br>
+        <p class="govuk-body">Define the terms and acronyms that you have used in your EoI that suppliers may not be familiar with. This will help all suppliers to understand what they mean.</p><br><br>
+      <form id="ccs_eoi_acronyms_form" name="ccs_eoi_acronyms_form" class="form ccs_rfi_acronyms_form" action="/eoi/context" method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: "First term or acronym",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          },
+          classes: "acronym_1"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "Write the term or acronym"
+            },
+            id: "eoi_key_1",
+            name: "eoi_key_1",
+            classes: "rfi_term_1",
+            value: data['eoi_key_1']
+          }) }}
+
+          {{ govukTextarea({
+            name: "eoi_key_definition_1",
+            id: "eoi_key_definition_1",
+            label: {
+              text: "Write a definition for the term or acronym explaining what it means"
+            },
+            classes: "rfi_term_definition_1",
+            value: data['eoi_key_definition_1']
+          }) }}
+
+        {% endcall %} 
+
+        {% call govukFieldset({
+          legend: {
+            html: "Second term or acronym<a href='2' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          },
+          classes: "acronym_2"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "Write the term or acronym"
+            },
+            id: "eoi_key_2",
+            name: "eoi_key_2",
+            classes: "rfi_term_2",
+            value: data['eoi_key_2']
+          }) }}
+
+          {{ govukTextarea({
+            label: {
+              text: "Write a definition for the term or acronym explaining what it means"
+            },
+            id: "eoi_key_definition_2",
+            name: "eoi_key_definition_2",
+            spellcheck: false,
+            classes: "rfi_term_definition_2",
+            value: data['eoi_key_definition_2']
+          }) }}
+
+        {% endcall %}
+
+        {% call govukFieldset({
+          legend: {
+            html: "Third term or acronym<a href='3' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          },
+          classes: "acronym_3"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "Write the term or acronym"
+            },
+            id: "eoi_key_3",
+            name: "eoi_key_3",
+            classes: "rfi_term_3",
+            value: data['eoi_key_3']
+          }) }}
+
+          {{ govukTextarea({
+            label: {
+              text: "Write a definition for the term or acronym explaining what it means"
+            },
+            id: "eoi_key_definition_3",
+            name: "eoi_key_definition_3",
+            spellcheck: false,
+            classes: "rfi_term_definition_3",
+            value: data['eoi_key_definition_3']
+          }) }}
+
+        {% endcall %}
+
+        {% call govukFieldset({
+          legend: {
+            html: "Fourth term or acronym <a href='4' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          },
+          classes: "acronym_4"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "Write the term or acronym"
+            },
+            id: "eoi_key_4",
+            name: "eoi_key_4",
+            classes: "rfi_term_4",
+            value: data['eoi_key_4']
+          }) }}
+
+          {{ govukTextarea({
+            label: {
+              text: "Write a definition for the term or acronym explaining what it means"
+            },
+            id: "eoi_key_definition_4",
+            name: "eoi_key_definition_4",
+            spellcheck: false,
+            classes: "rfi_term_definition_4",
+            value: data['eoi_key_definition_4']
+          }) }}
+
+        {% endcall %}
+
+        {% call govukFieldset({
+          legend: {
+            html: "Fifth term or acronym <a href='5' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          },
+          classes: "acronym_5"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "Write the term or acronym"
+            },
+            id: "eoi_key_5",
+            name: "eoi_key_5",
+            classes: "rfi_term_5",
+            value: data['eoi_key_5']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Write a definition for the term or acronym explaining what it means"
+            },
+            id: "eoi_key_definition_5",
+            name: "eoi_key_definition_5",
+            spellcheck: false,
+            classes: "rfi_term_definition_5",
+            value: data['eoi_key_definition_5']
+          }) }}
+
+        {% endcall %}
+
+        <p class="govuk-body">
+            {{ govukButton({
+              text: "Add another term or acronym",
+              attributes: {
+                id: "ccs_rfiTerm_add"
+              },
+              classes: "govuk-button--secondary"
+            }) }}
+          </p>
+
+        {{ govukInput({
+          id: "pre_build_started",
+          name: "pre_build_started",
+          type: "hidden",
+          value: true
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/eoi/online-task-list" class="govuk-link govuk-link--no-visited-state">Return to Build your Expression of Interest </a>
+        </div>
+
+      </form>
+
+    </div>
+
+    {% include "includes/promos/related_only.html" %}
+
+
+  </div>
+
+{% endblock %}

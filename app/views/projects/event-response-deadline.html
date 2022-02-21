@@ -1,0 +1,185 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  {{ data['choose_pre_engage'] }} response deadline | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: data['choose_pre_engage'] + " response deadline"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Set your response date and time
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body">These are the date and time you want suppliers to respond to your {{ data['choose_pre_engage'] }}. It cannot be shorter than 7 days from today. </p>
+
+      <form id="ccs_eoi_deadline_form" name="ccs_eoi_deadline_form" class="form ccs_eoi_deadline_form" action="/projects/event-contact" method="post">
+
+        {{ govukDateInput({
+          id: "eoi_response_date",
+          namePrefix: "eoi_response_date",
+          fieldset: {
+            legend: {
+              text: "By what date do you require responses to the " + data['choose_pre_engage'] + "?",
+            classes: "govuk-label--m"
+            }
+          },
+          hint: {
+            text: "For example, 21 11 2023"
+          }
+        }) }}
+
+        {{ govukSelect({
+          id: "eoi_response_date_time",
+          name: "eoi_response_date_time",
+          label: {
+            text: "And by what time on the above date?",
+            classes: "govuk-label--m"
+          },
+          items: [
+            {
+              value: "",
+              text: "Select time"
+            },
+            {
+              value: "00:00",
+              text: "12 midnight"
+            },
+            {
+              value: "01:00",
+              text: "1:00am"
+            },
+            {
+              value: "02:00",
+              text: "2:00am"
+            },
+            {
+              value: "03:00",
+              text: "3:00am"
+            },
+            {
+              value: "04:00",
+              text: "4:00am"
+            },
+            {
+              value: "05:00",
+              text: "5:00am"
+            },
+            {
+              value: "06:00",
+              text: "6:00am"
+            },
+            {
+              value: "07:00",
+              text: "7:00am"
+            },
+            {
+              value: "08:00",
+              text: "8:00am"
+            },
+            {
+              value: "09:00",
+              text: "9:00am"
+            },
+            {
+              value: "10:00",
+              text: "10:00am"
+            },
+            {
+              value: "11:00",
+              text: "11:00am"
+            },
+            {
+              value: "12:00",
+              text: "12 midday"
+            },
+            {
+              value: "13:00",
+              text: "1:00pm"
+            },
+            {
+              value: "14:00",
+              text: "2:00pm"
+            },
+            {
+              value: "15:00",
+              text: "3:00pm"
+            },
+            {
+              value: "16:00",
+              text: "4:00pm"
+            },
+            {
+              value: "17:00",
+              text: "5:00pm"
+            },
+            {
+              value: "18:00",
+              text: "6:00pm"
+            },
+            {
+              value: "19:00",
+              text: "7:00pm"
+            },
+            {
+              value: "20:00",
+              text: "8:00pm"
+            },
+            {
+              value: "21:00",
+              text: "9:00pm"
+            },
+            {
+              value: "22:00",
+              text: "10:00pm"
+            },
+            {
+              value: "23:00",
+              text: "11:00pm"
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

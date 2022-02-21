@@ -1,0 +1,161 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Define social questions | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements/rfp/task-list"
+},
+{
+text: "[ Define your assessment bases ]",
+href: "/requirements/rfp/bases"
+},
+{
+text: "[ Your social value questions ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-xl">
+            [ Your social value questions ]
+        </h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        {% include "includes/project_header.html" %} <br>
+        <p class="govuk-body">[ Instructions for this page ]<br>
+            [ Please add up to 5 questions ]<br>
+            [ In our first release, suppliers will answer to your questions by uploading an attachment ]</p><br><br>
+
+            <form id="rfp_social_base_form" name="rfp_social_base_form" class="form rfp_social_base_form"
+      action="/requirements/rfp/assessment/price-base" method="post">
+        
+        <div class="ccs-page-section">
+            <h2 class="govuk-heading-m "><span>X</span> social value questions entered so far </h2>
+        </div>
+
+        {% call govukFieldset({
+        legend: {
+        text: "[ Enter your first social value question ]",
+        classes: "govuk-fieldset__legend--m govuk-!-margin-bottom-7",
+        isPageHeading: false
+        },
+        classes: "social_1 "
+        }) %}
+
+        {{ govukInput({
+        label: {
+        text: "[ Your question ]",
+        classes: "govuk-label--s"
+        },
+        hint: {
+        text: "[Instructions]"
+        },
+        id: "rfp_social_question_1",
+        name: "rfp_social_question_1",
+        classes: "rfi_term_1 govuk-!-margin-bottom-5",
+        value: data['rfp_social_question_1']
+        }) }}
+
+        {% if data['ccs_rfp_requirement_mode'] == 'all_online' %}
+        {{ govukSelect ({
+        id: "rfp_social_question_group_1",
+        name: "rfp_social_question_group_1",
+        classes:"govuk-!-margin-bottom-5",
+        label: {
+        text: "[ Which group of requirements this question refers to? (Optional) ]",
+        classes: "govuk-label--s"
+        },
+        hint: {
+        text: "[Instructions]"
+        },
+        items: [
+        {
+            value:"Please select an option",
+            text:"Please select an option"
+        }
+        ]
+        }) }}
+
+        {% endif %}
+
+        {{ govukTextarea({
+        name: "rfp_social_question_detail_1",
+        id: "rfp_social_question_detail_1",
+        classes: " govuk-!-margin-bottom-5",
+        label: {
+        text: "[ Provide additional detail for your question ]",
+        classes: "govuk-label--s"
+        },
+        hint: {
+            text: "[Instructions]"
+            },
+        value: data['rfp_social_question_detail_1']
+        }) }}
+       
+        <br>
+
+        {{ govukTextarea({
+            name: "rfp_social_question_pointers_1",
+            id: "rfp_social_question_pointers_1",
+            label: {
+            text: "[ Explain how good looks like ]",
+            classes: "govuk-label--s"
+            },
+            hint: {
+                text: "[Instructions]"
+                },
+            classes: "rfp_social_question_detail_1 ",
+            value: data['rfp_social_question_pointers_1']
+            }) }}
+
+        {% endcall %}
+<br>
+        <p class="govuk-body">
+            {{ govukButton({
+            text: "[ Add another question ]",
+            attributes: {
+            id: "ccs_rfpTech_que_add"
+            },
+            classes: "govuk-button--secondary"
+            }) }}
+          </p>
+
+        <br><br>
+        <div class="govuk-button-group">
+            {{ govukButton({
+            text: "Save and continue"
+            }) }}
+            <a href="/requirements/rfp/bases" class="govuk-link govuk-link--no-visited-state">Return to [ Define your
+                assessment bases ] </a>
+        </div>
+        
+    </form>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+{% endblock %}

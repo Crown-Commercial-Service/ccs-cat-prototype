@@ -1,0 +1,107 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Background and context to your requirement| Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements/rfp/task-list"
+},
+{
+text: "[Add context]",
+href: "/requirements/rfp/context/sub-task-list"
+},
+{
+text: "[ Background and context to your requirement ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">
+      [ Background and context to your requirement ]
+    </h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+    {% include "includes/project_header.html" %}<br>
+    <p class="govuk-body">[instructions]</p><br><br>
+    <form id="ccs_rfp_context" name="ccs_rfp_context" action="/requirements/rfp/context/impact" method="post">
+
+      {{ govukTextarea({
+      name: "rfp_background",
+      id: "rfp_background",
+      label: {
+      text: "[ Provide details relating to the requirement’s background and the events leading up to the goods/services
+      being required ]",
+      classes:"govuk-!-font-weight-bold"
+      },
+      hint: {
+      text: "[ Details can include relevant information about the organisation, why the requirement is needed, its
+      importance to stakeholders (organisation, tax payer, public etc.) and any other relevant information that provides
+      context to the requirement. ]"
+      }
+      }) }}
+
+      {{ govukTextarea({
+      name: "rfp_social_value",
+      id: "rfp_social_value",
+      label: {
+      text: "[ Include any details relating to the ‘Public Services (Social Value) Act 2012’ which will be applied to
+      secure wider social, economic and environmental benefits. ]",
+      classes:"govuk-!-font-weight-bold"
+      },
+      hint: {
+      text: "[ Description ]"
+      }
+      }) }}
+
+      {{ govukInput({
+        id: "rfp_background_added",
+        name: "rfp_background_added",
+        type: "hidden",
+        value: true
+      }) }}
+
+      {{ govukInput({
+        id: "rfp_add_context_started",
+        name: "rfp_add_context_started",
+        type: "hidden",
+        value: true
+      }) }}
+<br><br>
+      <div class="govuk-button-group">
+        {{ govukButton({
+        text: "Save and continue"
+        }) }}
+        <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [Add context]</a>
+      </div>
+    </form>
+
+  </div>
+  {% include "includes/promos/related_only.html" %}
+</div>
+{% endblock %}

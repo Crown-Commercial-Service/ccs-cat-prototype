@@ -1,0 +1,113 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+ Specify your budget | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Write and publish your requirements",
+  href: "/requirements/rfp/task-list"
+  },
+  {
+    text: "[Add context]",
+    href: "/requirements/rfp/context/sub-task-list"
+    },
+{
+text: "[ Specify your budget ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Specify your budget
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+
+      {% include "includes/project_header.html" %} <br>
+
+      <p class="govuk-body">[ Instructions for this page ] </p>
+
+      <br><br>
+
+      <form id="ccs_rfp_budget_form" name="ccs_rfp_budget_form" class="form ccs_rfp_budget_form" action="/requirements/rfp/budget-step-two" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Maximum indicative budget",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            html: '<p class="govuk-hint">For example £ 10,000</p>'
+          },
+          prefix: {
+            text: "£"
+          },
+          id: "rfp_max_budget",
+          name: "rfp_max_budget",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          classes: "govuk-input--width-5",
+          value: data['rfp_max_budget']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Minimum indicative budget (optional)",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            html: '<p class="govuk-hint">For example £ 30,000</p>'
+          },
+          prefix: {
+            text: "£"
+          },
+          id: "rfp_min_budget",
+          name: "rfp_min_budget",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          classes: "govuk-input--width-5",
+          value: data['rfp_min_budget']
+        }) }}
+
+     
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Add context ]</a>
+        </div>
+
+      </form>
+
+    </div>
+
+    {% include "includes/promos/related_only.html" %}
+
+
+  </div>
+
+{% endblock %}

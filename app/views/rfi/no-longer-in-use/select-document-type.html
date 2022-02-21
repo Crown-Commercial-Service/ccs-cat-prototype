@@ -1,0 +1,77 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Complete a document offline | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Home",
+href: "/"
+},
+{
+text: data['portal_name'],
+href: "/dashboard"
+},
+{
+text: data['projPersistID'],
+href: "/projects/"
+},
+{
+text: "Complete a document offline"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+         Complete a document offline
+        </h1>
+        {% include "includes/project_header.html" %}
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        <p class="govuk-body-l">Do you intend to use your own document?</p>
+        <form id="ccs_rfi_doc_type_form" name="ccs_rfi_doc_type_form" class="form ccs_rfi_doc_type_form" action="/rfi/request-to-suppliers" method="post">
+            {{ govukRadios({
+                idPrefix: "ccs_rfi_document_type",
+                name: "ccs_rfi_document_type",
+                items: [
+                  {
+                    value: "own_rfi_document",
+                    html: "<h3 class='govuk-heading-m'>Yes</h3>",
+                    hint: {
+                      text: "Return to digital journey to respond to mandatory questions only."
+                    },
+                    checked: checked("ccs_rfi_document_type", "own_rfi_document")
+                  },
+                  {
+                    value: "download_rfi_template",
+                    html: "<h3 class='govuk-heading-m'>No</h3>",
+                    hint: {
+                      text: "Download a RFI template. "
+                    },
+                    checked: checked("ccs_rfi_document_type", "download_rfi_template")
+                  }
+                ]
+              }) }}
+      
+              <p>You will be instructed on how to load the document at the end. </p>
+
+            <div class="govuk-button-group">
+                {{ govukButton({
+                text: "Save and continue"
+                }) }}
+                <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

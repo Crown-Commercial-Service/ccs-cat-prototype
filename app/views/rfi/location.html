@@ -1,0 +1,154 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Select locations | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+    {
+      text: "Dashboard",
+      href: "/dashboard"
+      },
+      {
+      text: "Choose a commercial agreement",
+      href: "/projects/choose-agreement"
+      },
+      {
+      text: "Procurement overview",
+      href: "/projects/"
+      },
+      {
+      text: "Do pre-market engagement",
+      href: "/rfi/rfi-task-list"
+      },
+      {
+        text: "Build your RfI",
+        href: "/rfi/online-task-list"
+      },
+      {
+        text: "Where the supplied staff will work (Optional)"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Where the supplied staff will work (Optional)
+      </h1>
+    
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %}<br>
+
+      <p class="govuk-body">Select the locations where you would expect the staff supplied to work. You can select multiple locations or if you do not need them to work in an office you can select ‘No specific location’.</p><br>
+
+      <form id="rfi_location" name="rfi_location" class="form rfi_location" action="/rfi/rfi-task-list" method="post">
+
+        {{ govukCheckboxes({
+          idPrefix: "required_locations",
+          name: "required_locations",
+          items: [
+            {
+              "value": "North East England",
+              "text": "North East England",
+              checked: checked("required_locations", "North East England")
+            },
+            {
+              "value": "North West England",
+              "text": "North West England",
+              checked: checked("required_locations", "North West England")
+            },
+            {
+              "value": "Yorkshire and the Humber",
+              "text": "Yorkshire and the Humber",
+              checked: checked("required_locations", "Yorkshire and the Humber")
+            },
+            {
+              "value": "East Midlands",
+              "text": "East Midlands",
+              checked: checked("required_locations", "East Midlands")
+            },
+            {
+              "value": "East of England",
+              "text": "East of England",
+              checked: checked("required_locations", "East of England")
+            },
+            {
+              "value": "London",
+              "text": "London",
+              checked: checked("required_locations", "London")
+            },
+            {
+              "value": "South East England",
+              "text": "South East England",
+              checked: checked("required_locations", "South East England")
+            },
+            {
+              "value": "South West England",
+              "text": "South West England",
+              checked: checked("required_locations", "South West England")
+            },
+            {
+              "value": "Wales",
+              "text": "Wales",
+              checked: checked("required_locations", "Wales")
+            },
+            {
+              "value": "Scotland",
+              "text": "Scotland",
+              checked: checked("required_locations", "Scotland")
+            },
+            {
+              "value": "Northern Ireland",
+              "text": "Northern Ireland",
+              checked: checked("required_locations", "Northern Ireland")
+            },
+            {
+              "value": "West Midlands",
+              "text": "West Midlands",
+              checked: checked("required_locations", "West Midlands")
+            },
+            {
+              divider:"OR"
+            },
+            {
+              "value": 13,
+              "text": "No specific location, for example they can work remotely",
+              checked: checked("required_locations", "13")
+            }
+          ]
+        }) }}
+
+        {{ govukInput({
+          id: "rfi_build_completed",
+          name: "rfi_build_completed",
+          type: "hidden",
+          value: true
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and Continue"
+          }) }}
+
+          <a class="govuk-link govuk-link--no-visited-state" href="rfi/online-task-list">Return to Build your Request for Information (RfI)</a>
+        </div>
+
+      </form>
+
+    </div>
+
+    {% include "includes/promos/related_only.html" %}
+
+  </div>
+
+{% endblock %}

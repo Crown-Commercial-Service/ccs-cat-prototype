@@ -1,0 +1,87 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Sign in | Procurement Portal | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: "Sign in"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-xl">
+        Sign in to {{ data['portal_name'] }}
+      </h1>
+
+      <form id="ccs_login" name="ccs_login" class="form" action="/login" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Email address"
+          },
+          hint: {
+            text: "Enter the email address you used to register with " + data['portal_name']
+          },
+          classes: "govuk-input--width-20",
+          id: "user_email",
+          name: "user_email",
+          value: data['user_email']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Password"
+          },
+          classes: "govuk-input--width-20",
+          id: "_user_pwd",
+          name: "_user_pwd",
+          type: "password"
+        }) }}
+
+        <p class="govuk-body ccs-forgot-pwd-link">
+          <a class="govuk-link govuk-link--no-visited-state" href="#" onclick="return false;" >Forgotten password</a>
+        </p>
+
+        {{ govukButton({
+          text: "Sign in"
+        }) }}
+
+      </form>
+
+      <p class="govuk-body">
+        <a class="govuk-link govuk-link--no-visited-state" href="#" onclick="return false;" >Create a buyer account</a>
+      </p>
+    </div>
+
+    <div class="govuk-grid-column-one-third-from-desktop govuk-grid-column-one-half">
+
+      <div class="ccs-callout-panel">
+        <h2 class="govuk-heading-m">Contact </h2>
+
+        <p class="govuk-body">You can contact us by email, phone or using the <a href="https://www.crowncommercial.gov.uk/contact">enquiry form</a>. </p>
+
+        <h3 class="govuk-heading-s govuk-!-margin-0">Email: </h3>
+        <p class="govuk-body"><a href="mailto:info@crowncommercial.gov.uk">info@crowncommercial.gov.uk</a> </p>
+
+        <h3 class="govuk-heading-s govuk-!-margin-0">Telephone: </h3>
+        <p class="govuk-body"><a href="tel:03454102222">0345 410 2222</a></p>
+
+        <p class="govuk-body">CCS customer services team is available Monday to Friday, 9am to 5pm.</p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,222 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Look at the available suppliers | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Do pre-market engagement",
+href: "/eoi/eoi-task-list"
+},
+{
+text: "Look at the available suppliers"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            Look at the available suppliers
+        </h1>
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop govuk-grid-column-full">
+
+        {% include "includes/project_header.html" %} <br>
+
+        <p class="govuk-body">Take a look at the suppiers available on this agreement. Your EoI will be sent to all suppliers. If they do not respond to your EoI they will not be allowed to bid for your project.</p>
+   <br><br>
+        <form id="ccs-eoi-suppliers-form" class="ccs-rfi-suppliers-form" action="/eoi/response-date" method="POST">
+                  
+                    <br>
+                    <h2 class="govuk-heading-m"><span id="added_suppliers_count">
+                        {{suppliers_list | length}} 
+                       </span> suppliers on this lot </h2>
+                    <br>
+                    <div class="govuk-button-group">
+                        {{ govukButton({
+                        text: "Save and continue"
+                        }) }}
+                        <a href="/eoi/eoi-task-list" class="govuk-link govuk-link--no-visited-state">Return to pre-market engagement</a>
+                    </div>
+                    <div class="govuk-button-group ccs-page-section govuk-!-margin-top-7">
+                        <a href="#" onclick="return false;" class="govuk-link govuk-link--no-visited-state">Download this list </a>
+                    </div>
+                    <div id="page1">
+                        <div id="supplier-list ccs-page-section">
+                            <ul class="govuk-list govuk-list--none govuk-list--suppliers">
+                                {% for supplier in suppliers_list %}
+                                <li>
+                                    <h3 class="govuk-heading-m"><a href="{{supplier.link}}" target="_blank"
+                                            class="govuk-link govuk-link--no-visited-state">{{supplier.legal_name}}</a>
+                                    </h3>
+                                    <span class="ccs-trading-name">{{supplier.trading_name}}</span>
+                                    <span class="ccs-eoi-company-size">{{supplier.size }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                     
+                        <!-- <div class="ccs-pagelink-group ccs-page-section">
+                            <p class="govuk-body"><a id="prev-link"
+                                    class="govuk-link govuk-link--no-visited-state pag-link ccs-pagination"
+                                    style="pointer-events: none; color: lightblue;" href="#">
+                                    <svg style="margin-right:10px;vertical-align: middle;"
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                                    </svg>Prev Page</a>
+                                <br><span class="pagination_pad"><span id="current-page-no"> 1 </span> of 3<span>
+                            </p>
+                            <p class="govuk-body"><a id="next-link-page2"
+                                    class="govuk-link govuk-link--no-visited-state pag-link ccs-pagination" href="#">
+                                    Next Page <svg style="margin-right:10px;vertical-align: middle;"
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg></a>
+                                <br><span class="pagination_pad"><span id="next-page-no"> 2 </span> of 3 <span></span>
+                            </p>
+                        </div> -->
+                    </div>
+                    <!-- page 1 ends -->
+                    <!-- <div id="page2">
+                        <div id="supplier-list ccs-page-section">
+                            <ul class="govuk-list govuk-list--none govuk-list--suppliers">
+                                {% for supplier in suppliers_list.slice(10,21) %}
+
+                                <li>
+                              
+                                    <h3 class="govuk-heading-m"><a href="{{supplier.link}}" target="_blank"
+                                            class="govuk-link govuk-link--no-visited-state">{{supplier.legal_name}}</a>
+                                    </h3>
+                                    <span class="ccs-trading-name">{{supplier.trading_name}}</span>
+                                    <span class="ccs-company-size">{{supplier.size }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                       
+                        <div class="ccs-pagelink-group ccs-page-section">
+                            <p class="govuk-body"><a id="prev-link-page2"
+                                    class="govuk-link govuk-link--no-visited-state pag-link ccs-pagination " href="#">
+                                    <svg style="margin-right:10px;vertical-align: middle;"
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                                    </svg>Prev Page</a>
+                                <br><span class="pagination_pad"><span id="current-page-no"> 1 </span> of 3<span>
+                            </p>
+                            <p class="govuk-body"><a id="next-link-page3"
+                                    class="govuk-link govuk-link--no-visited-state pag-link ccs-pagination" href="#">
+                                    Next Page <svg style="margin-right:10px;vertical-align: middle;"
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg></a>
+                                <br><span class="pagination_pad"><span id="next-page-no"> 3 </span> of 3 </span>
+                            </p>
+                        </div>
+                    </div> -->
+                    <!-- page 2 ends -->
+                    <!-- <div id="page3">
+                        <div id="supplier-list ccs-page-section">
+                            <ul class="govuk-list govuk-list--none govuk-list--suppliers">
+                                {% for supplier in suppliers_list.slice(21,31) %}
+                                <li>
+                                
+                                    <h3 class="govuk-heading-m"><a href="{{supplier.link}}" target="_blank"
+                                            class="govuk-link govuk-link--no-visited-state">{{supplier.legal_name}}</a>
+                                    </h3>
+                                    <span class="ccs-trading-name">{{supplier.trading_name}}</span>
+                                    <span class="ccs-company-size">{{supplier.size }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+             
+                        <div class="ccs-pagelink-group ccs-page-section">
+                            <p class="govuk-body"><a id="prev-link-page3"
+                                    class="govuk-link govuk-link--no-visited-state pag-link ccs-pagination" href="#">
+                                    <svg style="margin-right:10px;vertical-align: middle;"
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                                    </svg>Prev Page</a>
+                                <br><span class="pagination_pad"><span id="current-page-no"> 2 </span> of 3<span>
+                            </p>
+                            <p class="govuk-body"><a id="next-link"
+                                    class="govuk-link govuk-link--no-visited-state pag-link ccs-pagination"
+                                    style="pointer-events: none; color: lightblue;" href="#">
+                                    Next Page <svg style="margin-right:10px;vertical-align: middle;"
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg></a>
+                                <br><span class="pagination_pad"><span id="next-page-no"> 3 </span> of 3 </span>
+                            </p>
+                        </div>
+                    </div> -->
+                    <!-- page 3 ends -->
+               
+            {{ govukInput({
+            id: "eoi_selected_supplier_count",
+            name: "eoi_selected_supplier_count",
+            type: "hidden",
+            value: data['eoi_selected_supplier_count']
+            }) }}
+
+            {{
+            govukInput({
+            id: "eoi_selected_suppliers",
+            name: "eoi_selected_suppliers",
+            type: "hidden",
+            value: data['eoi_selected_suppliers']
+            })
+            }}
+
+            {{ govukInput({
+            id: "eoi_supplier_selected",
+            name: "eoi_supplier_selected",
+            type: "hidden",
+            value: true
+            }) }}
+
+            <div class="govuk-button-group">
+                {{ govukButton({
+                text: "Save and continue"
+                }) }}
+                <a href="/eoi/eoi-task-list" class="govuk-link govuk-link--no-visited-state">Return to pre-market engagement</a>
+            </div>
+
+        </form>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+{% endblock %}

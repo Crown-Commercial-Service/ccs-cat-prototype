@@ -1,0 +1,134 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  RfI - Status of your project | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Status of your project"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Status of your project
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">Provide some details about the status of your project. </p>
+
+      <form id="ccs_rfi_proj_status" name="ccs_rfi_proj_status" class="form ccs_rfi_proj_status" action="/projects/event-review" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "What is the current phase of your project?",
+            classes: "govuk-label--m"
+          },
+          id: "rfi_prog_phase",
+          name: "rfi_prog_phase",
+          value: data['rfi_prog_phase']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "What phase will the resource be required for?",
+            classes: "govuk-label--m"
+          },
+          id: "rfi_prog_phase_req",
+          name: "rfi_prog_phase_req",
+          value: data['rfi_prog_phase_req']
+        }) }}
+
+        {{ govukTextarea({
+          name: "rfi_work_to_date",
+          id: "rfi_work_to_date",
+          value: data['rfi_work_to_date'],
+          label: {
+            text: "Work completed to date",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Outline any work that has already been carried out on the project"
+          }
+        }) }}
+
+        {{ govukTextarea({
+          name: "rfi_engagement_to_date",
+          id: "rfi_engagement_to_date",
+          value: data['rfi_engagement_to_date'],
+          label: {
+            text: "Market engagement to date",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Outline any market engagement that has already been carried out in relation to this procurement"
+          }
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Working arrangements",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Specify the working arrangements that the resource will adhere to"
+          },
+          id: "rfi_work_arrangements",
+          name: "rfi_work_arrangements",
+          value: data['rfi_work_arrangements']
+        }) }}
+
+        {{ govukTextarea({
+          name: "rfi_existing_team",
+          id: "rfi_existing_team",
+          value: data['rfi_existing_team'],
+          label: {
+            text: "Existing team (optional)",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Detail whom the specialist will work with"
+          }
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+      </form>
+
+    </div>
+
+
+
+  </div>
+
+{% endblock %}

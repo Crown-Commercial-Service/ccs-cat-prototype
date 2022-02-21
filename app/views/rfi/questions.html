@@ -1,0 +1,196 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  RfI - Ask suppliers questions | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+  items: [
+  {
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Do pre-market engagement",
+  href: "/rfi/rfi-task-list"
+  },
+  {
+    text: "Build your RfI",
+    href: "/rfi/online-task-list"
+  },
+  {
+    text: "Ask suppliers questions"
+  }
+  ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Ask suppliers questions
+      </h1>
+     
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %} <br>
+
+      <p class="govuk-body">You can ask suppliers up to 10 questions. These questions can help you to better understand costs, time needed for the work and the types of products and services they can offer. You can edit and remove questions before you save and continue or before you publish your RfI. </p><br><br>
+
+      <form id="ccs_rfi_questions_form" name="ccs_rfi_questions_form" class="form ccs_rfi_questions_form" action="/rfi/acronyms" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Enter your first question",
+            classes: "govuk-label--m"
+          },
+          id: "rfi_question_1",
+          name: "rfi_question_1",
+          value: data['rfi_question_1']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your second question <a href='2' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "rfi_question_2",
+          name: "rfi_question_2",
+          classes: "ccs-dynaform-hidden",
+          value: data['rfi_question_2']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your third question <a href='3' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "rfi_question_3",
+          name: "rfi_question_3",
+          classes: "ccs-dynaform-hidden",
+          value: data['rfi_question_3']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your fourth question <a href='4' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "rfi_question_4",
+          name: "rfi_question_4",
+          classes: "ccs-dynaform-hidden",
+          value: data['rfi_question_4']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your fifth question <a href='5' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "rfi_question_5",
+          name: "rfi_question_5",
+          classes: "ccs-dynaform-hidden",
+          value: data['rfi_question_5']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your sixth question <a href='6' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "rfi_question_6",
+          name: "rfi_question_6",
+          classes: "ccs-dynaform-hidden",
+          value: data['rfi_question_6']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your seventh question <a href='7' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "rfi_question_7",
+          name: "rfi_question_7",
+          classes: "ccs-dynaform-hidden",
+          value: data['rfi_question_7']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your eighth question <a href='8' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "rfi_question_8",
+          name: "rfi_question_8",
+          classes: "ccs-dynaform-hidden",
+          value: data['rfi_question_8']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your ninth question <a href='9' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "rfi_question_9",
+          name: "rfi_question_9",
+          classes: "ccs-dynaform-hidden",
+          value: data['rfi_question_9']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your tenth question <a href='10' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "rfi_question_10",
+          name: "rfi_question_10",
+          classes: "ccs-dynaform-hidden",
+          value: data['rfi_question_10']
+        }) }}
+
+        <p class="govuk-body">
+          {{ govukButton({
+            text: "Add another question",
+            attributes: {
+              id: "ccs_criteria_add"
+            },
+            classes: "govuk-button--secondary"
+          }) }}
+        </p>
+
+        {{ govukInput({
+          id: "rfi_build_started",
+          name: "rfi_build_started",
+          type: "hidden",
+          value: true
+        }) }}
+<br><br>
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/rfi/online-task-list" class="govuk-link govuk-link--no-visited-state">Return to Build your Request for Information (RfI)</a>
+        </div>
+
+      </form>
+
+    </div>
+    {% include "includes/promos/related_only.html" %}
+  </div>
+
+{% endblock %}

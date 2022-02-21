@@ -1,0 +1,275 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Define social questions | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements/rfp/task-list"
+},
+{
+text: "[ Define your assessment bases ]",
+href: "/requirements/rfp/bases"
+},
+{
+text: "[ Your price questions ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-xl">
+            [ Your price questions ]
+        </h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+        {% include "includes/project_header.html" %} <br>
+        <p class="govuk-body">[ Instructions for this page ]</p>
+        <br><br>
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+        <form id="rfp_price_base_form" name="rfp_price_base_form" class="form rfp_price_base_form"
+            action="/requirements/rfp/task-list" method="post">
+
+            {{ govukRadios ({
+            idPrefix:"rfp_pricing_model_type",
+            name:"rfp_pricing_model_type",
+            fieldset: {
+            legend: {
+            html: "<p>
+            <h3 class='govuk-!-margin-bottom-2'>[ Select the pricing model ]</h3>[instructions]</p>",
+            classes:"govuk-!-margin-bottom-9"
+            }
+            },
+
+            items: [
+            {
+            value:"Time and materials",
+            text:"[Time and materials]",
+            hint: {
+            text:"[Description]",
+            classes:"govuk-!-margin-bottom-5"
+            },
+            checked:checked("rfp_pricing_model_type","Time and materials")
+            },
+            {
+            value:"Fixed price",
+            text:" [Fixed price]",
+            hint: {
+            text:"[Description]",
+            classes:"govuk-!-margin-bottom-5"
+            },
+            checked:checked("rfp_pricing_model_type","Fixed price")
+            },
+            {
+            value:"Time and materials and fixed price",
+            text:" [Time and materials and fixed price]",
+            hint: {
+            text:"[Description]",
+            classes:"govuk-!-margin-bottom-5"
+            },
+            checked:checked("rfp_pricing_model_type","Time and materials and fixed price")
+            },
+            {
+            value:"Target running costs",
+            text:" [Target running costs]",
+            hint: {
+            text:"[Description]",
+            classes:"govuk-!-margin-bottom-5"
+            },
+            checked:checked("rfp_pricing_model_type","Target running costs")
+            },
+            {
+            value:"Other, please specify",
+            text:" [ Other, please specify ]",
+            hint: {
+            text:"[ Description ]",
+            classes:"govuk-!-margin-bottom-5"
+            },
+            checked:checked("rfp_pricing_model_type","Other, please specify")
+            },
+            {
+            value:"Other pricing bases",
+            text:" [ Other pricing bases ]",
+            hint: {
+            text:"[ Description ]",
+            classes:"govuk-!-margin-bottom-5"
+            },
+            checked:checked("rfp_pricing_model_type","Other pricing bases")
+            }
+            ]
+            }) }}
+
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+            <br>
+            {{ govukFileUpload({
+            id: "rfp_price_base_file_upload",
+            name: "rfp_price_base_file_upload",
+            value: data['rfp_price_base_file_upload'],
+            label: {
+            text: "[ Upload a file ]",
+            classes: "govuk-label--m"
+            },
+            hint: {
+            html:"<p class='govuk-!-margin-bottom-9'>[ Provide a structure / itemised price breakdown for the supplier
+                to provide pricing information ]</p>
+            <p class='govuk-!-font-size-14'>[ Description for accepted format and file size. ]</p>"
+            }
+            }) }}
+            <br>
+
+            <hr class="govuk-section-break govuk-section-break--Xl govuk-section-break--visible">
+            <br>
+
+            {% call govukFieldset({
+            legend: {
+            html: "<h3 class='govuk-fieldset__legend--m govuk-!-margin-bottom-0'>[ Specify your contract value
+                (optional) ]</h3> [Instructions]",
+            classes: "govuk-!-margin-bottom-7",
+            isPageHeading: false
+            },
+            classes: "acronym_1 "
+            }) %}
+
+            {{ govukInput({
+            label: {
+            text: "Maximum budget",
+            classes: "govuk-label--m"
+            },
+            hint: {
+            html: '<p class="govuk-hint">For example £ 10,000</p>'
+            },
+            prefix: {
+            text: "£"
+            },
+            id: "rfp_price_base_max_budget",
+            name: "rfp_price_base_max_budget",
+            inputmode: "numeric",
+            pattern: "[0-9]*",
+            classes: "govuk-input--width-5",
+            value: data['rfp_price_base_max_budget']
+            }) }}
+
+            {{ govukInput({
+            label: {
+            text: "Minimum budget (optional)",
+            classes: "govuk-label--m govuk-!-margin-top-7"
+            },
+            hint: {
+            html: '<p class="govuk-hint">For example £ 30,000</p>'
+            },
+            prefix: {
+            text: "£"
+            },
+            id: "rfp_price_base_min_budget",
+            name: "rfp_price_base_min_budget",
+            inputmode: "numeric",
+            pattern: "[0-9]*",
+            classes: "govuk-input--width-5 ",
+            value: data['rfp_price_base_min_budget']
+            }) }}
+
+            {% endcall %}
+
+            <br><br>
+
+            {% call govukFieldset({
+                legend: {
+                html: "<p><h3 class='govuk-fieldset__legend--m govuk-!-margin-bottom-0'>[ Ask the supplier how they are going to deliver within the budgetary constraints (Optional) ]</h3>[ Instructions ]</p>",
+                classes: " govuk-!-margin-bottom-9",
+                isPageHeading: false
+                },
+                classes: "acronym_1 "
+                }) %}
+        
+                {{ govukInput({
+                label: {
+                text: "[ Your question ]",
+                classes: "govuk-label--s"
+                },
+                hint: {
+                text: "[Instructions]"
+                },
+                id: "rfp_price_question",
+                name: "rfp_price_question",
+                classes: "rfi_term_1 govuk-!-margin-bottom-5",
+                value: data['rfp_price_question']
+                }) }}
+        
+        
+                {{ govukTextarea({
+                name: "rfp_price_question_detail",
+                id: "rfp_price_question_detail",
+                classes: " govuk-!-margin-bottom-5",
+                label: {
+                text: "[ Provide additional detail for your question ]",
+                classes: "govuk-label--s"
+                },
+                hint: {
+                    text: "[Instructions]"
+                    },
+                value: data['rfp_price_question_detail']
+                }) }}
+                <br>
+        
+                {{ govukTextarea({
+                    name: "rfp_price_question_pointers",
+                    id: "rfp_price_question_pointers",
+                    label: {
+                    text: "[ Explain how good looks like ]",
+                    classes: "govuk-label--s"
+                    },
+                    hint: {
+                        text: "[Instructions]"
+                        },
+                    classes: "rfp_technical_question_detail_1 ",
+                    value: data['rfp_price_question_pointers']
+                    }) }}
+        
+                {% endcall %}
+                <br><br>
+                
+                {{ govukInput({
+                    id: "rfp_assessment_bases_added",
+                    name: "rfp_assessment_bases_added",
+                    type: "hidden",
+                    value: true
+                  }) }}
+                
+
+            <div class="govuk-button-group">
+                {{ govukButton({
+                text: "Save and continue"
+                }) }}
+                <a href="/requirements/rfp/bases" class="govuk-link govuk-link--no-visited-state">Return to [ Define your assessment bases ] </a>
+            </div>
+        </form>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+
+
+{% endblock %}

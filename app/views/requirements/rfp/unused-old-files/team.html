@@ -1,0 +1,161 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+ Existing team | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Write and publish your requirements",
+  href: "/requirements/rfp/task-list"
+  },
+  {
+    text: "[Add context]",
+    href: "/requirements/rfp/context/sub-task-list"
+    },
+{
+text: "[Existing team (Optional)]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        [Existing team (Optional)]
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %}<br>
+        <p class="govuk-body">[instructions]</p><br><br>
+
+        <p class="govuk-body">[select all that apply]</p><br><br>
+
+        <form id="ccs_rfp_team_form" name="ccs_rfp_team_form" class="form ccs_rfp_team_form" action="/requirements/rfp/work-done" method="post">
+
+            {{ govukCheckboxes({
+                idPrefix: "rfp_existing_team",
+                name: "rfp_existing_team",
+                items: [
+                  {
+                    "value": "1",
+                    html: "<h6 class='govuk-heading-m'>DDAT key role</h6>",
+                    hint: {
+                    html: "<label>[ DDAT key role description ]</label>"
+                    },
+                    checked: checked("rfp_existing_team", "1")
+                  },
+                  {
+                    "value": "2",
+                    html: "<h6 class='govuk-heading-m'>DDAT key role</h6>",
+                    hint: {
+                    html: "<label>[ DDAT key role description ]</label>"
+                    },
+                    checked: checked("rfp_existing_team", "2")
+                  },
+                  {
+                    "value": "3",
+                    html: "<h6 class='govuk-heading-m'>DDAT key role</h6>",
+                    hint: {
+                    html: "<label>[ DDAT key role description ]</label>"
+                    },
+                    checked: checked("rfp_existing_team", "3")
+                  },
+                  {
+                    "value": "4",
+                    html: "<h6 class='govuk-heading-m'>DDAT key role</h6>",
+                    hint: {
+                    html: "<label>[ DDAT key role description ]</label>"
+                    },
+                   checked: checked("rfp_existing_team", "4")
+                  },
+                  {
+                    "value": "5",
+                    html: "<h6 class='govuk-heading-m'>DDAT key role</h6>",
+                    hint: {
+                    html: "<label>[ DDAT key role description ]</label>"
+                    },
+                    checked: checked("rfp_existing_team", "5")
+                  },
+                  {
+                    "value": "6",
+                    html: "<h6 class='govuk-heading-m'>DDAT key role</h6>",
+                    hint: {
+                    html: "<label>[ DDAT key role description ]</label>"
+                    },
+                    checked: checked("rfp_existing_team", "6")
+                  },
+                  {
+                    "value": "7",
+                    html: "<h6 class='govuk-heading-m'>DDAT key role</h6>",
+                    hint: {
+                    html: "<label>[ DDAT key role description ]</label>"
+                    },
+                    checked: checked("rfp_existing_team", "7")
+                  },
+                  {
+                    "value": "8",
+                    html: "<h6 class='govuk-heading-m'>DDAT key role</h6>",
+                    hint: {
+                    html: "<label>[ DDAT key role description ]</label>"
+                    },
+                    checked: checked("rfp_existing_team", "8")
+                  },
+                  {
+                    "value": "9",
+                    html: "<h6 class='govuk-heading-m'>DDAT key role</h6>",
+                    hint: {
+                    html: "<label>[ DDAT key role description ]</label>"
+                    },
+                    checked: checked("rfp_existing_team", "9")
+                  },
+                  {
+                    "value": "10",
+                    html: "<h6 class='govuk-heading-m'>DDAT key role</h6>",
+                    hint: {
+                    html: "<label>[ DDAT key role description ]</label>"
+                    },
+                    checked: checked("rfp_existing_team", "10")
+                  }
+                ]
+              }) }}
+      
+
+
+        <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Save and continue"
+            }) }}
+            <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Add context ]</a>
+          </div>
+  
+        </form>
+  
+      </div>
+  
+      {% include "includes/promos/related_only.html" %}
+  
+  
+    </div>
+  
+  {% endblock %}

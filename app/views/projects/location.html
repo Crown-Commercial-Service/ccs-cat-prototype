@@ -1,0 +1,141 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Select locations | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: "Procurement overview",
+        href: "/projects/"
+      },
+      {
+        text: "Select locations"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Select locations
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">Select the locations where they'll be working. Suppliers have said where they'll provide specialists.</p>
+
+      <form id="ccs_select_location" name="ccs_select_location" class="form ccs_select_location" action="/projects/filter-suppliers" method="post">
+
+        {{ govukCheckboxes({
+          idPrefix: "required_locations",
+          name: "required_locations",
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              "value": 1,
+              "text": "North East England",
+              checked: checked("required_locations", "1")
+            },
+            {
+              "value": 2,
+              "text": "North West England",
+              checked: checked("required_locations", "2")
+            },
+            {
+              "value": 3,
+              "text": "Yorkshire and the Humber",
+              checked: checked("required_locations", "3")
+            },
+            {
+              "value": 4,
+              "text": "East Midlands",
+              checked: checked("required_locations", "4")
+            },
+            {
+              "value": 5,
+              "text": "West Midlands",
+              checked: checked("required_locations", "5")
+            },
+            {
+              "value": 6,
+              "text": "East of England",
+              checked: checked("required_locations", "6")
+            },
+            {
+              "value": 7,
+              "text": "London",
+              checked: checked("required_locations", "7")
+            },
+            {
+              "value": 8,
+              "text": "South East England",
+              checked: checked("required_locations", "8")
+            },
+            {
+              "value": 9,
+              "text": "South West England",
+              checked: checked("required_locations", "9")
+            },
+            {
+              "value": 10,
+              "text": "Wales",
+              checked: checked("required_locations", "10")
+            },
+            {
+              "value": 11,
+              "text": "Scotland",
+              checked: checked("required_locations", "11")
+            },
+            {
+              "value": 12,
+              "text": "Northern Ireland",
+              checked: checked("required_locations", "12")
+            },
+            {
+              divider:"OR"
+            },
+            {
+              "value": 13,
+              "text": "No specific location, for example they can work remotely",
+              checked: checked("required_locations", "13")
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and Continue"
+          }) }}
+
+          <a class="govuk-link" href="/dashboard">Retrun to dashboard</a>
+        </div>
+
+      </form>
+
+    </div>
+
+    {% include "includes/promos/related_only.html" %}
+
+  </div>
+
+{% endblock %}

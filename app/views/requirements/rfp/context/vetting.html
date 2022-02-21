@@ -1,0 +1,211 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Security and vetting requirements | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements/rfp/task-list"
+},
+{
+text: "[Add context]",
+href: "/requirements/rfp/context/sub-task-list"
+},
+{
+text: "Security and vetting requirements"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">
+      Security and vetting requirements
+    </h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+
+    {% include "includes/project_header.html" %}<br>
+
+    <p class="govuk-body">
+      Select the highest level of security clearance that staff supplied to the project will need to have.
+    </p>
+    <br><br>
+
+    <form id="ccs_rfp_vetting_form" name="ccs_rfp_vetting_form" class="form ccs_rfi_vetting_form"
+      action="/requirements/rfp/context/location" method="post">
+
+      {{ govukRadios({
+      idPrefix: "ccs_rfp_vetting_type",
+      name: "ccs_rfp_vetting_type",
+      items: [
+      {
+      value: "No security clearance needed",
+      html: "<h3 class='govuk-heading-m'>No security clearance needed</h3>",
+      hint: {
+      html: "<p class='govuk-hint'>For individuals who do not need to have a specific level of security clearance
+        because your organisation has it’s own pre-employment checks.</p>"
+      },
+      checked: checked("ccs_rfp_vetting_type", "No security clearance needed"),
+      label: {
+      classes: "ccs_eoi_vetting"
+      }
+      },
+      {
+      value: "Baseline Personnel Security Standard (BPSS)",
+      html: "<h3 class='govuk-heading-m'>Baseline Personnel Security Standard (BPSS)</h3>",
+      hint: {
+      html: "<p class='govuk-hint'>For individuals with any access to government assets.
+        This means all civil servants, members of the armed forces, temporary staff and government
+        contractors generally.
+        <a class='govuk-link govuk-link--no-visited-state'
+          href='https://www.gov.uk/government/publications/united-kingdom-security-vetting-clearance-levels/national-security-vetting-clearance-levels#baseline-personnel-security-standard-bpss'>Read
+          more about BPSS clearance.</a>
+      </p>"
+      },
+      checked: checked("ccs_rfp_vetting_type", "Baseline Personnel Security Standard (BPSS)"),
+      label: {
+      classes: "ccs_eoi_vetting"
+      }
+      },
+      {
+      value: "Counter Terrorist Check (CTC)",
+      html: "<h3 class='govuk-heading-m'> Counter Terrorist Check (CTC)</h3>",
+      hint: {
+      html: '<p class="govuk-hint">For individuals employed in posts which:
+      <ul class="govuk-list govuk-list--bullet govuk-hint">
+        <li>involve proximity to public figures assessed to be at particular risk from terrorist attack</li>
+        <li> give access to information or material assessed to be of value to terrorists</li>
+        <li> involve unescorted access to certain military, civil, industrial or commercial establishments assessed to
+          be at particular risk from terrorist attack</li>
+      </ul>
+      <a class="govuk-link govuk-link--no-visited-state"
+        href="https://www.gov.uk/government/publications/united-kingdom-security-vetting-clearance-levels/national-security-vetting-clearance-levels#counter-terrorist-check-ctc">Read
+        more about CTC clearance.</a></p>'
+      },
+      checked: checked("ccs_rfp_vetting_type", "Counter Terrorist Check (CTC)"),
+      label: {
+      classes: "ccs_eoi_vetting"
+      }
+      },
+      {
+      value: "Security Check (SC)",
+      html: "<h3 class='govuk-heading-m'> Security Check (SC)</h3>",
+      hint: {
+      html: '<p class="govuk-hint">For individuals employed in posts which require them to have long-term,
+        frequent and uncontrolled access to secret assets and/or occasional,
+        supervised access to top secret assets. <a class="govuk-link govuk-link--no-visited-link"
+          href="link to: https://www.gov.uk/government/publications/united-kingdom-security-vetting-clearance-levels/national-security-vetting-clearance-levels#security-check-sc">Read
+          more about SC clearance</a>.
+      </p>'
+      },
+      checked: checked("ccs_rfp_vetting_type", "Security Check (SC)"),
+      label: {
+      classes: "ccs_eoi_vetting"
+      }
+      },
+      {
+      value: "Enhanced Security Check (eSC)",
+      html: "<h3 class='govuk-heading-m'> Enhanced Security Check (eSC)</h3>",
+      hint: {
+      html: '<p class="govuk-hint">For individuals who are allowed regular uncontrolled access up to secret assets
+        and occasional, controlled access to top secret assets. It is used for specific roles
+        where an additional level of assurance is required over SC, but not to DV level.
+        <a class="govuk-link govuk-link--no-visited-link"
+          href="https://www.gov.uk/government/publications/united-kingdom-security-vetting-clearance-levels/national-security-vetting-clearance-levels#enhanced-security-check-esc">
+          Read more about eSC clearance.</a>
+      </p>'
+      },
+      checked: checked("ccs_rfp_vetting_type", "Enhanced Security Check (eSC)"),
+      label: {
+      classes: "ccs_eoi_vetting"
+      }
+      },
+      {
+      value: "Developed Vetting (DV)",
+      html: "<h3 class='govuk-heading-m'> Developed Vetting (DV)</h3>",
+      hint: {
+      html: '<p class="govuk-hint">For individuals employed in posts which require them to have frequent and
+        uncontrolled access to top secret assets or require any access to top secret codeword material.
+        <a class="govuk-link govuk-link--no-visited-link"
+          href="https://www.gov.uk/government/publications/united-kingdom-security-vetting-clearance-levels/national-security-vetting-clearance-levels#developed-vetting-dv">
+          Read more about Developed Vetting</a>.
+      </p>'
+      },
+      checked: checked("ccs_rfp_vetting_type", "Developed Vetting (DV)"),
+      label: {
+      classes: "ccs_eoi_vetting"
+      }
+      },
+      {
+      value: "Enhanced Developed Vetting (eDV)",
+      html: "<h3 class='govuk-heading-m'> Enhanced Developed Vetting (eDV)</h3>",
+      hint: {
+      html: '<p class="govuk-hint">For individuals in a very small number of posts where an additional level of
+        assurance is required above DV. It can only be requested by a small number of sponsors
+        and only with prior agreement with United Kingdom Security Vetting (UKSV)
+        and the Cabinet Office. <a class="govuk-link govuk-link--no-visited-link"
+          href="https://www.gov.uk/government/publications/united-kingdom-security-vetting-clearance-levels/national-security-vetting-clearance-levels#enhanced-developed-vetting-edv">
+          Read more about Enhanced Developed Vetting</a>.
+      </p>'
+      },
+      checked: checked("ccs_rfp_vetting_type", "Enhanced Developed Vetting (eDV)"),
+      label: {
+      classes: "ccs_eoi_vetting"
+      }
+      }
+      ]
+      }) }}
+
+      <br><br>
+
+      {{ govukInput({
+      id: "rfp_vetting_added",
+      name: "rfp_vetting_added",
+      type: "hidden",
+      value: true
+      }) }}
+
+      {{ govukInput({
+        id: "rfp_add_context_started",
+        name: "rfp_add_context_started",
+        type: "hidden",
+        value: true
+      }) }}
+      <div class="govuk-button-group">
+        {{ govukButton({
+        text: "Save and continue"
+        }) }}
+        <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [
+          Add context ]</a>
+      </div>
+
+    </form>
+
+  </div>
+  {% include "includes/promos/related_only.html" %}
+</div>
+
+{% endblock %}

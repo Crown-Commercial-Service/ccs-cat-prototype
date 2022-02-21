@@ -1,0 +1,132 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+New, replacement or expanded products or services | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements/rfp/task-list"
+},
+{
+text: "[Add context]",
+href: "/requirements/rfp/context/sub-task-list"
+},
+{
+text: "New, replacement or expanded products or services"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-xl">
+      Is this for new, replacement or expanded products or services?
+    </h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+    {% include "includes/project_header.html" %} <br>
+
+    <p class="govuk-body govuk-!-margin-bottom-9">Choose the option that best describes if this is new, or a replacement
+      or expansion of existing products or services.</p>
+
+    <form id="ccs_rfp_new_form" name="ccs_rfp_new_form" class="form ccs_eoi_new_form"
+      action="/requirements/rfp/context/incumbent" method="post">
+
+      {{ govukRadios({
+      idPrefix: "rfp_service_type",
+      name: "rfp_service_type",
+      items: [
+      {
+      value: "Not sure",
+      html: "<label class='govuk-heading-m govuk-!-margin-bottom-0'>Not sure</label>",
+      hint: {
+      html: "<label class='govuk-!-margin-top-(-7)'>Select this option if you’re not sure what category your project
+        fits best.</label>",
+      classes:"govuk-!-margin-bottom-5"
+      },
+      checked: checked("rfp_service_type", "Not sure")
+      },
+      {
+      value: "New products or services",
+      html: "<label class='govuk-heading-m govuk-!-margin-bottom-0'>New products or services</label>",
+      hint: {
+      html: "<label class='govuk-!-margin-top-(-7)'>A new product or service.</label>",
+      classes:"govuk-!-margin-bottom-5"
+      },
+      checked: checked("rfp_service_type", "New products or services")
+      },
+      {
+      value: "Replacement products or services",
+      html: "<label class='govuk-heading-m govuk-!-margin-bottom-0'>Replacement products or services </label>",
+      hint: {
+      html: "<label class='govuk-!-margin-top-(-7)'>Replace an existing product or service.</label>",
+      classes:"govuk-!-margin-bottom-5"
+      },
+      checked: checked("rfp_service_type", "Replacement products or services")
+      },
+      {
+      value: "Expanded products or services",
+      html: "<label class='govuk-heading-m govuk-!-margin-bottom-0'>Expanded products or services </label>",
+      hint: {
+      html: "<label class='govuk-!-margin-top-(-7)'>Expanding your existing product or service.</label>",
+      classes:"govuk-!-margin-bottom-5"
+      },
+      checked: checked("rfp_service_type", "Expanded products or services")
+      }
+      ]
+      }) }}
+      <br>
+      {{ govukInput({
+      id: "rfp_new_added",
+      name: "rfp_new_added",
+      type: "hidden",
+      value: true
+      }) }}
+
+      {{ govukInput({
+        id: "rfp_add_context_started",
+        name: "rfp_add_context_started",
+        type: "hidden",
+        value: true
+      }) }}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+        text: "Save and continue"
+        }) }}
+        <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [
+          Add context ]</a>
+      </div>
+
+    </form>
+
+  </div>
+
+  {% include "includes/promos/related_only.html" %}
+
+</div>
+
+{% endblock %}

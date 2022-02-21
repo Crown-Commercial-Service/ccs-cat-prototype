@@ -1,0 +1,69 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  {{ pageTitle }} | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: "Procurement overview",
+        href: "/projects/"
+      },
+      {
+        text: pageTitle
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        {{ pageTitle }}
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+
+      <p class="govuk-body">{{ pageIntro }}</p>
+
+      <form id="ccs_select_offer" name="ccs_select_offer" class="form ccs_select_offer" action="/projects/location" method="post">
+
+        {{ govukRadios({
+          idPrefix: "offer_required",
+          name: "offer_required",
+          items: offerCollection
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and Continue"
+          }) }}
+
+          <a class="govuk-link" href="/dashboard">Cancel and return to dashboard</a>
+        </div>
+
+      </form>
+
+    </div>
+
+    {% include "includes/promos/related_only.html" %}
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Deliverables and outcomes | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements/rfp/task-list"
+},
+{
+text: "[Add context]",
+href: "/requirements/rfp/context/sub-task-list"
+},
+{
+text: "[ Deliverables and outcomes for the project / programme (Optional) ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full govuk-grid-column-three-quarters-from-desktop">
+    <h1 class="govuk-heading-xl">
+      [ Deliverables and outcomes for the project / programme (Optional) ]
+    </h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+    {% include "includes/project_header.html" %}<br>
+    <p class="govuk-body">[instructions]</p><br><br>
+
+    <form id="ccs_rfp_deliverables_form" name="ccs_rfp_deliverables_form" class="form ccs_rfp_deliverables_form"
+      action="/requirements/rfp/key-user" method="post">
+
+      {{ govukInput({
+      label: {
+      text: "[ Enter your first deliverable or outcome ]",
+      classes: "govuk-label--m"
+      },
+      id: "rfp_deliverable_1",
+      name: "rfp_deliverable_1",
+      value: data['rfp_deliverable_1']
+      }) }}
+
+      {{ govukInput({
+      label: {
+      html: "[ Enter your second deliverable or outcome ] <a href='2'
+        class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+      classes: "govuk-label--m"
+      },
+      id: "rfp_deliverable_2",
+      name: "rfp_deliverable_2",
+      classes: "ccs-dynaform-hidden",
+      value: data['rfp_deliverable_2']
+      }) }}
+
+      {{ govukInput({
+      label: {
+      html: "[ Enter your third deliverable or outcome ] <a href='3' class='del govuk-link govuk-link--no-visited-state'
+        title='delete'> X </a>",
+      classes: "govuk-label--m"
+      },
+      id: "rfp_deliverable_3",
+      name: "rfp_deliverable_3",
+      classes: "ccs-dynaform-hidden",
+      value: data['rfp_deliverable_3']
+      }) }}
+
+      {{ govukInput({
+      label: {
+      html: "[ Enter your fourth deliverable or outcome ] <a href='4'
+        class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+      classes: "govuk-label--m"
+      },
+      id: "rfp_deliverable_4",
+      name: "rfp_deliverable_4",
+      classes: "ccs-dynaform-hidden",
+      value: data['rfp_deliverable_4']
+      }) }}
+
+      {{ govukInput({
+      label: {
+      html: "[ Enter your fifth deliverable or outcome ] <a href='5' class='del govuk-link govuk-link--no-visited-state'
+        title='delete'> X </a>",
+      classes: "govuk-label--m"
+      },
+      id: "rfp_deliverable_5",
+      name: "rfp_deliverable_5",
+      classes: "ccs-dynaform-hidden",
+      value: data['rfp_deliverable_5']
+      }) }}
+
+      {{ govukInput({
+      label: {
+      html: "[ Enter your sixth deliverable or outcome ] <a href='6' class='del govuk-link govuk-link--no-visited-state'
+        title='delete'> X </a>",
+      classes: "govuk-label--m"
+      },
+      id: "rfp_deliverable_6",
+      name: "rfp_deliverable_6",
+      classes: "ccs-dynaform-hidden",
+      value: data['rfp_deliverable_6']
+      }) }}
+
+
+      {{ govukButton({
+      text: "[ Add another deliverable or outcome ]",
+      attributes: {
+      id: "ccs_rfp_deliverables_add"
+      },
+      classes: "govuk-button--secondary"
+      }) }}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+        text: "Save and continue"
+        }) }}
+        <a href="/requirements/rfp/task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Write your
+          requirements ]</a>
+      </div>
+
+    </form>
+
+  </div>
+
+  {% include "includes/promos/related_only.html" %}
+
+
+</div>
+
+{% endblock %}

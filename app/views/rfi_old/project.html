@@ -1,0 +1,147 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  RfI - About the project | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "About the project"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        About the project
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">Provide some details about your project. </p>
+
+      <form id="ccs_rfi_about_proj" name="ccs_rfi_about_proj" class="form ccs_rfi_about_proj" action="/rfi/project-status" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "What is the Project / Programme Name?",
+            classes: "govuk-label--m"
+          },
+          id: "rfi_prog_name",
+          name: "rfi_prog_name",
+          value: data['rfi_prog_name']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "What is your procurement reference? (optional)",
+            classes: "govuk-label--m"
+          },
+          id: "rfi_proc_ref",
+          name: "rfi_proc_ref",
+          value: data['rfi_proc_ref']
+        }) }}
+
+        {{ govukTextarea({
+          name: "rfi_why_this_work",
+          id: "rfi_why_this_work",
+          value: data['rfi_why_this_work'],
+          label: {
+            text: "Why is this work required?",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "State why this work is required to help suppliers frame the project"
+          }
+        }) }}
+
+        {{ govukTextarea({
+          name: "rfi_prob_statement",
+          id: "rfi_prob_statement",
+          value: data['rfi_prob_statement'],
+          label: {
+            text: "Problem to be solved / Impact of not completing deliverables and outcomes",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "This will help suppliers to identify how they can help you with your project"
+          }
+        }) }}
+
+        {{ govukTextarea({
+          name: "rfi_will_work_on",
+          id: "rfi_will_work_on",
+          value: data['rfi_will_work_on'],
+          label: {
+            text: "What resource will work on",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Describe the aspects of the project and / or technologies that the resource will work on"
+          }
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Key users",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "List the key users of the project deliverables"
+          },
+          id: "rfi_key_users_name",
+          name: "rfi_key_users_name",
+          value: data['rfi_key_users_name']
+        }) }}
+
+        {{ govukTextarea({
+          label: {
+            text: "Key outcomes",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "What are the required outcomes for the key users?"
+          },
+          id: "rfi_key_users_outcomes",
+          name: "rfi_key_users_outcomes",
+          value: data['rfi_key_users_outcomes']
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+      </form>
+
+    </div>
+
+
+
+  </div>
+
+{% endblock %}

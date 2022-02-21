@@ -1,0 +1,88 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+How will you publish your EoI? | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+  items: [
+  {
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Do pre-market engagement",
+  href: "/eoi/eoi-task-list"
+  },
+  {
+    text: "Choose how to build your EoI"
+  }
+  ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+          Choose how to build your EoI
+        </h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %}
+<br>
+        <p class="govuk-body">You can choose to either enter the information online to build your EoI or upload your own document.</p> <br>
+        <form id="ccs_eoi_type_form" name="ccs_eoi_type_form" class="form ccs_eoi_type_form" action="/eoi/select-document-type" method="post">
+            {{ govukRadios({
+                idPrefix: "ccs_eoi_type",
+                name: "ccs_eoi_type",
+                items: [
+                  {
+                    value: "all_online",
+                    html: "<h3 class='govuk-heading-m'>Enter all the information online</h3>",
+                    hint: {
+                      text: "Enter all the information needed to build your EoI and submit to the suppliers."
+                    },
+                    checked: checked("ccs_eoi_type", "all_online")
+                  },
+                  {
+                    value: "all_offline",
+                    html: "<h3 class='govuk-heading-m'>Complete and upload a document</h3>",
+                    hint: {
+                      text: "Use this option to prepare your EoI offline and then upload it."
+                    },
+                    checked: checked("ccs_eoi_type", "all_offline")
+                  }
+                ]
+              }) }}
+      
+              {{ govukInput({
+                id: "choose_eoi_type",
+                name: "choose_eoi_type",
+                type: "hidden",
+                value: true
+              }) }}
+<br><br>
+            <div class="govuk-button-group">
+                {{ govukButton({
+                text: "Save and continue"
+                }) }}
+                <a href="/eoi/eoi-task-list" class="govuk-link govuk-link--no-visited-state">Return to pre-market engagement</a>
+              </div>
+        </form>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+{% endblock %}

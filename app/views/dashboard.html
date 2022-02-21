@@ -1,0 +1,238 @@
+
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  {{ data['portal_name'] }} | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name']
+      }
+    ]
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+
+
+  <!-- <div class="govuk-grid-row">
+    {% if data['suppliers_selected'] != "true" and data['projPersistID'] | length == 0 %}
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set bannerHtml %}
+        <p class="govuk-notification-banner__heading">
+          You have received 1 new notification. <br>
+          <a class="govuk-notification-banner__link" href="#notifications">View notification</a>.
+        </p>
+      {% endset %}
+
+      {{ govukNotificationBanner({
+        html: bannerHtml
+      }) }}
+    </div>
+  </div>
+  {% endif %} -->
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Find suppliers and run your procurement online.
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+
+      <h2 class="govuk-heading-m">Hello, John</h2>
+
+      {% if data['suppliers_selected'] != "true" and data['projPersistID'] | length == 0 %}
+      <div class="ccs-page-section">
+
+        <p class="govuk-body">You don't have any projects saved.</p>
+
+        <h2 class="govuk-heading-m">Get started</h2>
+
+        <p class="govuk-body">All public sector organisations, including agencies and arm's length bodies, can use {{ data['portal_name'] }} to run their procurement end-to-end for a number of available commercial agreements. <a href="https://www.crowncommercial.gov.uk/contact">Contact Crown Commercial Service</a> if you're not sure whether you're eligible. </p>
+
+        <ul class="govuk-list govuk-list--number">
+          <li>Choose a commercial agreement or lot you're interested in </li>
+          <li>Find suppliers straight away or create a new procurement project to run pre-market or call-off events </li>
+          <li>Add collaborators to your project </li>
+          <li>Prepare a draft of your needs </li>
+          <li>Write and publish your requirements </li>
+          <li>Answer supplier questions </li>
+          <li>Evaluate suppliers' written proposals </li>
+          <li>Award a contract and give feedback to any unsuccessful suppliers </li>
+          <li>Publish the contract on Contracts Finder </li>
+        </ul>
+
+        {{ govukButton({
+          text: "Create your needs",
+          href: "/projects/choose-agreement"
+        }) }}
+
+      </div>
+
+      {% elif data['projPersistID'] | length == 0 %}
+
+      <div class="ccs-page-section">
+
+        <p class="govuk-body">You've saved a list of suppliers for <strong>{{ data['this_agreement_name'] }}, {{ data['this_lot'] }}</strong>. It's easy to <a href="/projects/name" class="govuk-link govuk-link--no-visited-state">create a procurement project</a> to manage your procurement. </p>
+
+      </div>
+
+      {% endif %}
+
+      <h2 class="govuk-heading-l">My activities</h2>
+
+
+      <p class="govuk-body">You can find any projects you have created in this section, as well as any notifications or messages about these projects.</p>
+
+
+
+
+
+
+
+      {% set projectsHtml %}
+      {% if data['projPersistID'] | length > 0 %}
+
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--m visuallyhidden">Projects currently registered in the system:</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Date</th>
+              <th scope="col" class="govuk-table__header">ID</th>
+              <th scope="col" class="govuk-table__header">Name</th>
+              <th scope="col" class="govuk-table__header">Active&nbsp;event</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">{{ data['projDateStr'] }}</td>
+              <td class="govuk-table__cell"><a href="/projects/" class="govuk-link govuk-link--no-visited-state">{{ data['projPersistID'] }}</a></td>
+              <td class="govuk-table__cell">
+                {% if data['projLongName'] | length > 0 %}
+                  {{ data['projLongName'] }}
+                {% else %}
+                  --
+                {% endif %}
+              </td>
+              <td class="govuk-table__cell">
+
+                {% if data['projPersistID'] | length > 0 and data['started_pre_engage'] != 'true' %}
+                  Created
+                {% elif data['started_pre_engage'] == 'true' and data['finished_pre_engage'] != 'true' %}
+                  EoI
+                {% elif data['finished_pre_engage'] == 'true' and data['reqsPublished'] | length == 0 %}
+                  EoI in progress
+                {% elif data['reqsPublished'] | length > 0 and data['projReq'] | length > 0 %}
+                  Published
+                {% else %}
+                  None
+                {% endif %}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      {% else %}
+
+        <p class="govuk-body">You don't have any live or saved projects saved, <a href="/projects/choose-agreement"class="govuk-link govuk-link--no-visited-state">choose a commercial agreement</a>. </p>
+
+      {% endif %}
+      {% endset -%}
+
+
+      {% set notificationsHtml %}
+        <div class="ccs-notifications-center">
+          <div class="notify_message">
+            <h4 class="govuk-heading-s">Welcome to {{ data['portal_name'] }}</h4>
+            <p class="govuk-body">Using this service you can create new projects to find a supplier, and award a contract. You can also invite your colleagues to help you draft your needs, or evaluate suppliers. </p>
+            <p class="govuk-body">To get started, <a href="/projects/choose-agreement" class="govuk-link govuk-link--no-visited-state">choose a commercial agreement</a>. </p>
+            <p class="govuk-body received"><span class="visuallyhidden">Received: </span>25/05/2021 8:30am</p>
+
+          </div>
+        </div>
+      {% endset -%}
+
+
+      {{ govukTabs({
+        items: [
+          {
+            label: "Projects",
+            id: "projects",
+            panel: {
+              html: projectsHtml
+            }
+          },
+          {
+            label: "Notifications",
+            id: "notifications",
+            attributes: {
+              "data-new-items": "1"
+            },
+            panel: {
+              html: notificationsHtml
+            }
+          }
+        ]
+      }) }}
+
+      <div class="my-team">
+
+
+      </div>
+
+      {% if data['suppliers_selected'] == "true" or data['projPersistID'] | length > 0 %}
+
+      <div class="ccs-page-section">
+
+        <h2 class="govuk-heading-m">Get started</h2>
+
+        <p class="govuk-body">All public sector organisations, including agencies and arm's length bodies, can use {{ data['portal_name'] }} to run their procurement end-to-end for a number of available commercial agreements. <a href="https://www.crowncommercial.gov.uk/contact">Contact Crown Commercial Service</a> if you're not sure whether you're eligible. </p>
+
+        <ul class="govuk-list govuk-list--number">
+          <li>Choose a commercial agreement or lot you're interested in </li>
+          <li>Find suppliers straight away or create a new procurement project to run pre-market or call-off events </li>
+          <li>Add collaborators to your project </li>
+          <li>Prepare a draft of your needs </li>
+          <li>Write and publish your requirements </li>
+          <li>Answer supplier questions </li>
+          <li>Evaluate suppliers' written proposals </li>
+          <li>Award a contract and give feedback to any unsuccessful suppliers </li>
+          <li>Publish the contract on Contracts Finder </li>
+        </ul>
+
+        {{ govukButton({
+          text: "Create your needs",
+          href: "/projects/choose-agreement"
+        }) }}
+
+      </div>
+
+      {% endif %}
+
+    </div>
+    
+    <div class="govuk-grid-column-one-third">
+      <div class="ccs-callout-panel">
+        <h2 class="govuk-heading-m">Related content</h2>
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="#" target="_blank" onclick="return false;">Link 1</a> </p>
+        <!-- <p class="govuk-body"><a href="#">Link to external resource</a> </p>
+        <p class="govuk-body"><a href="#">Link to external resource</a> </p> -->
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+

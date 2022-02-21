@@ -1,0 +1,61 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Right to cancel | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Right to cancel"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Read the right to cancel notice
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">The suppliers you'll contact will be made aware that your authority reserves the right to: </p>
+
+      <p class="govuk-body">a) Cancel all or part of this {{ data['choose_pre_engage'] }} at any stage / any time </p>
+
+      <p class="govuk-body">b) Amend, clarify, add to or withdraw all or any part of the EoI at any time <br>&nbsp;</p>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue",
+          href: "/projects/event-supporting-docs"
+        }) }}
+        <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+      </div>
+
+    </div>
+
+  </div>
+
+{% endblock %}

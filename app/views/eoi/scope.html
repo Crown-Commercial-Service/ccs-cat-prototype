@@ -1,0 +1,197 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Project scope (Optional) | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+  items: [
+  {
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Do pre-market engagement",
+  href: "/eoi/eoi-task-list"
+  },
+  {
+    text: "Build your EoI",
+    href: "/eoi/online-task-list"
+  },
+  {
+    text: "Project scope"
+  }
+  ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Project scope (Optional)
+      </h1>
+     
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %} <br>
+
+      <p class="govuk-body">List the things that are ‘in scope’ for this project. In scope means the things that must be achieved. For example, users must be able to register for an account or users must be able to add users to their account.</p>
+
+      <p class="govuk-body">You can add a maximum of ten items.</p> <br><br>
+      <form id="ccs_eoi_scope_form" name="ccs_eoi_scope_form" class="form ccs_rfi_questions_form" action="/eoi/acronyms" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "Enter your first item",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_scope_1",
+          name: "eoi_scope_1",
+          value: data['eoi_scope_1']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your second item <a href='2' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_scope_2",
+          name: "eoi_scope_2",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_scope_2']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your third item <a href='3' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_scope_3",
+          name: "eoi_scope_3",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_scope_3']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your fourth item <a href='4' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_scope_4",
+          name: "eoi_scope_4",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_scope_4']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your fifth item <a href='5' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_scope_5",
+          name: "eoi_scope_5",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_scope_5']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your sixth item <a href='6' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_scope_6",
+          name: "eoi_scope_6",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_scope_6']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your seventh item <a href='7' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_scope_7",
+          name: "eoi_scope_7",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_scope_7']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your eighth item <a href='8' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_scope_8",
+          name: "eoi_scope_8",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_scope_8']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your ninth item <a href='9' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_scope_9",
+          name: "eoi_scope_9",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_scope_9']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            html: "Enter your tenth item <a href='10' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-label--m"
+          },
+          id: "eoi_scope_10",
+          name: "eoi_scope_10",
+          classes: "ccs-dynaform-hidden",
+          value: data['eoi_scope_10']
+        }) }}
+
+        <p class="govuk-body">
+          {{ govukButton({
+            text: "Add another",
+            attributes: {
+              id: "ccs_criteria_add"
+            },
+            classes: "govuk-button--secondary"
+          }) }}
+        </p>
+
+        {{ govukInput({
+          id: "pre_build_started",
+          name: "pre_build_started",
+          type: "hidden",
+          value: true
+        }) }}
+<br><br>
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/eoi/online-task-list" class="govuk-link govuk-link--no-visited-state">Return to Build your Expression of Interest</a>
+        </div>
+
+      </form>
+
+    </div>
+    {% include "includes/promos/related_only.html" %}
+  </div>
+
+{% endblock %}

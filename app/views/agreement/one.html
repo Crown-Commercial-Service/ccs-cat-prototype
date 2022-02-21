@@ -1,0 +1,340 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Digital Outcomes and Specialists 5 | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: "Digital Outcomes and Specialists 5"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Digital Outcomes and Specialists 5
+      </h1>
+
+      <p class="govuk-body ccs-key-facts">
+        <span><strong>Agreement number</strong> RM1043.7</span>
+        <span><strong>Start date</strong> 20/01/2021</span>
+        <span><strong>End date</strong> 19/01/2022</span>
+      </p>
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="ccs-agreement-intro">
+        <p class="govuk-body-l">Using teams or individuals to build and support the digital transformation of public services. </p>
+
+        <p class="govuk-body"><strong>Available for:</strong> central government, wider public sector, local government, health, charity, bluelight (fire, police, ambulance) and education</p>
+
+        <h2 class="govuk-heading-s">Updates</h2>
+        <p class="govuk-body"><strong>22/04/2021 - </strong>This replaces Digital Outcomes and Specialists 4 (RM1043.6) which ends on 30 June 2021. Any call-off contracts entered into before the Digital Outcomes and Specialists 4 expiry date will still have a maximum duration of 2 years. </p>
+
+      </div>
+
+        {{ govukTabs({
+          items: [
+            {
+              label: "Description",
+              id: "desc",
+              panel: {
+                html: '<p class="govuk-body">All public sector organisations can find suppliers who can design, build and provide bespoke digital services using an agile approach.</p>
+        <p class="govuk-body">Buyers can also use this agreement to find:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>physical space to conduct user research</li>
+          <li>users with a mix of characteristics (for example skills, knowledge or accessibility needs) to test your service</li>
+        </ul>
+        <p class="govuk-body">Products and services that are not available on this agreement include (but are not limited to):</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>hosting, support and maintenance of a live application or website </li>
+          <li>supplementing a temporary shortfall in staff with no clear deliverables (who might work across projects under the direction of the buyer) </li>
+          <li>any non-digital role, or a role where there are no clear deliverables</li>
+        </ul>
+        <p class="govuk-body">It is important to remember that this agreement should not be used to staff interim labour. The following CCS agreements are available if you need to find contractors and interim staff:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a href="https://www.crowncommercial.gov.uk/agreements/rm3749">Public Sector Resourcing</a> </li>
+          <li><a href="https://www.crowncommercial.gov.uk/agreements/rm3745">Management Consultancy Framework</a> </li>
+          <li><a href="https://www.crowncommercial.gov.uk/agreements/RM6160">Non Clinical Temporary and Fixed Term Staff</a> </li>
+          <li><a href="https://www.crowncommercial.gov.uk/agreements/RM6008">Management Consultancy Framework Two</a> </li>
+        </ul>
+        <p class="govuk-body">You can find details on this procurement in the <a href="https://ted.europa.eu/udl?uri=TED:NOTICE:478606-2020:TEXT:EN:HTML">OJEU contract notice</a> and <a href="https://www.contractsfinder.service.gov.uk/Notice/bbf448d5-95e1-4bac-895f-981c89fa46bd">tender documents</a>. </p>'
+              }
+            },
+            {
+              label: "Contract length",
+              id: "key-facts",
+              panel: {
+                html: '<p class="govuk-body">Digital Outcomes and Specialists 5 will run for 12 months. But, the duration may be extended up to a further 12 months from the initial expiry date.</p>
+        <p class="govuk-body">Call-off contracts placed under this agreement will have a maximum duration of 2 years. </p>
+        <p class="govuk-body">You will have the option to extend the duration by up to 25% of the initial contract period (equal to a maximum of 6 months). </p>'
+              }
+            }
+          ]
+        }) }}
+
+      <div class="ccs-page-section">
+        <h2 class="govuk-heading-m">Benefits</h2>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>bespoke services through suppliers with the right capabilities to meet your needs </li>
+          <li>there is no restriction on the value of an individual call-off contract (the framework has an overall OJEU value of £2 billion) </li>
+          <li>the framework terms and conditions follows the Public Sector Contract format, and you can tailor your call-off contract (depending on the complexity of your needs) </li>
+          <li>you own the intellectual property rights and source code for the bespoke development, you can even share and re-use these with other public sector buyers </li>
+          <li>our suppliers are mostly small and medium sized enterprises (SMEs) that use an agile approach  </li>
+        </ul>
+
+      </div>
+
+      <div class="ccs-page-section">
+        <h2 class="govuk-heading-m">Products and suppliers</h2>
+        <p class="govuk-body">The <a href="https://assets.digitalmarketplace.service.gov.uk/digital-outcomes-and-specialists-5/communications/catalogues/digital-specialists-suppliers.csv">supplier list</a> can be downloaded and is constantly updated inside this agreement. </p>
+        <dl class="ccs-desc-list">
+          <dt>Lot 1: Digital Outcomes </dt>
+          <dd>
+            <p>Find a team to help you achieve a digital outcome, for example, build a website, create a booking system or run an accessibility audit.</p>
+            <p>Expires: <time>19/01/2022</time> </p>
+          </dd>
+
+          <dt>Lot 2: Digital Specialists </dt>
+          <dd>
+            <p>Find a specialist, such as a developer or a user researcher, for a specific piece of work.</p>
+            <p>Expires: <time>19/01/2022</time> </p>
+          </dd>
+
+          <dt>Lot 3: User Research Studios </dt>
+          <dd>
+            <p>Find a location to run user research sessions. You can specify what facilities you need and when.</p>
+            <p>Expires: <time>19/01/2022</time> </p>
+          </dd>
+
+          <dt>Lot 4: User Research Participants </dt>
+          <dd>
+            <p>Find user research participants, you can specify the types of participants you want to test your service with.</p>
+            <p>Expires: <time>19/01/2022</time> </p>
+          </dd>
+        </dl>
+      </div>
+
+      <div class="ccs-page-section" id="howtobuy">
+        <h2 class="govuk-heading-m">How to buy online</h2>
+
+        <p class="govuk-body">You need to run a two-stage further competition, where suppliers offer information about how they can help you, to find a suitable supplier. There is no option to direct award with this agreement.</p>
+
+        <p class="govuk-body">The steps below are a basic guide to buying digital outcomes, digital specialists and participant services for user research. The buying process is different for user research studio services. </p>
+
+        <p class="govuk-body">To run a further competition for this agreement you will need to: </p>
+        <ol class="govuk-list govuk-list--number">
+          <li>prepare a draft of your needs </li>
+          <li>get approval to buy what you need </li>
+          <li>write and publish your needs. Read about <a href="https://www.gov.uk/guidance/how-to-write-your-requirements-for-digital-outcomes-and-specialists-services">writing your requirements for Digital Outcomes and Specialists</a> </li>
+          <li>suppliers may have some questions about your requirements. You will need to answer supplier questions within a set timeframe. </li>
+          <li>review and score the answers from suppliers about the ‘essential’ and 'nice-to-have' skills and experience to create your shortlist </li>
+          <li>give feedback to any unsuccessful suppliers </li>
+          <li>invite shortlisted suppliers to the assessment stage </li>
+          <li>evaluate their written proposals and any additional assessment methods to find the right supplier for your needs </li>
+          <li>award a contract and give feedback to any unsuccessful suppliers </li>
+          <li>publish the contract on Contracts Finder </li>
+        </ol>
+
+        <p class="govuk-body">You can find details about the full process in the <a href="https://www.gov.uk/guidance/digital-outcomes-and-specialists-buyers-guide">buyers guidance</a>. </p>
+
+        <p class="govuk-body">You can find the order form in the document section below. It is also available in the core terms and framework schedules document on the legal documents webpage.  </p>
+
+      </div>
+
+      <div class="ccs-page-section">
+        <h2 class="govuk-heading-m">Before you start</h2>
+
+        <p class="govuk-body">Before you begin to create your contract online you will need the following: </p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>an understanding of the outcome needed (for example, a website that will tell my customers about my service) </li>
+          <li>an idea of the budget you have </li>
+          <li>an idea of when you need to have the work completed by </li>
+          <li>a draft of your needs </li>
+          <li>approval to buy what you need </li>
+        </ul>
+
+
+        {{ govukButton({
+          text: "Create my contract",
+          href: "/dashboard"
+        }) }}
+      </div>
+
+      <div class="ccs-page-section">
+        <h2 class="govuk-heading-m">Other benefits</h2>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>buying through CCS complies with procurement regulations </li>
+          <li>our commercial agreements have standardised contract terms and guidance for buyers </li>
+          <li>uur service is free to use for public sector and third sector organisations, for example, local authorities, charities and housing associations </li>
+          <li>we have commercial expertise, deep knowledge of product and service categories, and national buying power </li>
+        </ul>
+
+        <p class="govuk-body">Benefits of using a further competition:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>thorough, open and fair method to find the best price for complex requirements </li>
+          <li>reduced timescales in comparison to an OJEU procurement </li>
+          <li>opportunity to evaluate multiple responses over a range of prices. </li>
+          <li>terms and conditions can be amended </li>
+        </ul>
+
+        <p class="govuk-body">Cons of using a further competition:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>slower than direct award</li>
+          <li>higher administration time and cost than direct award</li>
+        </ul>
+
+      </div>
+
+      <!-- <div class="ccs-page-section">
+        <h2 class="govuk-heading-m">How to get support</h2>
+
+        <p class="govuk-body">You can contact us by email, phone or using the <a href="https://www.crowncommercial.gov.uk/contact">enquiry form</a>. </p>
+
+        <h3 class="govuk-heading-s govuk-!-margin-0">Email: </h3>
+        <p class="govuk-body"><a href="mailto:info@crowncommercial.gov.uk">info@crowncommercial.gov.uk</a> </p>
+
+        <h3 class="govuk-heading-s govuk-!-margin-0">Telephone: </h3>
+        <p class="govuk-body"><a href="tel:03454102222">0345 410 2222</a></p>
+
+        <p class="govuk-body">CCS customer services team is available Monday to Friday, 9am to 5pm.</p>
+      </div> -->
+
+      <h2 class="govuk-heading-m">Documents and how to use them</h2>
+
+      <p class="govuk-body">If you want to use your internal procurement systems instead of our digital service, you can download the documents listed below. </p>
+
+      {{ govukAccordion({
+        id: "documents-accordion",
+        items: [
+          {
+            heading: {
+              text: "Request for information"
+            },
+            content: {
+              html: '<p class="govuk-body">To gather your needs and help suppliers understand what you are looking for you will need to complete a <a href="https://www.gov.uk/guidance/how-to-write-your-requirements-for-digital-outcomes-and-specialists-services">request for information</a>. </p>'
+            }
+          },
+          {
+            heading: {
+              text: "Evaluation"
+            },
+            content: {
+              html: '<p class="govuk-body">When the deadline has passed and suppliers have submitted their response, you will need to fill out the <a href="https://www.gov.uk/guidance/digital-outcomes-and-specialists-templates-and-legal-documents#evaluation-templates">evaluation form</a>. Make sure you follow the <a href="https://www.gov.uk/guidance/how-to-score-digital-outcomes-and-specialists-suppliers">scoring advice</a>. </p>'
+            }
+          },
+            {
+            heading: {
+              text: "Ordering"
+            },
+            content: {
+              html: '<p class="govuk-body">When you are ready to award a contract you will need to enter a standstill period of about 10 days. </p>
+              <p class="govuk-body">A standstill period is time when bidders are told about the contract award decision, and the final contract conclusion, during which time suppliers can challenge the decision. It is a legal requirement imposed through the remedies directives. </p>
+              <p class="govuk-body">When the 10 days have passed you can place an order with the supplier using a completed <a href="https://www.gov.uk/guidance/how-to-award-a-contract-when-you-buy-services#whats-an-order-form-and-when-to-use-it">order form</a>. </p>'
+            }
+          },
+            {
+            heading: {
+              text: "Framework award"
+            },
+            content: {
+              html: '<p class="govuk-body">Complete <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/947688/DOS5-framework-award-form.odt">Digital Outcomes and Specialists 5 Framework Award Form</a>. </p>
+              <p class="govuk-body">The framework award form is the basis of the agreement between the supplier and CCS. It creates the framework contract and summarises the main features of the procurement. </p>'
+            }
+          },
+            {
+            heading: {
+              text: "Framework schedules"
+            },
+            content: {
+              html: '<p class="govuk-body"><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/947689/DOS5-core-terms-framework-schedules.odt">Digital Outcomes and Specialists 5 Core Terms and Framework Schedules</a> </p>
+              <p class="govuk-body">The core terms form part of the framework and call-off contracts, and must be used on every contract. They govern the supplier\'s relationship with CCS and every buyer who has a call-off contract. They cannot be changed. </p>
+              <p class="govuk-body">The framework schedules are additional terms between the supplier and CCS. </p><p class="govuk-body">Framework Schedule 6 (Order Form Template, Statement of Work Template and Call-Off Schedules) creates the call-off contract between the supplier and buyer. </p>'
+            }
+          },
+            {
+            heading: {
+              text: "Joint schedules"
+            },
+            content: {
+              html: '<p class="govuk-body"><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/947690/DOS5-joint-schedules.odt">Digital Outcomes and Specialists 5 Joint Schedules</a> </p>
+              <p class="govuk-body">The joint schedules are additional terms between the supplier and CCS under the framework, as well as between the supplier and you under call-off contracts. </p>
+              <p class="govuk-body">You can exclude specific schedules that you decide are not relevant to the procurement. </p>'
+            }
+          },
+            {
+            heading: {
+              text: "Call-off scedules"
+            },
+            content: {
+              html: '<p class="govuk-body"><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/947691/DOS5-call-off-schedules.odt">Digital Outcomes and Specialists 5 Call-Off Schedules</a> (ODT, 208KB)</p>
+              <p class="govuk-body">The call-off schedules are specific to the call-off contract between the supplier and buyer. </p>
+              <p class="govuk-body">You can exclude specific schedules that you decide are not relevant to the procurement. </p>'
+            }
+          }
+        ]
+      }) }}
+
+      <div class="ccs-page-section">
+        <h2 class="govuk-heading-m">Other ways to buy</h2>
+        <p class="govuk-body">No additional routes to procurement are available for Digital Outcomes and Specialists 5.</p>
+      </div>
+
+      <div class="ccs-page-section">
+        <h2 class="govuk-heading-m">The benefits of using CCS</h2>
+        <p class="responsive-video widescreen">
+          <iframe title="An overview of CCS in 30 seconds" src="https://www.youtube-nocookie.com/embed/_p61ZX4zQHU" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="560" height="315"></iframe>
+        </p>
+      </div>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <div class="ccs-callout-panel">
+        <h2 class="govuk-heading-m">Contact </h2>
+
+        <p class="govuk-body">You can contact us by email, phone or using the <a href="https://www.crowncommercial.gov.uk/contact">enquiry form</a>. </p>
+
+        <h3 class="govuk-heading-s govuk-!-margin-0">Email: </h3>
+        <p class="govuk-body"><a href="mailto:info@crowncommercial.gov.uk">info@crowncommercial.gov.uk</a> </p>
+
+        <h3 class="govuk-heading-s govuk-!-margin-0">Telephone: </h3>
+        <p class="govuk-body"><a href="tel:03454102222">0345 410 2222</a></p>
+
+        <p class="govuk-body">CCS customer services team is available Monday to Friday, 9am to 5pm.</p>
+      </div>
+
+      <div class="ccs-callout-panel whitepaper">
+        <a href="" title="Access the Buying digital services in the public sector whitepaper"><img src="/public/images/whitepaper.jpg" alt=""></a>
+        <h2 class="govuk-heading-m">Buying digital services in the public sector</h2>
+        <p class="govuk-body">Find out how to get the right solution for your cloud or digital requirements.</p>
+        <p class="govuk-body"><a href="#">Access whitepaper</a> </p>
+      </div>
+
+      <!-- <div class="ccs-callout-panel">
+        <h2 class="govuk-heading-m">[Case studies]</h2>
+      </div> -->
+
+    </div>
+
+  </div>
+
+{% endblock %}

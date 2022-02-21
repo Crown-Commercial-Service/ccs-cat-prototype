@@ -1,0 +1,92 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+ Internal project | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Write and publish your requirements",
+  href: "/requirements/rfp/task-list"
+  },
+  {
+    text: "[Add context]",
+    href: "/requirements/rfp/context/sub-task-list"
+    },
+{
+text: "[ Internal project / programme name (Optional) ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full ">
+      <h1 class="govuk-heading-xl">
+        [ Internal project / programme name (Optional) ]
+      </h1>
+      
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %}<br>
+        <p class="govuk-body">[instructions]</p><br><br>
+
+        <form id="ccs_rfp_internal_project_form" name="ccs_rfp_internal_project_form" class="form ccs_rfp_internal_project_form" action="/requirements/rfp/project-phase" method="post">
+            
+            {{ govukInput({
+                label: {
+                  text: "[ Project / programme name ]",
+                  classes: "govuk-label--m"
+                },
+                id: "rfp_project_name",
+                name: "rfp_project_name",
+                value: data['rfp_project_name']
+              }) }}
+<br>
+              {{ govukInput({
+                label: {
+                  text: "[ Project / programme identifier ]",
+                  classes: "govuk-label--m"
+                },
+                id: "rfp_project_identifier",
+                name: "rfp_project_identifier",
+                value: data['rfp_project_identifier']
+              }) }}
+              <br>
+
+              <div class="govuk-button-group">
+                {{ govukButton({
+                  text: "Save and continue"
+                }) }}
+                <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Add context ]</a>
+              </div>
+      
+            </form>
+      
+          </div>
+      
+          {% include "includes/promos/related_only.html" %}
+      
+      
+        </div>
+      
+      {% endblock %}

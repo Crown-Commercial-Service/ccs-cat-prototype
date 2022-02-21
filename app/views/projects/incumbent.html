@@ -1,0 +1,91 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Incumbent supplier | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Incumbent supplier"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Is there an incumbent supplier?
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form id="ccs_eoi_incumbent_form" name="ccs_eoi_incumbent_form" class="form ccs_eoi_incumbent_form" action="/projects/event-budget" method="post">
+
+        {{ govukRadios({
+          idPrefix: "ccs_eoi_incumbent",
+          name: "ccs_eoi_incumbent",
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked("ccs_eoi_incumbent", "Yes"),
+              label: {
+                classes: "ccs_eoi_incumbent"
+              }
+            },
+            {
+              value: "No",
+              text: "No",
+              checked: checked("ccs_eoi_incumbent", "No"),
+              label: {
+                classes: "ccs_eoi_incumbent"
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Enter the name of the incumbent supplier",
+            isPageHeading: false
+          },
+          id: "incumbent_supplier",
+          name: "incumbent_supplier",
+          value: data['incumbent_supplier']
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}

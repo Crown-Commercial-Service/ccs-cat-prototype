@@ -1,0 +1,90 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+Work completed to date | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+  text: "Dashboard",
+  href: "/dashboard"
+  },
+  {
+  text: "Choose a commercial agreement",
+  href: "/projects/choose-agreement"
+  },
+  {
+  text: "Procurement overview",
+  href: "/projects/"
+  },
+  {
+  text: "Write and publish your requirements",
+  href: "/requirements/rfp/task-list"
+  },
+  {
+    text: "[Add context]",
+    href: "/requirements/rfp/context/sub-task-list"
+    },
+{
+text: "[ Work completed to date (Optional) ]"
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-three-quarters-from-desktop">
+      <h1 class="govuk-heading-xl">
+        [ Work completed to date (Optional) ]
+      </h1>
+      
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-grid-column-two-thirds-from-desktop">
+      {% include "includes/project_header.html" %}<br>
+        <p class="govuk-body">[instructions]</p><br><br>
+
+        <form id="ccs_rfp_work_till_date_form" name="ccs_rfp_work_till_date_form" class="form ccs_rfp_work_till_date_form" action="/requirements/rfp/context/project-phase" method="post">
+
+            {{ govukTextarea({
+              name: "rfp-work-till-date",
+              id: "rfp-work-till-date",
+              label: {
+                text: "[ Provide details of any work completed so far ]",
+                classes: "govuk-!-font-weight-bold"
+              },
+              hint: {
+                text: "[ Description ]"
+              }
+            }) }}
+
+            {{ govukInput({
+              id: "rfp_work-done_added",
+              name: "rfp_work-done_added",
+              type: "hidden",
+              value: true
+            }) }}
+
+            {{ govukInput({
+              id: "rfp_add_context_started",
+              name: "rfp_add_context_started",
+              type: "hidden",
+              value: true
+            }) }}
+<br><br>
+            <div class="govuk-button-group">
+                {{ govukButton({
+                  text: "Save and continue"
+                }) }}
+                <a href="/requirements/rfp/context/sub-task-list" class="govuk-link govuk-link--no-visited-state">Return to [ Add context ]</a>
+              </div>
+    </div>
+    {% include "includes/promos/related_only.html" %}
+</div>
+{% endblock %}

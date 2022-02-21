@@ -1,0 +1,135 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Invoicing address | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Dashboard",
+href: "/dashboard"
+},
+{
+text: "Choose a commercial agreement",
+href: "/projects/choose-agreement"
+},
+{
+text: "Procurement overview",
+href: "/projects/"
+},
+{
+text: "Write and publish your requirements",
+href: "/requirements"
+},
+{
+text: " [ Legal / invoicing address ] "
+}
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        [ Legal / invoicing address ] 
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "includes/project_header.html" %}<br>
+      <p class="govuk-body">[ Instructions for this page ]</p><br><br>
+      
+      
+      <form id="ccs_rfp_address_manual_form" name="ccs_rfp_address_manual_form" class="form ccs_rfp_address_manual_form" action="/requirements/rfp/vetting" method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: "[ Search by postcode or enter the address manually ]",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          }
+        }) %}
+
+          {{ govukInput({
+            label: {
+              html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
+            },
+            id: "rfp_invoice_address-line-1",
+            name: "rfp_invoice_address-line-1",
+            autocomplete: "address-line1",
+            value: data['rfp_invoice_address-line-1']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
+            },
+            id: "rfp_invoice_address-line-2",
+            name: "rfp_invoice_address-line-2",
+            autocomplete: "address-line2",
+            value: data['rfp_invoice_address-line-2']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Town or city"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "rfp_invoice_address-town",
+            name: "rfp_invoice_address-town",
+            autocomplete: "address-level2",
+            value: data['rfp_invoice_address-town']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "County (optional)"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "rfp_invoice_address-county",
+            name: "rfp_invoice_address-county",
+            value: data['rfp_invoice_address-county']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Postcode"
+            },
+            classes: "govuk-input--width-10",
+            id: "rfp_invoice_address-postcode",
+            name: "rfp_invoice_address-postcode",
+            autocomplete: "postal-code",
+            value: data['rfp_invoice_address-postcode']
+          }) }}
+
+        {% endcall %}
+
+        <span>
+          <a href="/requirements/rfp/address" class="govuk-link govuk-link--no-visited-state">Search by postcode</a>
+        </span>
+        
+        <br>
+        <br>
+        <br>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/requirements/rfp/address-manual" class="govuk-link govuk-link--no-visited-state">Enter address manually</a>
+        </div>
+
+      </form>
+
+    </div>
+    {% include "includes/promos/related_only.html" %}
+
+  </div>
+
+{% endblock %}

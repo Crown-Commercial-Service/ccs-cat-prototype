@@ -1,0 +1,24 @@
+.resource-nav-section{
+    h2 {
+        margin-bottom: -1px ;
+    }
+    li {
+        cursor: pointer;
+        // &:nth-of-type(n) {
+        //     pointer-events: none;
+        //   }
+    }
+}
+
+.clear-button, .clear-button:hover {
+    border-width: 0px;
+    background-color: transparent;
+    text-decoration: underline;
+    color:black;
+    box-shadow: none;
+    margin-bottom: 0px;
+}
+
+.heading-margin-bottom {
+    margin-bottom: -1px ;
+}

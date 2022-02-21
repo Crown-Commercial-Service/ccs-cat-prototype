@@ -1,0 +1,322 @@
+{% extends "layout_ccs.html" %}
+
+{% block pageTitle %}
+  Add team members | Crown Commercial Service
+{% endblock %}
+
+{% block bcrumbBlock %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: data['portal_name'],
+        href: "/dashboard"
+      },
+      {
+        text: data['projPersistID'],
+        href: "/projects/"
+      },
+      {
+        text: "Add team members"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Add team members to your project
+      </h1>
+      {% include "includes/project_header.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body-l">You may add up to five team members to your project to help you define your requirements and rate suppliers.</p>
+
+      <form id="ccs_add_collab" name="ccs_add_collab" class="form ccs_add_collab" action="/projects/store-collab" method="post">
+
+
+
+        {% call govukFieldset({
+          legend: {
+            text: "Collaborator one",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          },
+          classes: "collab_1"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "Name"
+            },
+            id: "proj_collab_name_1",
+            name: "proj_collab_name_1",
+            classes: "proj_collab_name_1",
+            value: data['proj_collab_name_1']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Email address"
+            },
+            id: "proj_collab_email_1",
+            name: "proj_collab_email_1",
+            type: "email",
+            autocomplete: "email",
+            spellcheck: false,
+            classes: "proj_collab_email_1",
+            value: data['proj_collab_email_1']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Telephone number (optional)"
+            },
+            id: "proj_collab_tel_1",
+            name: "proj_collab_tel_1",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-input--width-20 proj_collab_tel_1",
+            value: data['proj_collab_tel_1']
+          }) }}
+
+        {% endcall %}
+
+
+
+
+
+
+
+        {% call govukFieldset({
+          legend: {
+            html: "Collaborator two <a href='2' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          },
+          classes: "collab_2"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "Name"
+            },
+            id: "proj_collab_name_2",
+            name: "proj_collab_name_2",
+            classes: "proj_collab_name_2",
+            value: data['proj_collab_name_2']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Email address"
+            },
+            id: "proj_collab_email_2",
+            name: "proj_collab_email_2",
+            type: "email",
+            autocomplete: "email",
+            spellcheck: false,
+            classes: "proj_collab_email_2",
+            value: data['proj_collab_email_2']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Telephone number (optional)"
+            },
+            id: "proj_collab_tel_2",
+            name: "proj_collab_tel_2",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-input--width-20 proj_collab_tel_2",
+            value: data['proj_collab_tel_2']
+          }) }}
+
+        {% endcall %}
+
+
+
+
+        {% call govukFieldset({
+          legend: {
+            html: "Collaborator three <a href='3' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          },
+          classes: "collab_3"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "Name"
+            },
+            id: "proj_collab_name_3",
+            name: "proj_collab_name_3",
+            classes: "proj_collab_name_3",
+            value: data['proj_collab_name_3']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Email address"
+            },
+            id: "proj_collab_email_3",
+            name: "proj_collab_email_3",
+            type: "email",
+            autocomplete: "email",
+            spellcheck: false,
+            classes: "proj_collab_email_3",
+            value: data['proj_collab_email_3']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Telephone number (optional)"
+            },
+            id: "proj_collab_tel_3",
+            name: "proj_collab_tel_3",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-input--width-20 proj_collab_tel_3",
+            value: data['proj_collab_tel_3']
+          }) }}
+
+        {% endcall %}
+
+
+
+
+
+
+
+        {% call govukFieldset({
+          legend: {
+            html: "Collaborator four <a href='4' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          },
+          classes: "collab_4"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "Name"
+            },
+            id: "proj_collab_name_4",
+            name: "proj_collab_name_4",
+            classes: "proj_collab_name_4",
+            value: data['proj_collab_name_4']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Email address"
+            },
+            id: "proj_collab_email_4",
+            name: "proj_collab_email_4",
+            type: "email",
+            autocomplete: "email",
+            spellcheck: false,
+            classes: "proj_collab_email_4",
+            value: data['proj_collab_email_4']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Telephone number (optional)"
+            },
+            id: "proj_collab_tel_4",
+            name: "proj_collab_tel_4",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-input--width-20 proj_collab_tel_4",
+            value: data['proj_collab_tel_4']
+          }) }}
+
+        {% endcall %}
+
+
+
+
+
+
+
+
+
+        {% call govukFieldset({
+          legend: {
+            html: "Collaborator five <a href='5' class='del govuk-link govuk-link--no-visited-state' title='delete'> X </a>",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          },
+          classes: "collab_5"
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "Name"
+            },
+            id: "proj_collab_name_5",
+            name: "proj_collab_name_5",
+            classes: "proj_collab_name_5",
+            value: data['proj_collab_name_5']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Email address"
+            },
+            id: "proj_collab_email_5",
+            name: "proj_collab_email_5",
+            type: "email",
+            autocomplete: "email",
+            spellcheck: false,
+            classes: "proj_collab_email_5",
+            value: data['proj_collab_email_5']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Telephone number (optional)"
+            },
+            id: "proj_collab_tel_5",
+            name: "proj_collab_tel_5",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-input--width-20 proj_collab_tel_5",
+            value: data['proj_collab_tel_5']
+          }) }}
+
+        {% endcall %}
+
+
+        <p class="govuk-body"><a href="#" id="ccs_collab_add" class="govuk-link govuk-link--no-visited-state">Add another collaborator</a> </p>
+
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+          <a href="/projects/" class="govuk-link govuk-link--no-visited-state">Return to project overview</a>
+          <a href="/dashboard" class="govuk-link govuk-link--no-visited-state">Dashboard</a>
+        </div>
+
+      </form>
+
+    </div>
+
+
+  </div>
+
+{% endblock %}
